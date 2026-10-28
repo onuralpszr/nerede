@@ -109,7 +109,9 @@ main { max-width: 1080px; margin: 0 auto;
 .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 18px; }
 .tabs button { border: 2px solid var(--line); border-radius: var(--pill); background: var(--surface); min-height: 40px; padding: 6px 16px;
                cursor: pointer; font-weight: 600; }
-.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.tabs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.tabs button[data-tab="all"] { border-style: dashed; }
+.tabs button[data-tab="all"][aria-pressed="true"] { border-style: solid; }
 .tabs button .n { font-family: var(--mono); font-size: .75em; opacity: .7; margin-left: 4px; }
 select { border: 2px solid var(--line); border-radius: var(--pill); background: var(--surface); min-height: 34px; padding: 3px 10px; cursor: pointer; }
 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
@@ -140,6 +142,7 @@ select { border: 2px solid var(--line); border-radius: var(--pill); background: 
 .meta span { border: 1.5px solid var(--soft-line); border-radius: var(--pill); padding: 0 8px; color: var(--muted); }
 .meta .lang { border-color: var(--line); color: var(--ink); font-family: var(--mono); }
 .meta .c-devfest { background: var(--gold); color: #14213d; border-color: var(--line); }
+.meta .c-devfest2025 { background: var(--surface); color: var(--ink); border: 2px dashed var(--gold); }
 .meta .c-gemma { background: var(--sky); color: #14213d; border-color: var(--line); }
 .card p { margin: 0; font-size: .95rem; overflow-wrap: anywhere; }
 /* score on its own row, links below it: no awkward wrapping in narrow cards */
@@ -153,6 +156,7 @@ select { border: 2px solid var(--line); border-radius: var(--pill); background: 
 .foot a::after { content: ""; position: absolute; inset: -12px -6px; } /* bigger tap target, same layout */
 
 /* a grid (not CSS columns) so ranks read left to right */
+.strip { font-size: 1rem; margin: 22px 0 10px; }
 .photos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
 .photo { margin: 0; border: 2px solid var(--line); border-radius: 16px; overflow: hidden;
          background: var(--surface); box-shadow: var(--shadow); min-width: 0; }
@@ -244,7 +248,7 @@ footer p { margin: 6px 0; }
   @media (hover: hover) {
     .tabs button:hover, .bar button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 3px 0 var(--line); }
     .bar button:hover:not(:disabled) { background: var(--sky-hover); }
-    .tabs button:not([aria-selected="true"]):hover { background: var(--sky-soft); }
+    .tabs button:not([aria-pressed="true"]):hover { background: var(--sky-soft); }
     .chips button:hover { transform: translateY(-1px); }
     .card:hover, .photo:hover { transform: translateY(-3px); box-shadow: 0 6px 0 var(--line); }
     .card:hover > img, .photo:hover img { transform: scale(1.03); }

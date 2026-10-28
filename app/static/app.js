@@ -4,7 +4,8 @@
 
 const TRANSFORMERS = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2";
 const MODEL = "onnx-community/embeddinggemma-2-ONNX";
-const TABS = ["all", "places", "photos", "devfest", "gemma"];
+// Filters can be combined: "all" turns every one on, a click on any other includes or excludes it.
+const FILTERS = ["places", "photos", "devfest", "devfest2025", "gemma"];
 
 const T = {
   tr: {
@@ -12,7 +13,8 @@ const T = {
     event: "DevFest İstanbul 2026 · 19 Aralık · Wyndham Grand İstanbul Levent",
     placeholder: "balık ekmek nerede yenir? · where is DevFest?",
     go: "Ara", server: "Sunucu", browser: "Tarayıcı", dims: "boyut", where: "Model nerede çalışsın",
-    tabs: { all: "Hepsi", places: "İstanbul", photos: "Fotoğraflar", devfest: "DevFest", gemma: "EmbeddingGemma" },
+    tabs: { all: "Hepsi", places: "İstanbul", photos: "Fotoğraflar", devfest: "DevFest 2026", devfest2025: "DevFest 2025", gemma: "EmbeddingGemma" },
+    filters: "Nerede arayalım",
     took: (r) => `<b>${r.ms} ms</b> · ${r.backend} · ${r.dim} boyut`,
     intent: "niyet",
     downloading: (a, t) => `Model tarayıcına iniyor… <b>${a} / ${t} MB</b> (sonra önbellekten gelir)`,
@@ -27,6 +29,7 @@ const T = {
       places: ["Bizans mozaikleri", "ucuz Boğaz turu", "çocuklarla müze", "yağmurlu günde ne yapılır", "eski kitaplar", "gece sokak lezzeti"],
       photos: ["kubbeli cami ve minareler", "deniz kenarında kule", "köprü ve Boğaz", "saray ve bahçe"],
       devfest: ["konferans ne zaman", "metroyla nasıl gidilir", "bilet fiyatları", "konuşmacı başvurusu"],
+      devfest2025: ["2025'te kaç kişi geldi", "salonların adları", "geçen yılın sponsorları", "2025 oturumları"],
       gemma: ["model kaç parametreli", "tarayıcıda çalışır mı", "vektörü küçültürsem ne olur", "arama için hangi önek"],
     },
   },
@@ -35,7 +38,8 @@ const T = {
     event: "DevFest Istanbul 2026 · 19 December · Wyndham Grand Istanbul Levent",
     placeholder: "where to eat a fish sandwich? · DevFest ne zaman?",
     go: "Search", server: "Server", browser: "Browser", dims: "dims", where: "Where the model runs",
-    tabs: { all: "All", places: "Istanbul", photos: "Photos", devfest: "DevFest", gemma: "EmbeddingGemma" },
+    tabs: { all: "All", places: "Istanbul", photos: "Photos", devfest: "DevFest 2026", devfest2025: "DevFest 2025", gemma: "EmbeddingGemma" },
+    filters: "What to search",
     took: (r) => `<b>${r.ms} ms</b> · ${r.backend} · ${r.dim}d`,
     intent: "intent",
     downloading: (a, t) => `Downloading the model to your browser… <b>${a} / ${t} MB</b> (cached afterwards)`,
@@ -49,7 +53,8 @@ const T = {
       all: ["where to eat a fish sandwich", "when is DevFest", "how many languages does the model know", "watch the sunset"],
       places: ["Byzantine mosaics", "train under the sea", "museum for kids", "what to do when it rains", "old books", "late night street food"],
       photos: ["domes and minarets", "a tower by the sea", "bridge over the Bosphorus", "palace with a garden"],
-      devfest: ["when is the conference", "how do I get to the venue", "Gold Pass perks", "last year's numbers"],
+      devfest: ["when is the conference", "how do I get to the venue", "Gold Pass perks", "company invoice"],
+      devfest2025: ["how many people came in 2025", "room names last year", "who sponsored", "2025 sessions"],
       gemma: ["how big is the model", "does it run in the browser", "Matryoshka dimensions", "which prefix for search"],
     },
   },
@@ -64,7 +69,7 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 
 const state = {
   lang: store.get("lang") || ((navigator.language || "tr").toLowerCase().startsWith("tr") ? "tr" : "en"),
-  tab: "all",
+  on: new Set(FILTERS), // which filters are included
   mode: "server",
   server: null,     // /api/health payload, or false when there is no server
   browser: null,    // lazy {model, tokenizer, index, device}
@@ -102,12 +107,24 @@ function counts() {
   return { all: Object.values(c).reduce((a, x) => a + x, 0) || undefined, ...c, photos };
 }
 
+const allOn = () => FILTERS.every((f) => state.on.has(f));
+const docCollections = () => FILTERS.filter((f) => f !== "photos" && state.on.has(f));
+
+function toggle(key) {
+  if (key === "all") state.on = new Set(FILTERS);
+  else if (state.on.has(key)) state.on.delete(key);
+  else state.on.add(key);
+  if (!state.on.size) state.on = new Set(FILTERS); // nothing left to search: back to all
+}
+
 function renderTabs() {
   const n = counts();
-  $("tabs").innerHTML = TABS.map((k) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === state.tab}">
-    ${esc(t().tabs[k])}${n[k] ? `<span class="n">${n[k]}</span>` : ""}</button>`).join("");
+  const button = (k, on) => `<button type="button" data-tab="${k}" aria-pressed="${on}">
+    ${esc(t().tabs[k])}${n[k] ? `<span class="n">${n[k]}</span>` : ""}</button>`;
+  $("tabs").setAttribute("aria-label", t().filters);
+  $("tabs").innerHTML = button("all", allOn()) + FILTERS.map((k) => button(k, state.on.has(k))).join("");
   $("tabs").querySelectorAll("button").forEach((b) => b.onclick = () => {
-    state.tab = b.dataset.tab;
+    toggle(b.dataset.tab);
     renderTabs();
     renderChips();
     if ($("q").value.trim()) run();
@@ -116,7 +133,8 @@ function renderTabs() {
 
 function renderChips() {
   $("chips").innerHTML = "";
-  for (const text of t().examples[state.tab]) {
+  const only = state.on.size === 1 ? [...state.on][0] : "all"; // one filter: its own examples
+  for (const text of t().examples[only]) {
     const b = document.createElement("button");
     b.type = "button";
     b.textContent = text;
@@ -183,15 +201,15 @@ async function searchBrowser(q, k) {
   const dim = Math.min(b.index.dim, Number($("dim").value));
   const qv = normalize(Array.from(sentence_embedding.data).slice(0, dim));
   const dot = (v) => v.reduce((s, x, j) => s + x * qv[j], 0);
-  const photos = state.tab === "photos";
-  const hybrid = photos || VECTOR_ONLY ? { boost: null, intent: null } : await hybridBoosts(b, q);
-  const records = photos ? b.index.images : b.index.docs;
+  const cols = docCollections();
+  const hybrid = !cols.length || VECTOR_ONLY ? { boost: null, intent: null } : await hybridBoosts(b, q);
   const byId = Object.fromEntries(b.index.images.map((i) => [i.id, i]));
-  const results = matrix(b, photos ? "image_vectors" : "vectors", dim)
-    .map((v, i) => ({ score: dot(v) + (hybrid.boost ? hybrid.boost[i] : 0), ...records[i] }))
-    .filter((r) => photos || state.tab === "all" || r.collection === state.tab)
-    .sort((a, c) => c.score - a.score).slice(0, k)
-    .map((r) => (photos ? r : { ...r, photo: byId[r.id] }));
+  const top = (rows, n) => rows.sort((a, c) => c.score - a.score).slice(0, n);
+  const results = cols.length ? top(matrix(b, "vectors", dim)
+    .map((v, i) => ({ score: dot(v) + (hybrid.boost ? hybrid.boost[i] : 0), ...b.index.docs[i] }))
+    .filter((r) => cols.includes(r.collection)), k).map((r) => ({ ...r, photo: byId[r.id] })) : [];
+  const photos = state.on.has("photos")
+    ? top(matrix(b, "image_vectors", dim).map((v, i) => ({ score: dot(v), ...b.index.images[i] })), cols.length ? 6 : 12) : null;
   return { backend: `browser:${b.device}`, dim, intent: hybrid.intent, ms: (performance.now() - start).toFixed(1), results, photos };
 }
 
@@ -228,8 +246,8 @@ async function hybridBoosts(b, q) {
   const cv = normalize(Array.from(sentence_embedding.data));
   const sims = h.label_vectors.map((v) => v.reduce((s, x, j) => s + x * cv[j], 0));
   const best = sims.indexOf(Math.max(...sims)), label = h.labels[best];
-  const inIntent = (d) => (label === "devfest" || label === "ai")
-    ? d.collection === (label === "ai" ? "gemma" : "devfest") : d.collection === "places" && d.category === label;
+  const inIntent = (d) => label === "ai" ? d.collection === "gemma"
+    : label === "devfest" ? d.collection.startsWith("devfest") : d.collection === "places" && d.category === label;
   const kw = keywordScores(b, q), top = Math.max(...kw);
   const boost = b.index.docs.map((d, i) => (sims[best] >= h.intent_min_confidence && inIntent(d) ? h.intent_boost : 0)
     + (top > 0 ? h.keyword_boost * kw[i] / top : 0));
@@ -238,13 +256,20 @@ async function hybridBoosts(b, q) {
 
 // ---------- server mode -----------------------------------------------------------------------
 async function searchServer(q, k) {
-  const photos = state.tab === "photos";
-  const params = new URLSearchParams({ q, k, dim: $("dim").value });
-  if (!photos) params.set("collection", state.tab);
-  if (VECTOR_ONLY) params.set("mode", "vector");
-  const r = await fetch(`api/${photos ? "photos" : "search"}?${params}`);
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return { ...(await r.json()), photos };
+  const cols = docCollections();
+  const get = async (path, params) => {
+    const r = await fetch(`api/${path}?${params}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  };
+  const docs = new URLSearchParams({ q, k, dim: $("dim").value });
+  cols.forEach((c) => docs.append("collection", c));
+  if (VECTOR_ONLY) docs.set("mode", "vector");
+  const [d, p] = await Promise.all([
+    cols.length ? get("search", docs) : null,
+    state.on.has("photos") ? get("photos", new URLSearchParams({ q, k: cols.length ? 6 : 12, dim: $("dim").value })) : null,
+  ]);
+  return { ...(d || p), results: d ? d.results : [], photos: p ? p.results : null, ms: d && p ? Math.max(d.ms, p.ms) : (d || p).ms };
 }
 
 // ---------- rendering -------------------------------------------------------------------------
@@ -279,10 +304,10 @@ function render(res) {
   busy(false);
   const intent = res.intent ? ` · ${t().intent} <span class="badge">${esc(res.intent)}</span>` : "";
   status(t().took(res) + intent);
-  if (!res.results.length) { $("out").innerHTML = `<p class="empty">${t().none}</p>`; return; }
-  $("out").innerHTML = res.photos
-    ? `<div class="photos">${res.results.map(photo).join("")}</div>`
-    : `<ol class="results">${res.results.map(card).join("")}</ol>`;
+  const docs = res.results.length ? `<ol class="results">${res.results.map(card).join("")}</ol>` : "";
+  const pics = res.photos?.length ? `${docs ? `<h3 class="strip">${esc(t().tabs.photos)}</h3>` : ""}
+    <div class="photos">${res.photos.map(photo).join("")}</div>` : "";
+  $("out").innerHTML = docs + pics || `<p class="empty">${t().none}</p>`;
 }
 
 // ---------- UI only: loading state ----------------------------------------------------------------
@@ -312,7 +337,7 @@ async function run() {
   const q = $("q").value.trim();
   if (!q) return;
   const ticket = ++state.ticket; // searches may overlap (tab clicks, typing); only the newest renders
-  const k = state.tab === "photos" ? 12 : 6;
+  const k = 6;
   try {
     const res = state.mode === "server" ? await searchServer(q, k) : await searchBrowser(q, k);
     if (ticket !== state.ticket) return; // a newer search started while this one ran
@@ -320,7 +345,8 @@ async function run() {
     render(res);
     const url = new URL(location.href);
     url.searchParams.set("q", q);
-    url.searchParams.set("tab", state.tab);
+    url.searchParams.delete("tab");
+    if (allOn()) url.searchParams.delete("only"); else url.searchParams.set("only", [...state.on].join(","));
     history.replaceState(null, "", url);
   } catch (e) {
     if (ticket === state.ticket) status(`${t().error}: ${esc(e.message)}`);
@@ -335,7 +361,9 @@ $("form").onsubmit = (e) => { e.preventDefault(); run(); };
 
 applyTheme(store.get("theme"));
 const params = new URLSearchParams(location.search);
-if (TABS.includes(params.get("tab"))) state.tab = params.get("tab");
+// ?only=places,photos picks filters; the older ?tab=photos still works
+const only = (params.get("only") || params.get("tab") || "").split(",").filter((f) => FILTERS.includes(f));
+if (only.length) state.on = new Set(only);
 if (T[params.get("lang")]) state.lang = params.get("lang"); // shareable: ?lang=tr
 applyLang();
 
