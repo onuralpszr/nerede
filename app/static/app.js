@@ -18,7 +18,7 @@ const T = {
     downloading: (a, t) => `Model tarayıcına iniyor… <b>${a} / ${t} MB</b> (sonra önbellekten gelir)`,
     ready: (d, n, p, dim) => `Model hazır: <b>${d}</b> · ${n} belge, ${p} fotoğraf, ${dim} boyut`,
     staticMode: "Sunucu bulunamadı, her şey tarayıcında çalışıyor.",
-    map: "Harita", source: "Kaynak", none: "Sonuç yok", error: "Bir şeyler ters gitti",
+    findNearby: "Google Maps'te bul", source: "Kaynak", none: "Sonuç yok", error: "Bir şeyler ters gitti",
     photoBy: "Fotoğraf",
     footer1: "GDG DevFest İstanbul 2026 atölye önerisi için EmbeddingGemma 2 ile yapıldı.",
     footer2: 'Sunucu modu: FastAPI + LiteRT-LM. Tarayıcı modu: transformers.js, sorgun cihazından çıkmaz. Fotoğraflar: <a href="images/ATTRIBUTION.md">Wikimedia Commons</a>.',
@@ -41,7 +41,7 @@ const T = {
     downloading: (a, t) => `Downloading the model to your browser… <b>${a} / ${t} MB</b> (cached afterwards)`,
     ready: (d, n, p, dim) => `Model ready on <b>${d}</b> · ${n} docs, ${p} photos, ${dim}d`,
     staticMode: "No server found, everything runs in your browser.",
-    map: "Map", source: "Source", none: "No results", error: "Something went wrong",
+    findNearby: "Find on Google Maps", source: "Source", none: "No results", error: "Something went wrong",
     photoBy: "Photo",
     footer1: "Built with EmbeddingGemma 2 for a GDG DevFest Istanbul 2026 workshop proposal.",
     footer2: 'Server mode: FastAPI + LiteRT-LM. Browser mode: transformers.js, your query never leaves your device. Photos: <a href="images/ATTRIBUTION.md">Wikimedia Commons</a>.',
@@ -210,7 +210,12 @@ const credit = (p) => `${t().photoBy}: ${p.author} · ${p.license}`;
 function card(r) {
   const img = r.photo ? `<img src="images/${esc(r.photo.file)}" alt="${esc(r.title)}" loading="lazy" title="${esc(credit(r.photo))}">` : "";
   const where = r.district && r.district !== "Everywhere" ? `<span>${esc(r.district)}</span>` : "";
-  const map = r.lat != null ? `<a href="https://www.openstreetmap.org/?mlat=${r.lat}&mlon=${r.lon}#map=16/${r.lat}/${r.lon}" target="_blank" rel="noopener">${t().map}</a>` : "";
+  const link = (href, label) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`;
+  const gmaps = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+  // places with coordinates get a pin on both maps; dishes and tips without one get a Google Maps search
+  const map = r.lat != null
+    ? link(`https://www.openstreetmap.org/?mlat=${r.lat}&mlon=${r.lon}#map=16/${r.lat}/${r.lon}`, "OpenStreetMap") + link(gmaps(`${r.lat},${r.lon}`), "Google Maps")
+    : r.collection === "places" ? link(gmaps(`${r.title.replace(/\s*\(.*?\)/g, "")} İstanbul`), t().findNearby) : "";
   const src = r.source && /^https?:/.test(r.source) ? `<a href="${esc(r.source)}" target="_blank" rel="noopener">${t().source}</a>` : "";
   return `<li class="card">${img}<div class="body">
     <h2>${esc(r.title)}</h2>
