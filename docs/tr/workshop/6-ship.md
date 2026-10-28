@@ -60,7 +60,7 @@ Yaklaşık 575 MB, yaklaşık bir saniyede açılıyor ve 200 MB civarı RAM kul
 
 === "Cloud Run"
 
-    [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)
+    [![Run on Google Cloud](https://img.shields.io/badge/run%20on-Google%20Cloud-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)
 
     Düğme Cloud Shell'i açar, `Dockerfile`'ı derler ve yayına alır. `app.json` 1 GiB bellek ve en fazla 2 örnek
     ister, böylece unutulan bir demo ucuz kalır. Cloud Run faturalandırma hesabı ister, ücretsiz kotası küçük bir

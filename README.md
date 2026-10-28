@@ -15,7 +15,8 @@ A hands-on workshop proposal for GDG DevFest İstanbul 2026 · Wyndham Grand İs
 [![Colab (English)](https://img.shields.io/badge/Colab-English-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb)
 [![Colab (Türkçe)](https://img.shields.io/badge/Colab-T%C3%BCrk%C3%A7e-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb)
 [![Kaggle (English)](https://img.shields.io/badge/Kaggle-English-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb)
-[![Kaggle (Türkçe)](https://img.shields.io/badge/Kaggle-T%C3%BCrk%C3%A7e-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb)<br>
+[![Kaggle (Türkçe)](https://img.shields.io/badge/Kaggle-T%C3%BCrk%C3%A7e-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb)
+[![Run on Google Cloud](https://img.shields.io/badge/run%20on-Google%20Cloud-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)<br>
 [![Docs in English](https://img.shields.io/badge/docs-English-052458?style=flat-square&logo=materialformkdocs&logoColor=white)](https://onuralpszr.github.io/nerede/en/)
 [![Türkçe belgeler](https://img.shields.io/badge/belgeler-T%C3%BCrk%C3%A7e-052458?style=flat-square&logo=materialformkdocs&logoColor=white)](https://onuralpszr.github.io/nerede/tr/)
 [![Docs build](https://img.shields.io/github/actions/workflow/status/onuralpszr/nerede/docs.yml?style=flat-square&label=docs%20build&logo=githubactions&logoColor=white)](https://github.com/onuralpszr/nerede/actions/workflows/docs.yml)<br>
@@ -24,8 +25,6 @@ A hands-on workshop proposal for GDG DevFest İstanbul 2026 · Wyndham Grand İs
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-5179c1?style=flat-square)](LICENSE)
 [![DevFest İstanbul 2026](https://img.shields.io/badge/DevFest%20%C4%B0stanbul-19%20Dec%202026-052458?style=flat-square)](https://devfest.istanbul/)
-
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)
 
 <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="720">
 
