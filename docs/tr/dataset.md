@@ -39,7 +39,7 @@ zorunda; çok dilli bir embedding modeli tam olarak bunun için var.
 
 ## Fotoğraflar ve lisanslar
 
-`scripts/fetch_images.py` her yerin Wikipedia maddesindeki ana görseli Wikimedia Commons'tan indirir ve yalnızca lisansı
+`scripts/data/fetch_images.py` her yerin Wikipedia maddesindeki ana görseli Wikimedia Commons'tan indirir ve yalnızca lisansı
 CC0, CC BY, CC BY-SA, Free Art License ya da kamu malı ise tutar. İki logo gerçek fotoğraflarla değiştirildi.
 Her fotoğrafın yazarı, lisansı ve kaynak sayfası `data/images.jsonl` ve `data/images/ATTRIBUTION.md` dosyalarında;
 uygulama da her fotoğrafın altında bu bilgiyi gösteriyor.

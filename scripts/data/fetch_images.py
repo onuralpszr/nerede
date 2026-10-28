@@ -4,8 +4,8 @@ Takes the lead image of each place's Wikipedia article (wiki_en, else wiki_tr), 
 Commons license (CC0, CC BY, CC BY-SA, Free Art License or public domain only), resizes to 800 px wide and writes
 data/images/<id>.jpg, data/images.jsonl and data/images/ATTRIBUTION.md.
 
-    uv run scripts/fetch_images.py            # skips photos that already exist
-    uv run scripts/fetch_images.py --refresh
+    uv run scripts/data/fetch_images.py            # skips photos that already exist
+    uv run scripts/data/fetch_images.py --refresh
 """
 
 import argparse
@@ -20,7 +20,7 @@ from pathlib import Path
 
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "data" / "images"
 UA = "nerede-workshop/0.1 (GDG DevFest Istanbul 2026 workshop; thunderbirdtr@gmail.com)"
 # Where the article's lead image is a logo, use a real photo instead.

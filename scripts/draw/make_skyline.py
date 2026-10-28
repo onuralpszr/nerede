@@ -11,7 +11,7 @@ dark mode (the embedding page's color-scheme) the windows light up and a few twi
 Everything moves in whole pixels (steps()) and nothing moves under
 prefers-reduced-motion: reduce; the first frame is the static picture.
 
-    uv run scripts/make_skyline.py
+    uv run scripts/draw/make_skyline.py
 """
 
 import math
@@ -20,7 +20,7 @@ from pathlib import Path
 
 W, H = 320, 110
 WATER = 92  # first row of water
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 
 C = {
     "sky": None, "cloud": "#ffffff", "cloud2": "#cfe9fb",

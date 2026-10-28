@@ -102,6 +102,6 @@ workshop/   numbered steps, one idea each
 notebooks/  the same steps as Colab notebooks (English and Turkish)
 app/        FastAPI server and the web UI (server or browser inference)
 docs/       this site (Zensical, English and Turkish)
-scripts/    helpers: fetch photos, draw the skyline, build the docs
+scripts/    helpers in draw/, data/, docs/ and notebooks/
 bench/      measurements from the speaker laptop
 ```

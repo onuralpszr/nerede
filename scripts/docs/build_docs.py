@@ -1,9 +1,9 @@
 """Build the docs in English and Turkish (and optionally the static demo) into site/.
 
-    uv run --group docs scripts/build_docs.py                     # site/en, site/tr, site/index.html
-    uv run --group docs scripts/build_docs.py --with-demo         # + site/demo (browser-only search, no server)
-    uv run --group docs scripts/build_docs.py --base /nerede/     # for GitHub project pages: user.github.io/nerede/
-    uv run --group docs scripts/build_docs.py --serve             # build, then serve site/ on http://127.0.0.1:8001 (the app uses 8000)
+    uv run --group docs scripts/docs/build_docs.py                     # site/en, site/tr, site/index.html
+    uv run --group docs scripts/docs/build_docs.py --with-demo         # + site/demo (browser-only search, no server)
+    uv run --group docs scripts/docs/build_docs.py --base /nerede/     # for GitHub project pages: user.github.io/nerede/
+    uv run --group docs scripts/docs/build_docs.py --serve             # build, then serve site/ on http://127.0.0.1:8001 (the app uses 8000)
 """
 
 import argparse
@@ -15,7 +15,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 LANGS = {"en": "zensical.toml", "tr": "zensical.tr.toml"}
 

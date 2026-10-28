@@ -40,7 +40,7 @@ other way round, which is exactly what a multilingual embedding model is for.
 
 ## Photos and licenses
 
-`scripts/fetch_images.py` downloads the lead image of each place's Wikipedia article from Wikimedia Commons and keeps
+`scripts/data/fetch_images.py` downloads the lead image of each place's Wikipedia article from Wikimedia Commons and keeps
 it only if the license is CC0, CC BY, CC BY-SA, Free Art License or public domain. Two logos were replaced with
 real photos. Every photo's author, license and source page is in `data/images.jsonl` and
 `data/images/ATTRIBUTION.md`, and the app shows the credit under each photo.

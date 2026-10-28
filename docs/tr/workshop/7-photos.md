@@ -29,7 +29,7 @@ model.similarity(query_vector, photo_vectors)
 ## Fotoğraflar
 
 106 fotoğrafın hepsi Wikimedia Commons'tan; CC BY, CC BY-SA, Free Art License ya da kamu malı lisanslı.
-`scripts/fetch_images.py` her yerin Wikipedia maddesindeki ana görseli alır, lisansını kontrol eder ve emeği geçenleri
+`scripts/data/fetch_images.py` her yerin Wikipedia maddesindeki ana görseli alır, lisansını kontrol eder ve emeği geçenleri
 `data/images/ATTRIBUTION.md` dosyasına yazar. Uygulama her fotoğrafın altında yazarını ve lisansını gösterir.
 
 ## Dene

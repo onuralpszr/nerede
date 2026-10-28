@@ -34,4 +34,4 @@ oturumu vardı. 2024 ve 2025'in tam programları [arşivde](https://devfest.ista
 
 Bu site ve demo, DevFest İstanbul 2026 afişinin görsel dilinden besleniyor: süslü parantezler, çerçeveli hap şekilleri,
 piksel sanatıyla bir Boğaz ve Google'ın dört rengi. Piksel siluet (Galata Kulesi, Boğaziçi Köprüsü, bir şehir hattı vapuru,
-Kız Kulesi ve bir cami) `scripts/make_skyline.py` ile sıfırdan çizildi.
+Kız Kulesi ve bir cami) `scripts/draw/make_skyline.py` ile sıfırdan çizildi.

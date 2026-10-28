@@ -1,4 +1,4 @@
-# Zensical config (English site). Build both languages with: uv run scripts/build_docs.py
+# Zensical config (English site). Build both languages with: uv run scripts/docs/build_docs.py
 [project]
 site_name = "Nerede? EmbeddingGemma 2 workshop"
 site_description = "Build and ship multilingual search with EmbeddingGemma 2: Python, LiteRT and the browser. GDG DevFest İstanbul 2026."

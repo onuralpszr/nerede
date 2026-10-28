@@ -101,6 +101,6 @@ workshop/   numaralı adımlar, her biri tek fikir
 notebooks/  aynı adımlar Colab defteri olarak (İngilizce ve Türkçe)
 app/        FastAPI sunucusu ve web arayüzü (sunucuda ya da tarayıcıda çıkarım)
 docs/       bu site (Zensical, İngilizce ve Türkçe)
-scripts/    yardımcılar: fotoğrafları indir, silueti çiz, dokümanı derle
+scripts/    yardımcılar: draw/, data/, docs/ ve notebooks/
 bench/      konuşmacının dizüstünde yapılan ölçümler
 ```

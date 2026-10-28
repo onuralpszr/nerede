@@ -1,4 +1,4 @@
-# Zensical config (Turkish site). Build both languages with: uv run scripts/build_docs.py
+# Zensical config (Turkish site). Build both languages with: uv run scripts/docs/build_docs.py
 [project]
 site_name = "Nerede? EmbeddingGemma 2 atölyesi"
 site_description = "EmbeddingGemma 2 ile çok dilli arama kur ve yayına al: Python, LiteRT ve tarayıcı. GDG DevFest İstanbul 2026."

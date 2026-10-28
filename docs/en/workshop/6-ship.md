@@ -42,7 +42,7 @@ It is about 575 MB, starts in about a second and uses about 200 MB of RAM.
     The page falls back to browser mode when there is no API, so the demo can be plain files:
 
     ```bash
-    uv run --group docs scripts/build_docs.py --with-demo
+    uv run --group docs scripts/docs/build_docs.py --with-demo
     ```
 
     `site/` then contains these docs (English and Turkish) and the demo under `demo/`.

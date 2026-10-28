@@ -78,7 +78,7 @@ CPU'lu PyTorch'tur (1,5 GB). NVIDIA, Intel Arc (XPU), AMD ya da Apple için [Kur
 | 3. Ölç | `04_matryoshka_eval.py` | recall, MRR, Matryoshka 768 → 128 |
 | 4. Yönlendirici | `05_router.py` | sıfır-örnek sınıflandırma, kısa sorgular için hibrit arama |
 | 5. Runtime'lar | `06_runtimes.py` | PyTorch, LiteRT ve OpenVINO; CPU ve GPU |
-| 6. Yayına al | `app/`, `Dockerfile`, `scripts/build_docs.py` | API, arayüz, konteyner, ücretsiz barındırma |
+| 6. Yayına al | `app/`, `Dockerfile`, `scripts/docs/build_docs.py` | API, arayüz, konteyner, ücretsiz barındırma |
 | 7. Fotoğraflar | `03_search.py --photos`, `07_photo_search.py` | metinden fotoğraf arama |
 
 ## Ölçtüklerimiz
@@ -103,11 +103,11 @@ workshop/   numaralı adımlar, her biri tek bir fikir
 notebooks/  aynı adımlar Colab ve Kaggle için (Türkçe ve İngilizce)
 app/        FastAPI sunucusu ve web arayüzü (sunucuda ya da tarayıcıda çıkarım)
 docs/       Türkçe ve İngilizce Zensical sitesi
-scripts/    belgeleri derle, defterleri üret, fotoğrafları indir, piksel silueti çiz
+scripts/    türe göre yardımcılar: draw/ (piksel siluet), data/ (fotoğraflar), docs/ (site), notebooks/
 bench/      ölçümler ve hata yeniden üretimleri
 ```
 
-Belgeleri `uv run --group docs scripts/build_docs.py --with-demo --serve` ile derleyip <http://127.0.0.1:8001> adresinden önizle (uygulama 8000 portunu kullanmaya devam eder).
+Belgeleri `uv run --group docs scripts/docs/build_docs.py --with-demo --serve` ile derleyip <http://127.0.0.1:8001> adresinden önizle (uygulama 8000 portunu kullanmaya devam eder).
 
 ## Teşekkürler
 
@@ -116,5 +116,5 @@ Belgeleri `uv run --group docs scripts/build_docs.py --with-demo --serve` ile de
   [devfest.istanbul](https://devfest.istanbul/) sitesinden. Yanlış görünen bir şey varsa lütfen bildir.
 - Fotoğraflar: Wikimedia Commons, bkz. [data/images/ATTRIBUTION.md](data/images/ATTRIBUTION.md).
 - Yazı tipleri: Outfit ve JetBrains Mono (SIL Open Font License), sitenin içinde barındırılıyor.
-- Görünüm DevFest İstanbul 2026 afişinden esinlendi; piksel siluet `scripts/make_skyline.py` ile çiziliyor.
+- Görünüm DevFest İstanbul 2026 afişinden esinlendi; piksel siluet `scripts/draw/make_skyline.py` ile çiziliyor.
 - EmbeddingGemma 2, Google DeepMind tarafından Apache 2.0 lisansıyla yayınlandı. GDG İstanbul bağımsız bir topluluk grubudur.

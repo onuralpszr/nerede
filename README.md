@@ -78,7 +78,7 @@ Open <http://127.0.0.1:8000>, then switch between **Server** and **Browser** mod
 | 3. Measure | `04_matryoshka_eval.py` | recall, MRR, Matryoshka 768 → 128 |
 | 4. Router | `05_router.py` | zero-shot classification, hybrid search for short queries |
 | 5. Runtimes | `06_runtimes.py` | PyTorch vs LiteRT vs OpenVINO, CPU vs GPU |
-| 6. Ship it | `app/`, `Dockerfile`, `scripts/build_docs.py` | API, UI, container, free hosting |
+| 6. Ship it | `app/`, `Dockerfile`, `scripts/docs/build_docs.py` | API, UI, container, free hosting |
 | 7. Photos | `03_search.py --photos`, `07_photo_search.py` | text → photo search |
 
 ## What we measured
@@ -103,11 +103,11 @@ workshop/   numbered steps, one idea each
 notebooks/  the same steps for Colab and Kaggle (English and Turkish)
 app/        FastAPI server and web UI (server or in-browser inference)
 docs/       Zensical site in English and Turkish
-scripts/    build docs, generate notebooks, fetch photos, draw the pixel skyline
+scripts/    helpers by kind: draw/ (pixel skyline), data/ (photos), docs/ (site), notebooks/
 bench/      measurements and reproductions
 ```
 
-Build and preview the docs with `uv run --group docs scripts/build_docs.py --with-demo --serve`, then open <http://127.0.0.1:8001> (the app keeps port 8000).
+Build and preview the docs with `uv run --group docs scripts/docs/build_docs.py --with-demo --serve`, then open <http://127.0.0.1:8001> (the app keeps port 8000).
 
 ## Credits
 
@@ -116,5 +116,5 @@ Build and preview the docs with `uv run --group docs scripts/build_docs.py --wit
   [devfest.istanbul](https://devfest.istanbul/). Please report anything that looks wrong.
 - Photos: Wikimedia Commons, see [data/images/ATTRIBUTION.md](data/images/ATTRIBUTION.md).
 - Fonts: Outfit and JetBrains Mono (SIL Open Font License), self-hosted.
-- The look is inspired by the DevFest İstanbul 2026 poster; the pixel skyline is drawn by `scripts/make_skyline.py`.
+- The look is inspired by the DevFest İstanbul 2026 poster; the pixel skyline is drawn by `scripts/draw/make_skyline.py`.
 - EmbeddingGemma 2 is released by Google DeepMind under Apache 2.0. GDG İstanbul is an independent community group.

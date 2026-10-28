@@ -29,7 +29,7 @@ Two rules:
 ## The photos
 
 The 106 photos come from Wikimedia Commons under CC BY, CC BY-SA, Free Art License or public domain.
-`scripts/fetch_images.py` takes the lead image of each place's Wikipedia article, checks the license and
+`scripts/data/fetch_images.py` takes the lead image of each place's Wikipedia article, checks the license and
 writes the credits to `data/images/ATTRIBUTION.md`. The app shows the author and license under every photo.
 
 ## Try it

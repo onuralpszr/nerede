@@ -34,4 +34,4 @@ Galata Tower and Maiden's Tower. Sessions included Jason Mayes on web AI agents 
 
 This site and the demo borrow the visual language of the DevFest İstanbul 2026 poster: curly braces,
 outlined pills, a pixel-art Bosphorus and Google's four colors. The pixel skyline (Galata Tower, the Bosphorus Bridge,
-a city ferry, Kız Kulesi and a mosque) is drawn from scratch by `scripts/make_skyline.py`.
+a city ferry, Kız Kulesi and a mosque) is drawn from scratch by `scripts/draw/make_skyline.py`.

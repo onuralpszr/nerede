@@ -30,7 +30,7 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v6
       - run: pip install zensical
-      - run: python scripts/build_docs.py --with-demo --base "${{ steps.pages.outputs.base_path }}/" --site-url "${{ steps.pages.outputs.base_url }}"
+      - run: python scripts/docs/build_docs.py --with-demo --base "${{ steps.pages.outputs.base_path }}/" --site-url "${{ steps.pages.outputs.base_url }}"
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site
