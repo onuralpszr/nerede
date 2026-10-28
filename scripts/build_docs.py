@@ -3,7 +3,7 @@
     uv run --group docs scripts/build_docs.py                     # site/en, site/tr, site/index.html
     uv run --group docs scripts/build_docs.py --with-demo         # + site/demo (browser-only search, no server)
     uv run --group docs scripts/build_docs.py --base /nerede/     # for GitHub project pages: user.github.io/nerede/
-    uv run --group docs scripts/build_docs.py --serve             # build, then serve site/ on http://127.0.0.1:8000
+    uv run --group docs scripts/build_docs.py --serve             # build, then serve site/ on http://127.0.0.1:8001 (the app uses 8000)
 """
 
 import argparse
@@ -54,6 +54,7 @@ def copy_demo() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--port", type=int, default=8001, help="port for --serve; the app uses 8000")
     parser.add_argument("--base", default="/", help="URL path the site is served from, e.g. /nerede/")
     parser.add_argument("--site-url", default=None, help="full URL, e.g. https://you.github.io/nerede")
     parser.add_argument("--with-demo", action="store_true")
@@ -74,8 +75,8 @@ def main() -> None:
 
     if args.serve:
         handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=SITE)
-        print("serving on http://127.0.0.1:8000")
-        http.server.ThreadingHTTPServer(("127.0.0.1", 8000), handler).serve_forever()
+        print(f"serving on http://127.0.0.1:{args.port}")
+        http.server.ThreadingHTTPServer(("127.0.0.1", args.port), handler).serve_forever()
 
 
 if __name__ == "__main__":
