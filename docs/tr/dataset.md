@@ -24,13 +24,13 @@ zorunda; çok dilli bir embedding modeli tam olarak bunun için var.
 
 ## Nasıl doğrulandı
 
-- **Yerler**: her kayıt doğrulandığı Wikipedia maddesini (`source`) gösteriyor. İlk 51 kayıt İngilizce ve Türkçe Wikipedia'ya
-  karşı kontrol edildi ve 13'ü düzeltildi (örneğin Ayasofya 1934'te değil 1935'te müze olarak açıldı; Adalar dört değil
+- **Yerler**: her kayıt doğrulandığı Wikipedia maddesini (`source`) gösteriyor. İlk 51 kayıt İngilizce ve Türkçe Wikipedia ile
+  karşılaştırılarak kontrol edildi ve 13'ü düzeltildi (örneğin Ayasofya 1934'te değil 1935'te müze olarak açıldı; Adalar dört değil
   dokuz adadan oluşuyor). Sonraki 50 kayıt doğrudan Wikipedia'dan yazıldı. Wikipedia'nın kapsamadığı 16 pratik ipucu
   (balık ekmeğin yanında turşu suyu gibi) ikinci kez resmi siteler ve gezi rehberleriyle kontrol edildi: 11'i doğrulandı,
   5'i yeniden yazıldı (örneğin Boğaz vapuru artık "şehri denizden görmenin en ucuz yolu" diye anlatılmıyor). İki turun
   tüm kaynakları `data/drafts/factcheck_report.md` ve `data/drafts/factcheck_round2.md` dosyalarında.
-- **DevFest**: yalnızca [devfest.istanbul](https://devfest.istanbul/) ve arşivindeki bilgiler, 2025 tarihi için bir Webrazzi
+- **DevFest**: yalnızca [devfest.istanbul](https://devfest.istanbul/) ve arşivindeki bilgiler ve 2025 tarihi için bir Webrazzi
   haberi. Tarih, mekân ve bilet fiyatları 28 Ekim 2026'da site ve Kommunity ile yeniden kontrol edildi; fiyatlar değişebilir.
 - **EmbeddingGemma**: yalnızca model kartları ve Google'ın duyuru yazılarındaki bilgiler.
 

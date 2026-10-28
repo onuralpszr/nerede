@@ -16,7 +16,7 @@ uv run --extra intel workshop/06_runtimes.py torch litert litert:gpu openvino:GP
   openvino:GPU   13.4s       6.6        1.0000
 ```
 
-*Arc iGPU'lu bir Intel Core Ultra dizüstünde ölçüldü. Senin sayıların farklı olacak, tablo aynı kalacak.*
+*Arc iGPU'lu bir Intel Core Ultra dizüstünde ölçüldü. Senin sayıların farklı olacak, genel tablo aynı kalacak.*
 
 | Tanım | Runtime | Ne zaman |
 |---|---|---|

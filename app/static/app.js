@@ -8,7 +8,7 @@ const TABS = ["all", "places", "photos", "devfest", "gemma"];
 
 const T = {
   tr: {
-    subtitle: "İstanbul'u, DevFest'i ve EmbeddingGemma 2'yi anlamıyla ara. Türkçe sor, İngilizce bulsun; ya da tam tersi.",
+    subtitle: "İstanbul'u, DevFest'i ve EmbeddingGemma 2'yi anlamıyla ara. Türkçe sor, İngilizce cevaplar bul; ya da tam tersi.",
     event: "DevFest İstanbul 2026 · 19 Aralık · Wyndham Grand İstanbul Levent",
     placeholder: "balık ekmek nerede yenir? · where is DevFest?",
     go: "Ara", server: "Sunucu", browser: "Tarayıcı", dims: "boyut", where: "Model nerede çalışsın",

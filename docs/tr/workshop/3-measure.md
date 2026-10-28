@@ -32,8 +32,8 @@ def truncate(v, dim):
     return v / np.linalg.norm(v, axis=-1, keepdims=True)   # bunu atlamak sıralamayı sessizce bozar
 ```
 
-Sorgu ve belgeler **aynı** boyutta olmalı. 256 boyutta depolamanın üçte biriyle recall@3'ün %98'ini koruyoruz.
-128 boyut altı kat tasarruf ama düşüş görünür durumda. Bu yüzden kendi verinde ölçmelisin.
+Sorgu ve belgeler **aynı** boyutta olmalı. 256 boyutta depolamanın üçte biriyle recall@3'ü %98'de tutuyoruz.
+128 boyut altı kat tasarruf sağlıyor ama düşüş görünür durumda. Bu yüzden kendi verinde ölçmelisin.
 
 ## Kaçanları oku
 

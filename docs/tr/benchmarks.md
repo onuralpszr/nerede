@@ -19,7 +19,7 @@ Yalnızca metin modeli, kısa sorgular, tek tek (batch 1). Betikler `bench/` ve 
 
 Tarayıcı satırları: Arc B390 üzerinde Chrome (yazılım yedeği değil, gerçek `xe-3lpg` adaptörü), 10 sıcak sorgunun medyanı,
 PyTorch'a kosinüs 8 sorgu üzerinden (`bench/browser_time.mjs`, `bench/browser_vectors.mjs`). q4 varsayılan kalıyor çünkü 175 MB konferans Wi-Fi'ı için makul; hızlı bağlantıda
-`?dtype=fp16` 5 kat hızlı ve birebir doğru. q4f16 hızlı ama 8 sorgunun 3'ünde ilk sonucu değiştirdi, bu yüzden kullanmıyoruz.
+`?dtype=fp16` 5 kat daha hızlı ve birebir doğru. q4f16 hızlı ama 8 sorgunun 3'ünde ilk sonucu değiştirdi, bu yüzden kullanmıyoruz.
 
 ## İndeksleme
 

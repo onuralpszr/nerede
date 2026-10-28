@@ -21,7 +21,7 @@
     `hf download … --local-dir` ile indir ya da `OpenVINOEmbedder` gibi doğrudan PyTorch'tan dönüştür.
 
 ??? question "OpenVINO, onnx-community ONNX dosyasıyla yanlış vektör veriyor"
-    Bizim makinede `model_fp16.onnx` dosyasını doğrudan OpenVINO'da okumak PyTorch'tan uzak vektörler verdi (kosinüs 0,6-0,8),
+    Bizim makinemizde `model_fp16.onnx` dosyasını doğrudan OpenVINO'da okumak PyTorch'tan uzak vektörler verdi (kosinüs 0,6-0,8),
     onnxruntime ise doğru sonuç verdi. PyTorch'tan dönüştürmek birebir doğru sonuç veriyor; `OpenVINOEmbedder` bunu yapıyor.
 
 ??? question "XPU'da fotoğraf indekslerken `split_with_sizes` hatası"
