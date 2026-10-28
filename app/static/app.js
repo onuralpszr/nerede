@@ -40,6 +40,7 @@ const T = {
     byPhoto: "Fotoğrafla ara",
     photoQuery: "senin fotoğrafın",
     dropHere: "Fotoğrafı bırak, benzerlerini bulalım",
+    docs: "Belgeler",
     withPhoto: "fotoğrafa kelime ekle (isteğe bağlı) · kule, tatlı, gece",
     removePhoto: "Fotoğrafı kaldır",
     vision: "Görsel kodlayıcı tarayıcına iniyor…",
@@ -94,6 +95,7 @@ const T = {
     byPhoto: "Search by photo",
     photoQuery: "your photo",
     dropHere: "Drop a photo to find similar places",
+    docs: "Docs",
     withPhoto: "add words to the photo (optional) · tower, dessert, at night",
     removePhoto: "Remove the photo",
     vision: "Downloading the vision encoder to your browser…",
@@ -173,6 +175,7 @@ function applyLang() {
     el.placeholder = t()[el.dataset.i18nPlaceholder];
   });
   if (state.photo) $("q").placeholder = t().withPhoto;
+  docsLink();
   document
     .querySelectorAll("[data-i18n-aria]")
     .forEach((el) => el.setAttribute("aria-label", t()[el.dataset.i18nAria]));
@@ -183,6 +186,12 @@ function applyLang() {
   renderTabs();
   renderChips();
   if (state.last) render(state.last);
+}
+
+// The static demo sits next to the docs (site/demo, site/en, site/tr), so a relative link also works for forks.
+// With a server there are no docs next to the app, so it points at the published site.
+function docsLink() {
+  $("docs").href = state.server === false ? `../${state.lang}/` : `https://onuralpszr.github.io/nerede/${state.lang}/`;
 }
 
 function applyTheme(theme) {
@@ -733,6 +742,7 @@ if (state.server) {
   renderTabs();
 } else {
   $("modes").hidden = true;
+  docsLink();
   status(t().staticMode);
   setMode("browser");
 }

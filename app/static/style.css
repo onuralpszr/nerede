@@ -129,6 +129,25 @@ button {
   cursor: pointer;
   font-weight: 600;
 }
+/* docs and GitHub links: same pill as the toggles */
+.mini a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 4px 12px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+.mini a:hover {
+  background: var(--sky);
+  color: #14213d;
+}
+.mini a:focus-visible {
+  outline-offset: -4px;
+  border-radius: var(--pill);
+}
 .mini button[aria-pressed="true"] {
   background: var(--ink);
   color: var(--bg);
@@ -785,10 +804,12 @@ footer p {
 
 /* ---------- touch: 44px targets ---------- */
 @media (pointer: coarse), (max-width: 560px) {
-  .mini button {
+  .mini button,
+  .mini a {
     min-height: 44px;
     min-width: 44px;
     padding: 0 12px;
+    justify-content: center;
   }
   .tabs button,
   .chips button,
@@ -824,6 +845,21 @@ footer p {
   }
   .tag .sep {
     display: none;
+  }
+  .toggles {
+    gap: 6px;
+  }
+  .mini a .label {
+    display: none; /* icon only on phones, the link keeps its title */
+  }
+}
+/* small phones: three pill groups fill the row, so the decorative #dfist26 tag steps aside */
+@media (max-width: 430px) {
+  .topbar .tag {
+    display: none;
+  }
+  .topbar {
+    justify-content: center;
   }
   .hero {
     padding-top: 20px;
