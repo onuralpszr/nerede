@@ -1,0 +1,12 @@
+.venv*
+models/
+bench/
+workshop/
+docs/
+site/
+research/
+notebooks/
+scripts/
+.cache/
+.git/
+**/__pycache__
