@@ -2,6 +2,8 @@
 name = "nerede"
 version = "0.1.0"
 description = "GDG Istanbul DevFest 2026 workshop: multilingual semantic search with EmbeddingGemma 2"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
 dependencies = [
