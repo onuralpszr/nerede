@@ -14,7 +14,7 @@ index: torch:cpu   queries: torch:cpu   n=72
   dim  recall@1  recall@3    MRR  bytes/vec   1M docs
   768      0.83      0.97  0.902       3072    2.86GB
   512      0.81      0.99  0.885       2048    1.91GB
-  256      0.78      0.99  0.873       1024    0.95GB
+  256      0.78      0.97  0.872       1024    0.95GB
   128      0.72      0.86  0.803        512    0.48GB
 ```
 
@@ -46,6 +46,19 @@ miss at 768d: 'when is the conference this year' -> devfest-2025-stats (expected
 
 Şemsi Paşa da bir Sinan camisi; iki belge de bir yıldan söz ederken "bu yıl"ı eşleştirmek zor.
 Çoğu zaman çözüm modelde değil veride: daha net yazılmış bir belge.
+
+## Tek kelimelik sorgular
+
+Betik ikinci bir testle bitiyor: "tatlı", "müze" ya da "tickets" gibi 24 tek kelimelik sorgu ve her biri için doğru
+sayılan kayıtlar. İlk 5 sonucun kaçının doğru olduğunu hem düz vektör aramasıyla hem de [4. adımdaki](4-router.md#hybrid)
+hibrit katkılarla gösteriyor:
+
+```text
+one-word queries, precision@5, n=24
+  dim  vector  hybrid
+  768    0.68    0.83
+  256    0.69    0.80
+```
 
 ## Dene
 

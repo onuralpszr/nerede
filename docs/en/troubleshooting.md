@@ -5,7 +5,8 @@
     is close to random. Two things help. Write the question as a sentence: "sütlü tatlı" or "where can I eat baklava"
     separate much better than "tatlı". And make sure the documents say what they are: before we added six desserts
     that use the words "tatlı" and "dessert", the top 5 for "tatlı" included simit and salep; now all 5 are desserts.
-    If you need keywords to work too, combine the vector score with a keyword score (hybrid search).
+    Hybrid search is now on by default for one- and two-word queries (router intent plus keywords), which lifts
+    precision@5 on one-word queries from 0.68 to 0.86. See [Router + keywords](workshop/4-router.md#hybrid).
 
 ??? question "`uv run` downloads 5 GB of CUDA libraries"
     Default PyTorch on Linux is the CUDA build. This project makes the CPU build the default through the `cpu`

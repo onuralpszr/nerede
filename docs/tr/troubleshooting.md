@@ -5,7 +5,8 @@
     sıralama rastgeleye yakın oluyor. İki şey işe yarar. Soruyu cümle olarak yaz: "sütlü tatlı" ya da "baklava nerede
     yenir", "tatlı"dan çok daha iyi ayrışıyor. Belgelerin de ne olduklarını söylediğinden emin ol: "tatlı" ve "dessert"
     kelimelerini kullanan altı tatlı eklemeden önce "tatlı" aramasının ilk 5'inde simit ve salep vardı; şimdi 5'i de tatlı.
-    Anahtar kelimelerin de çalışmasını istiyorsan vektör puanını bir anahtar kelime puanıyla birleştir (hibrit arama).
+    Bir ve iki kelimelik sorgularda hibrit arama artık varsayılan olarak açık (yönlendirici niyeti + anahtar kelime);
+    tek kelimelik sorgularda precision@5'i 0,68'den 0,86'ya çıkarıyor. Bkz. [Yönlendirici + anahtar kelime](workshop/4-router.md#hybrid).
 
 ??? question "`uv run` 5 GB CUDA kütüphanesi indiriyor"
     Linux'ta varsayılan PyTorch CUDA'lı sürüm. Bu proje `cpu` bağımlılık grubuyla CPU sürümünü varsayılan yapıyor.

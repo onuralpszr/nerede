@@ -15,7 +15,7 @@ index: torch:cpu   queries: torch:cpu   n=72
   dim  recall@1  recall@3    MRR  bytes/vec   1M docs
   768      0.83      0.97  0.902       3072    2.86GB
   512      0.81      0.99  0.885       2048    1.91GB
-  256      0.78      0.99  0.873       1024    0.95GB
+  256      0.78      0.97  0.872       1024    0.95GB
   128      0.72      0.86  0.803        512    0.48GB
 ```
 
@@ -47,6 +47,19 @@ miss at 768d: 'when is the conference this year' -> devfest-2025-stats (expected
 
 Şemsi Paşa is also a Sinan mosque, and "this year" is hard to match when two documents both talk about a year.
 Often the fix is in the data (a clearer document) rather than in the model.
+
+## One-word queries
+
+The script ends with a second test: 24 one-word queries such as "tatlı", "müze" or "tickets", each with the set of
+entries that count as right. It reports how many of the top 5 are relevant, with plain vector search and with the
+hybrid boosts from [step 4](4-router.md#hybrid):
+
+```text
+one-word queries, precision@5, n=24
+  dim  vector  hybrid
+  768    0.68    0.83
+  256    0.69    0.80
+```
 
 ## Try it
 

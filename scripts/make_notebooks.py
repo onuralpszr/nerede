@@ -122,7 +122,13 @@ router = Router(embedder)
 for text in ["akşam rakı içmek için güzel bir yer", "how do I pay for the metro?",
              "DevFest bileti ne kadar?", "how many dimensions does the embedding have"]:
     label, score = router.route(text)
-    print(f"{label:>10}  {score:.3f}  {text}")'''
+    print(f"{label:>10}  {score:.3f}  {text}")
+
+# The router also powers hybrid search: one- or two-word queries get a small boost for the detected intent and keywords
+for word in ["tatlı", "manzara"]:
+    v = embedder.embed([query(word)])[0]
+    print(word, "| vector:", [d["title"] for _, d in index.search(v, k=3)])
+    print(" " * len(word), "| hybrid:", [d["title"] for _, d in index.search(v, k=3, text=word, intent=router.route(word))])'''
 
 LITERT = '''import time
 from nerede.embedders import LiteRTEmbedder
@@ -165,7 +171,7 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
         "build": "## 2. Build the index\n147 documents in three collections, plus 106 Wikimedia Commons photos. Photos are embedded only on a GPU; otherwise their vectors come from the prebuilt index in the repo.",
         "search": "## 3. Search\nText search over all collections, and text → photo search. Hover a photo for its author and license.",
         "eval": "## 4. Measure\n66 labelled questions, most of them cross-lingual. Matryoshka lets us keep only the first 512, 256 or 128 numbers of each vector. How much do we lose?",
-        "router": "## 5. Zero-shot router\nClassify questions without any training data, using the symmetric `task: classification` prompt.",
+        "router": "## 5. Zero-shot router\nClassify questions without any training data, using the symmetric `task: classification` prompt. The same router makes one-word searches like \"tatlı\" work better (hybrid search).",
         "litert": "## 6. LiteRT\nThe same model as a 165 MB int4 file. Its vectors are close enough to PyTorch's that it can query the PyTorch-built index.",
         "app": "## 7. The web app\nOn Colab this starts the FastAPI app (LiteRT backend) and prints a link. Try the **Browser** mode too: it runs the model inside your browser.",
         "end": "## Next\n- Docs (English and Turkish): see `docs/` or the published site.\n- Host the demo for free: `uv run --group docs scripts/build_docs.py --with-demo` and publish `site/` on GitHub Pages.\n- Add your own places to `data/istanbul.jsonl` and run the notebook again.",
@@ -181,7 +187,7 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
         "build": "## 2. İndeksi kur\nÜç koleksiyonda 147 belge ve Wikimedia Commons'tan 106 fotoğraf. Fotoğraflar yalnızca GPU varsa gömülür; yoksa vektörleri depodaki hazır indeksten gelir.",
         "search": "## 3. Arama\nTüm koleksiyonlarda metin arama ve metinden fotoğrafa arama. Yazarını ve lisansını görmek için fareyi fotoğrafın üzerine getir.",
         "eval": "## 4. Ölçüm\nÇoğu diller arası 72 etiketli soru. Matryoshka sayesinde her vektörün sadece ilk 512, 256 ya da 128 sayısını tutabiliyoruz. Ne kadar kaybediyoruz?",
-        "router": "## 5. Sıfır-örnek yönlendirici\nSimetrik `task: classification` önekiyle, hiç eğitim verisi olmadan soruları sınıflandır.",
+        "router": "## 5. Sıfır-örnek yönlendirici\nSimetrik `task: classification` önekiyle, hiç eğitim verisi olmadan soruları sınıflandır. Aynı yönlendirici \"tatlı\" gibi tek kelimelik aramaları da iyileştiriyor (hibrit arama).",
         "litert": "## 6. LiteRT\nAynı model, 165 MB'lık int4 dosya olarak. Vektörleri PyTorch'unkilere o kadar yakın ki PyTorch ile kurulan indeksi sorgulayabiliyor.",
         "app": "## 7. Web uygulaması\nColab'da FastAPI uygulamasını (LiteRT ile) başlatır ve bir bağlantı yazar. **Tarayıcı** modunu da dene: model doğrudan tarayıcında çalışır.",
         "end": "## Sırada ne var\n- Dokümanlar (Türkçe ve İngilizce): `docs/` klasörü ya da yayındaki site.\n- Demoyu ücretsiz yayınla: `uv run --group docs scripts/build_docs.py --with-demo` ve `site/` klasörünü GitHub Pages'te yayınla.\n- `data/istanbul.jsonl` dosyasına kendi yerlerini ekle ve defteri yeniden çalıştır.",
