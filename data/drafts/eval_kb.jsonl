@@ -1,0 +1,16 @@
+{"query": "when is the conference this year", "gold": "devfest-ne-zaman"}
+{"query": "konferans otelinden metroya nasıl gidilir", "gold": "devfest-venue"}
+{"query": "how much is the early bird ticket", "gold": "devfest-bilet"}
+{"query": "VIP koltuk ve öğle yemeği dahil bilet", "gold": "devfest-gold-pass"}
+{"query": "my company needs an invoice for tickets", "gold": "devfest-fatura"}
+{"query": "geçen yıl kaç kişi katıldı", "gold": "devfest-2025-stats"}
+{"query": "how do I submit a talk proposal", "gold": "devfest-cfp"}
+{"query": "WhatsApp group of the community", "gold": "gdg-istanbul-sosyal"}
+{"query": "model kaç parametreli, sadece metin için ne kadar", "gold": "eg2-sizes"}
+{"query": "how many languages does the model support", "gold": "eg2-diller"}
+{"query": "vektörleri küçültünce kalite ne kadar düşer", "gold": "eg2-matryoshka"}
+{"query": "what prefix should I put before a search query", "gold": "eg2-prompts"}
+{"query": "telefonda çalışan dosya boyutu kaç MB", "gold": "eg2-litert"}
+{"query": "run it in the browser with WebGPU", "gold": "eg2-browser"}
+{"query": "how fast is it on a Raspberry Pi", "gold": "eg2-gecikme"}
+{"query": "4 bit quantization quality loss", "gold": "eg2-kuantizasyon"}
