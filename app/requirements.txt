@@ -1,0 +1,6 @@
+# Serving image: LiteRT only, no torch (~250 MB image instead of several GB)
+fastapi>=0.115
+uvicorn[standard]>=0.30
+numpy>=2.0
+litert-lm-api>=0.18
+huggingface_hub>=0.30
