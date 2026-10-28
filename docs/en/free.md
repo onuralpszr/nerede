@@ -41,7 +41,7 @@ uv run scripts/build_docs.py --with-demo      # site/ = docs (EN + TR) + demo/
 ```
 
 Publish `site/` on **GitHub Pages** (the workflow in `.github/workflows/docs.yml` does it on every push)
-and the demo lives at `https://onuralpszr.github.io/nerede/demo/`. No server, no bill.
+and the demo lives at [onuralpszr.github.io/nerede/demo](https://onuralpszr.github.io/nerede/demo/). No server, no bill.
 
 ## Hugging Face Spaces (free CPU)
 

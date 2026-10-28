@@ -12,6 +12,7 @@ site_dir = "site/tr"
 extra_css = ["assets/stylesheets/nerede.css"]
 nav = [
   { "Ana sayfa" = "index.md" },
+  { "Canlı demo" = "/demo/" },
   { "Kurulum" = "setup.md" },
   { "Ücretsiz seçenekler" = "free.md" },
   { "Colab" = "colab.md" },

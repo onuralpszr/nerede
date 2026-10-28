@@ -12,6 +12,8 @@ hide:
 **Build and ship a Turkish-English semantic search with EmbeddingGemma 2.**
 A hands-on workshop proposal for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent
 
+[Try the live demo](../demo/){ .md-button .md-button--primary } [Start the workshop](workshop/index.md){ .md-button }
+
 <img class="nd-skyline" src="assets/images/skyline.svg" alt="Pixel-art Istanbul skyline">
 </div>
 

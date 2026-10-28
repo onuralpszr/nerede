@@ -12,6 +12,8 @@ hide:
 **EmbeddingGemma 2 ile Türkçe-İngilizce anlamsal arama kur ve yayına al.**
 GDG DevFest İstanbul 2026 için uygulamalı atölye önerisi · 19 Aralık · Wyndham Grand İstanbul Levent
 
+[Canlı demoyu dene](../demo/){ .md-button .md-button--primary } [Atölyeye başla](workshop/index.md){ .md-button }
+
 <img class="nd-skyline" src="assets/images/skyline.svg" alt="Piksel sanatıyla İstanbul silueti">
 </div>
 

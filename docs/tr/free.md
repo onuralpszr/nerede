@@ -40,7 +40,7 @@ uv run scripts/build_docs.py --with-demo      # site/ = dokümanlar (EN + TR) + 
 ```
 
 `site/` klasörünü **GitHub Pages**'te yayınla (`.github/workflows/docs.yml` her push'ta bunu yapar),
-demo `https://onuralpszr.github.io/nerede/demo/` adresinde yaşasın. Sunucu yok, fatura yok.
+demo [onuralpszr.github.io/nerede/demo](https://onuralpszr.github.io/nerede/demo/) adresinde yayında olur. Sunucu yok, fatura yok.
 
 ## Hugging Face Spaces (ücretsiz CPU)
 

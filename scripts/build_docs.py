@@ -32,6 +32,7 @@ a{{color:#2257b5;margin:0 .6em}}</style></head>
 def build(lang: str, config: str, base: str, site_url: str | None) -> None:
     text = (ROOT / config).read_text(encoding="utf-8")
     text = re.sub(r'link = "/(en|tr)/"', lambda m: f'link = "{base}{m.group(1)}/"', text)
+    text = text.replace('= "/demo/"', f'= "{base}demo/"')  # nav link to the browser demo
     if site_url:
         text = re.sub(r'^site_url = ".*"$', f'site_url = "{site_url.rstrip("/")}/{lang}/"', text, flags=re.M)
     tmp = ROOT / f".zensical.{lang}.build.toml"  # must sit next to the real config: paths are relative to it

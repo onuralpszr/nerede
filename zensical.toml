@@ -12,6 +12,7 @@ site_dir = "site/en"
 extra_css = ["assets/stylesheets/nerede.css"]
 nav = [
   { "Home" = "index.md" },
+  { "Live demo" = "/demo/" },
   { "Setup" = "setup.md" },
   { "Free options" = "free.md" },
   { "Colab" = "colab.md" },
