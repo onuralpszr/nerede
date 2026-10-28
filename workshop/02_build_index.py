@@ -14,7 +14,7 @@ from nerede.index import INDEX, ROOT
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--backend", default=None, help="torch | torch:xpu | litert | litert:gpu | openvino:GPU")
-parser.add_argument("--no-images", action="store_true", help="skip the photos (no vision encoder needed)")
+parser.add_argument("--no-images", action="store_true", help="do not embed the photos (no vision encoder needed), keep the photo vectors already in the index")
 parser.add_argument("--web-dim", type=int, default=256, help="Matryoshka size for the browser copy")
 args = parser.parse_args()
 
@@ -34,6 +34,11 @@ if want_vision:
     start = time.perf_counter()
     index.add_images(vision, images)
     print(f"{len(images)} photos embedded with {vision.name} in {time.perf_counter() - start:.1f}s")
+elif INDEX.exists():
+    # Photo vectors live in the same space as text, so the ones in the shipped index stay valid.
+    previous = Index.load(INDEX)
+    index.images, index.image_vectors = previous.images, previous.image_vectors
+    print(f"{len(index.images)} photo vectors kept from {INDEX.relative_to(ROOT)}")
 
 index.save(INDEX)
 web = ROOT / "app" / "static" / "index.json"
