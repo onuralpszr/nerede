@@ -110,7 +110,7 @@ workshop/   numbered steps, one idea each
 notebooks/  the same steps for Colab and Kaggle (English and Turkish)
 app/        FastAPI server and web UI (server or in-browser inference)
 docs/       Zensical site in English and Turkish
-scripts/    helpers by kind: draw/ (pixel skyline), data/ (photos), docs/ (site), notebooks/
+scripts/    helpers by kind: draw/ (pixel skyline), data/ (photos), docs/ (site)
 bench/      measurements and reproductions
 ```
 

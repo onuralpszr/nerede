@@ -9,12 +9,10 @@ Run them from the repository root.
 | `data/` | `fetch_images.py` | downloads place photos from Wikimedia Commons, with license and credits |
 | `data/` | `fetch_query_images.py` | downloads a second photo of some places, used as image-search queries |
 | `docs/` | `build_docs.py` | builds the English and Turkish docs, optionally with the browser demo |
-| `notebooks/` | `make_notebooks.py` | writes the Colab and Kaggle notebooks in `notebooks/` |
 
 ```bash
 uv run scripts/draw/make_skyline.py
 uv run scripts/data/fetch_images.py
 uv run scripts/data/fetch_query_images.py
 uv run --group docs scripts/docs/build_docs.py --with-demo --serve
-uv run --group dev scripts/notebooks/make_notebooks.py
 ```

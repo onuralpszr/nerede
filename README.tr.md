@@ -110,7 +110,7 @@ workshop/   numaralı adımlar, her biri tek bir fikir
 notebooks/  aynı adımlar Colab ve Kaggle için (Türkçe ve İngilizce)
 app/        FastAPI sunucusu ve web arayüzü (sunucuda ya da tarayıcıda çıkarım)
 docs/       Türkçe ve İngilizce Zensical sitesi
-scripts/    türe göre yardımcılar: draw/ (piksel siluet), data/ (fotoğraflar), docs/ (site), notebooks/
+scripts/    türe göre yardımcılar: draw/ (piksel siluet), data/ (fotoğraflar), docs/ (site)
 bench/      ölçümler ve hata yeniden üretimleri
 ```
 
