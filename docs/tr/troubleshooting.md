@@ -1,11 +1,11 @@
 # Sorun giderme
 
 ??? question "`tatlı` ya da `dessert` gibi tek kelimelik aramalar tuhaf sonuçlar veriyor"
-    Tek kelime çok az anlam taşıyor; bu yüzden bütün yemek kayıtları neredeyse aynı puanı alıyor (0,70-0,73) ve
+    Tek kelime çok az anlam taşıyor, bu yüzden bütün yemek kayıtları neredeyse aynı puanı alıyor (0,70-0,73) ve
     sıralama rastgeleye yakın oluyor. İki şey işe yarar. Soruyu cümle olarak yaz: "sütlü tatlı" ya da "baklava nerede
     yenir", "tatlı"dan çok daha iyi ayrışıyor. Belgelerin de ne olduklarını söylediğinden emin ol: "tatlı" ve "dessert"
-    kelimelerini kullanan altı tatlı eklemeden önce "tatlı" aramasının ilk 5'inde simit ve salep vardı; şimdi 5'i de tatlı.
-    Bir ve iki kelimelik sorgularda hibrit arama artık varsayılan olarak açık (yönlendirici niyeti + anahtar kelime);
+    kelimelerini kullanan altı tatlı eklenmeden önce "tatlı" aramasının ilk 5'inde simit ve salep vardı. Şimdi 5'i de tatlı.
+    Bir ve iki kelimelik sorgularda hibrit arama artık varsayılan olarak açık (yönlendirici niyeti + anahtar kelime) ve
     tek kelimelik sorgularda precision@5'i 0,68'den 0,86'ya çıkarıyor. Bkz. [Yönlendirici + anahtar kelime](workshop/4-router.md#hybrid).
 
 ??? question "`uv run` 5 GB CUDA kütüphanesi indiriyor"
@@ -14,13 +14,13 @@
 
 ??? question "`ValueError: Found 1 <|image|> tokens in the text but no images were passed`"
     Görsel ya da ses kodlayıcısı yüklüyken bir metinde düz `<|image|>`, `<|video|>` veya `<|audio|>` geçiyor.
-    Bunlar medya yer tutucuları. Düz metni gömmeden önce etkisizleştir; `nerede/prompts.py` bunu yapıyor.
+    Bunlar medya yer tutucuları. Düz metni gömmeden önce etkisizleştir. `nerede/prompts.py` bunu yapıyor.
 
 ??? question "Skorlar iyi görünüyor ama 256 ya da 128 boyutta sıralama kötüleşiyor"
     Matryoshka vektörünü kestikten sonra yeniden normalize et, sorgu ve belgeler için aynı boyutu kullan.
 
 ??? question "LiteRT dokümanındaki görev önekleri farklı görünüyor"
-    LiteRT-LM sayfası `task: search query | text:` yazıyor; model kartı ise `task: search result | query:` ve
+    LiteRT-LM sayfası `task: search query | text:` yazıyor, model kartı ise `task: search result | query:` ve
     `title: … | text: …` kullanıyor. Bu atölye her runtime'da model kartının biçimini kullanıyor ve değerlendirme bunun
     LiteRT ile de çalıştığını gösteriyor.
 
@@ -29,8 +29,8 @@
     `hf download … --local-dir` ile indir ya da `OpenVINOEmbedder` gibi doğrudan PyTorch'tan dönüştür.
 
 ??? question "OpenVINO, onnx-community ONNX dosyasıyla yanlış vektör veriyor"
-    Bizim makinemizde `model_fp16.onnx` dosyasını doğrudan OpenVINO'da okumak PyTorch'tan uzak vektörler verdi (kosinüs 0,6-0,8),
-    onnxruntime ise doğru sonuç verdi. PyTorch'tan dönüştürmek birebir doğru sonuç veriyor; `OpenVINOEmbedder` bunu yapıyor.
+    Konuşmacının dizüstünde `model_fp16.onnx` dosyasını doğrudan OpenVINO'da okumak PyTorch'tan uzak vektörler verdi (kosinüs 0,6-0,8),
+    onnxruntime ise doğru sonuç verdi. PyTorch'tan dönüştürmek birebir doğru sonuç veriyor, `OpenVINOEmbedder` da bunu yapıyor.
 
 ??? question "XPU'da fotoğraf indekslerken `split_with_sizes` hatası"
     torch 2.15 XPU, int64 tensörlerde `max(dim=...)` için yanlış değer döndürüyor ve bu, bazı fotoğraflarda görsel
@@ -42,7 +42,7 @@
 
 ??? question "Tarayıcı modu yavaş ya da açılmıyor"
     WebGPU ile ilk çalıştırma yaklaşık 175 MB indiriyor. WebGPU yoksa (`chrome://gpu` ile kontrol et) sayfa fp16 modelle
-    WASM kullanır, yaklaşık 543 MB; çünkü q4 ve q8 dosyaları WASM tarafında olmayan `GatherBlockQuantized` işlemini kullanıyor
+    WASM kullanır, yaklaşık 543 MB, çünkü q4 ve q8 dosyaları WASM tarafında olmayan `GatherBlockQuantized` işlemini kullanıyor
     (`Could not find an implementation for GatherBlockQuantized`). WebGPU'da her batch'i yaklaşık 2.700 token'ın altında tut.
 
 ??? question "LiteRT çok fazla log basıyor"

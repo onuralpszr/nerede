@@ -82,8 +82,8 @@ Böyle ayarlanan bir değişken terminali kapatana kadar geçerli. Windows için
 
 - **NVIDIA**: PyPI'daki PyTorch Windows'ta yalnızca CPU'lu, yani `--no-default-groups` sana CUDA vermiyor. CUDA'lı sürümü
   [pytorch.org](https://pytorch.org/get-started/locally/) adresinden ortama kur.
-- **Intel NPU**: LiteRT-LM'in NPU desteği Windows'u hedefliyor (bkz. [Ölçümler](benchmarks.md#npu)). Biz yalnızca Linux'ta
-  deneyebildik, orada yok.
+- **Intel NPU**: LiteRT-LM'in NPU desteği Windows'u hedefliyor (bkz. [Ölçümler](benchmarks.md#npu)). Yalnızca Linux'ta
+  denenebildi, orada yok.
 
 ## Neler indiriliyor
 
@@ -91,7 +91,7 @@ Böyle ayarlanan bir değişken terminali kapatana kadar geçerli. Windows için
 |---|---|---|
 | `google/embeddinggemma-2` | ~1,5 GB | PyTorch: indeksleme, defterler (metin 270M, fotoğraflar için + görsel 170M) |
 | `litert-community/embeddinggemma-2-text-270m-litert-lm` | 165 MB | LiteRT: sunucu ve 5. bölüm |
-| `onnx-community/embeddinggemma-2-ONNX` (q4 metin) | ~175 MB | tarayıcı; sayfa kendisi indirir |
+| `onnx-community/embeddinggemma-2-ONNX` (q4 metin) | ~175 MB | tarayıcı, sayfa kendisi indirir |
 
 Üçü de Apache 2.0 lisanslı ve Hugging Face girişi gerektirmiyor.
 

@@ -35,7 +35,7 @@ def truncate(v, dim):
     return v / np.linalg.norm(v, axis=-1, keepdims=True)
 ```
 
-Queries and documents must use the **same** size. At 256d we keep 98% recall@3 with a third of the storage.
+Queries and documents must use the **same** size. At 256d, recall@3 is still 0.97, the same as at 768d, with a third of the storage.
 128d is a 6x saving, but the drop is visible. That is why you measure on your own data.
 
 ## Read the misses

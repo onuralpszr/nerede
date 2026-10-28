@@ -56,7 +56,7 @@ Media (images, audio, video) get **no** prefix.
 | Runtime | Model id | Notes |
 |---|---|---|
 | sentence-transformers ≥ 6.1 | `google/embeddinggemma-2` | Python, any device |
-| LiteRT-LM | `litert-community/embeddinggemma-2-text-270m-litert-lm` | int4 QAT, 165 MB; text+vision 388 MB; full 485 MB |
+| LiteRT-LM | `litert-community/embeddinggemma-2-text-270m-litert-lm` | int4 QAT, 165 MB, text+vision 388 MB, full 485 MB |
 | transformers.js | `onnx-community/embeddinggemma-2-ONNX` | WebGPU/WASM, q4 text ~175 MB |
 | Ollama | `embeddinggemma-2` | |
 | llama.cpp | `ggml-org/embeddinggemma-2-GGUF` | |

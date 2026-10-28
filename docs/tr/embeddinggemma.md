@@ -56,7 +56,7 @@ Medya (görsel, ses, video) **önek almaz**.
 | Runtime | Model kimliği | Not |
 |---|---|---|
 | sentence-transformers ≥ 6.1 | `google/embeddinggemma-2` | Python, her cihaz |
-| LiteRT-LM | `litert-community/embeddinggemma-2-text-270m-litert-lm` | int4 QAT, 165 MB; metin+görsel 388 MB; tam model 485 MB |
+| LiteRT-LM | `litert-community/embeddinggemma-2-text-270m-litert-lm` | int4 QAT, 165 MB, metin+görsel 388 MB, tam model 485 MB |
 | transformers.js | `onnx-community/embeddinggemma-2-ONNX` | WebGPU/WASM, q4 metin ~175 MB |
 | Ollama | `embeddinggemma-2` | |
 | llama.cpp | `ggml-org/embeddinggemma-2-GGUF` | |

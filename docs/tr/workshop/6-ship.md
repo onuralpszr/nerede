@@ -39,7 +39,7 @@ Yaklaşık 575 MB, yaklaşık bir saniyede açılıyor ve 200 MB civarı RAM kul
 
 === "GitHub Pages (statik)"
 
-    API yoksa sayfa tarayıcı moduna geçer; yani demo düz dosyalardan oluşabilir:
+    API yoksa sayfa tarayıcı moduna geçer, yani demo düz dosyalardan oluşabilir:
 
     ```bash
     uv run --group docs scripts/docs/build_docs.py --with-demo

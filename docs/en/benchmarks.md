@@ -19,8 +19,8 @@ Text-only model, short queries, batch size 1. Scripts are in `bench/` and `works
 
 Browser rows: Chrome on the Arc B390 (`xe-3lpg` adapter, not the software fallback), median of 10 warm queries,
 cosine against PyTorch over 8 queries (`bench/browser_time.mjs`, `bench/browser_vectors.mjs`). q4 stays the default because 175 MB
-is kind to conference Wi-Fi; on a fast connection `?dtype=fp16` is 5× faster and exact. q4f16 is fast but changed the
-top result for 3 of 8 queries, so we don't use it.
+is kind to conference Wi-Fi. On a fast connection `?dtype=fp16` is 5× faster and exact. q4f16 is fast but changed the
+top result for 3 of 8 queries, so it is not used.
 
 ## Indexing
 

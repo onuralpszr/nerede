@@ -18,8 +18,8 @@ Yalnızca metin modeli, kısa sorgular, tek tek (batch 1). Betikler `bench/` ve 
 | Tarayıcı WASM, fp16 (WebGPU yoksa) | 543 MB indirme | 116 | 1,0000 |
 
 Tarayıcı satırları: Arc B390 üzerinde Chrome (yazılım yedeği değil, gerçek `xe-3lpg` adaptörü), 10 sıcak sorgunun medyanı,
-PyTorch'a kosinüs 8 sorgu üzerinden (`bench/browser_time.mjs`, `bench/browser_vectors.mjs`). q4 varsayılan kalıyor çünkü 175 MB konferans Wi-Fi'ı için makul; hızlı bağlantıda
-`?dtype=fp16` 5 kat daha hızlı ve birebir doğru. q4f16 hızlı ama 8 sorgunun 3'ünde ilk sonucu değiştirdi, bu yüzden kullanmıyoruz.
+PyTorch'a kosinüs 8 sorgu üzerinden (`bench/browser_time.mjs`, `bench/browser_vectors.mjs`). q4 varsayılan kalıyor çünkü 175 MB konferans Wi-Fi'ı için makul. Hızlı bağlantıda
+`?dtype=fp16` 5 kat daha hızlı ve birebir doğru. q4f16 hızlı ama 8 sorgunun 3'ünde ilk sonucu değiştirdi, bu yüzden kullanılmıyor.
 
 ## İndeksleme
 
@@ -32,7 +32,7 @@ PyTorch'a kosinüs 8 sorgu üzerinden (`bench/browser_time.mjs`, `bench/browser_
 !!! note "XPU ve fotoğraflar"
     torch 2.15 XPU'da int64 tensörlerde `max(dim=...)` elemanların yaklaşık üçte birini atlıyor. Görsel kodlayıcı
     yama ızgarasının genişliğini bununla bulduğu için bazı fotoğraflar `split_with_sizes` hatası veriyordu.
-    `TorchEmbedder` XPU'da bu adımı int32 ile yapıyor; 100 fotoğrafın hepsi CPU ile aynı sonucu veriyor (kosinüs en az 0,9995).
+    `TorchEmbedder` XPU'da bu adımı int32 ile yapıyor ve 100 fotoğrafın hepsi CPU ile aynı sonucu veriyor (kosinüs en az 0,9995).
     Yeniden üretmek için: `bench/vision_xpu_repro.py`.
 
 ## Arama kalitesi

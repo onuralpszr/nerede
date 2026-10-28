@@ -13,7 +13,7 @@ Bu atölyenin her parçası **hiç ödeme yapmadan ve kredi kartı olmadan** ça
 ## Yerel CPU yeterli
 
 Metin modeli 270M parametreli. Dizüstü işlemcide bir sorguyu 20-40 ms'de gömer, tüm veri setini saniyeler içinde
-indeksler. Fotoğraflar (görsel kodlayıcı, 440M) bir kereliğine yaklaşık dört dakika sürer; istersen hazır indeksi kullanabilirsin.
+indeksler. Fotoğraflar (görsel kodlayıcı, 440M) bir kereliğine yaklaşık dört dakika sürer. İstersen hazır indeksi kullanabilirsin.
 Yaklaşık 3 GB disk ve 4 GB boş RAM yeter.
 
 ## Google Colab (ücretsiz)
@@ -53,7 +53,7 @@ sdk: docker
 app_port: 8080
 ```
 
-İmaj yaklaşık 575 MB, yaklaşık bir saniyede açılıyor ve 200 MB civarı RAM kullanıyor; ücretsiz sürümün rahatça içinde.
+İmaj yaklaşık 575 MB, yaklaşık bir saniyede açılıyor ve 200 MB civarı RAM kullanıyor, bu da ücretsiz sürümün rahatça içinde.
 
 !!! note "Cloud Run"
-    Google Cloud Run'ın da ücretsiz kotası var ama faturalandırma hesabı istiyor. Onu ayrıca ele alacağız.
+    Google Cloud Run'ın da ücretsiz kotası var ama faturalandırma hesabı istiyor. Bu konu ayrıca ele alınacak.

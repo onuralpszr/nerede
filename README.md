@@ -41,8 +41,9 @@ flowchart LR
     I --> C[CLI and notebooks]
 ```
 
-The index is built once with PyTorch, then queried by LiteRT (165 MB int4) on the server and by transformers.js in
-the browser. All three produce the same vectors: cosine 0.98 to 0.99, with the same recall.
+The index is built once with PyTorch. LiteRT (165 MB int4) searches it on the server and transformers.js searches it
+in the browser. This works because the three runtimes produce the same vectors. Across runtimes the cosine similarity
+is 0.98 to 0.99 and recall does not change.
 
 ## Quick start
 
@@ -81,7 +82,7 @@ Open <http://127.0.0.1:8000>, then switch between **Server** and **Browser** mod
 | 6. Ship it | `app/`, `Dockerfile`, `scripts/docs/build_docs.py` | API, UI, container, free hosting |
 | 7. Photos | `03_search.py --photos`, `07_photo_search.py` | text → photo search |
 
-## What we measured
+## Measurements
 
 On the speaker laptop (Core Ultra X7 358H, Arc B390). Details in [Benchmarks](docs/en/benchmarks.md).
 
@@ -109,15 +110,15 @@ bench/      measurements and reproductions
 
 Build and preview the docs with `uv run --group docs scripts/docs/build_docs.py --with-demo --serve`, then open <http://127.0.0.1:8001> (the app keeps port 8000).
 
-## Credits
-
 Formatting: `uv run --group dev ruff check --fix . && uv run --group dev ruff format .` for Python, including the code
 blocks in the docs, and `npx prettier@3.9.9 --write .` for JS, CSS and HTML. CI checks both.
 
+## Credits
+
 - Code and docs: [Apache 2.0](LICENSE).
-- Place texts were written for this workshop and checked against Wikipedia; DevFest facts come from
+- Place texts were written for this workshop and checked against Wikipedia. DevFest facts come from
   [devfest.istanbul](https://devfest.istanbul/). Please report anything that looks wrong.
 - Photos: Wikimedia Commons, see [data/images/ATTRIBUTION.md](data/images/ATTRIBUTION.md).
 - Fonts: Outfit and JetBrains Mono (SIL Open Font License), self-hosted.
-- The look is inspired by the DevFest İstanbul 2026 poster; the pixel skyline is drawn by `scripts/draw/make_skyline.py`.
+- The look is inspired by the DevFest İstanbul 2026 poster, and the pixel skyline is drawn by `scripts/draw/make_skyline.py`.
 - EmbeddingGemma 2 is released by Google DeepMind under Apache 2.0. GDG İstanbul is an independent community group.

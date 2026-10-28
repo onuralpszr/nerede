@@ -31,18 +31,18 @@ Dosyada bu tek bir satır. Burada okunsun diye açıldı ve metin kısaltıldı.
 ```
 
 Her belge bilerek **tek** dilde yazıldı. Türkçe bir soru İngilizce belgeleri, İngilizce bir soru Türkçe belgeleri bulmak
-zorunda; çok dilli bir embedding modeli tam olarak bunun için var.
+zorunda. Çok dilli bir embedding modeli tam olarak bunun için var.
 
 ## Nasıl doğrulandı
 
 - **Yerler**: her kayıt doğrulandığı Wikipedia maddesini (`source`) gösteriyor. İlk 51 kayıt İngilizce ve Türkçe Wikipedia ile
-  karşılaştırılarak kontrol edildi ve 13'ü düzeltildi (örneğin Ayasofya 1934'te değil 1935'te müze olarak açıldı; Adalar dört değil
+  karşılaştırılarak kontrol edildi ve 13'ü düzeltildi (örneğin Ayasofya 1934'te değil 1935'te müze olarak açıldı ve Adalar dört değil
   dokuz adadan oluşuyor). Sonraki 50 kayıt doğrudan Wikipedia'dan yazıldı. Wikipedia'nın kapsamadığı 16 pratik ipucu
   (balık ekmeğin yanında turşu suyu gibi) ikinci kez resmi siteler ve gezi rehberleriyle kontrol edildi: 11'i doğrulandı,
   5'i yeniden yazıldı (örneğin Boğaz vapuru artık "şehri denizden görmenin en ucuz yolu" diye anlatılmıyor). İki turun
   tüm kaynakları `data/drafts/factcheck_report.md` ve `data/drafts/factcheck_round2.md` dosyalarında.
 - **DevFest**: yalnızca [devfest.istanbul](https://devfest.istanbul/) ve arşivindeki bilgiler ve 2025 tarihi için bir Webrazzi
-  haberi. Tarih, mekân ve bilet fiyatları 28 Ekim 2026'da site ve Kommunity ile yeniden kontrol edildi; fiyatlar değişebilir.
+  haberi. Tarih, mekân ve bilet fiyatları 28 Ekim 2026'da site ve Kommunity ile yeniden kontrol edildi. Fiyatlar değişebilir.
 - **EmbeddingGemma**: yalnızca model kartları ve Google'ın duyuru yazılarındaki bilgiler.
 
 !!! warning "Alıntılamadan önce bir daha kontrol et"
@@ -52,8 +52,8 @@ zorunda; çok dilli bir embedding modeli tam olarak bunun için var.
 
 `scripts/data/fetch_images.py` her yerin Wikipedia maddesindeki ana görseli Wikimedia Commons'tan indirir ve yalnızca lisansı
 CC0, CC BY, CC BY-SA, Free Art License ya da kamu malı ise tutar. İki logo gerçek fotoğraflarla değiştirildi.
-Her fotoğrafın yazarı, lisansı ve kaynak sayfası `data/images.jsonl` ve `data/images/ATTRIBUTION.md` dosyalarında;
-uygulama da her fotoğrafın altında bu bilgiyi gösteriyor.
+Her fotoğrafın yazarı, lisansı ve kaynak sayfası `data/images.jsonl` ve `data/images/ATTRIBUTION.md` dosyalarında.
+Uygulama da her fotoğrafın altında bu bilgiyi gösteriyor.
 
 ## Kendin ekle
 

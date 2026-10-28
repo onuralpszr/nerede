@@ -3,8 +3,8 @@
 ??? question "A one-word query like `tatlı` or `dessert` returns odd results"
     A single word carries little meaning, so every food entry scores about the same (0.70 to 0.73) and the order
     is close to random. Two things help. Write the question as a sentence: "sütlü tatlı" or "where can I eat baklava"
-    separate much better than "tatlı". And make sure the documents say what they are: before we added six desserts
-    that use the words "tatlı" and "dessert", the top 5 for "tatlı" included simit and salep; now all 5 are desserts.
+    separate much better than "tatlı". And make sure the documents say what they are: before six desserts were added
+    that use the words "tatlı" and "dessert", the top 5 for "tatlı" included simit and salep. Now all 5 are desserts.
     Hybrid search is now on by default for one- and two-word queries (router intent plus keywords), which lifts
     precision@5 on one-word queries from 0.68 to 0.86. See [Router + keywords](workshop/4-router.md#hybrid).
 
@@ -28,7 +28,7 @@
     Download with `hf download … --local-dir`, or convert from PyTorch like `OpenVINOEmbedder` does.
 
 ??? question "OpenVINO gives wrong vectors for the onnx-community ONNX file"
-    On our machine, reading `model_fp16.onnx` directly in OpenVINO gave vectors far from PyTorch (cosine 0.6 to 0.8)
+    On the speaker laptop, reading `model_fp16.onnx` directly in OpenVINO gave vectors far from PyTorch (cosine 0.6 to 0.8)
     while onnxruntime was fine. Converting from PyTorch gives exact results, so that is what `OpenVINOEmbedder` does.
 
 ??? question "`split_with_sizes` error when indexing photos on XPU"

@@ -41,8 +41,9 @@ flowchart LR
     I --> C[Komut satırı ve defterler]
 ```
 
-İndeks bir kez PyTorch ile kurulur; sonra sunucuda LiteRT (165 MB, int4) ve tarayıcıda transformers.js ile sorgulanır.
-Üçü de aynı vektörleri üretir: kosinüs benzerliği 0,98-0,99, isabet oranı aynı.
+İndeks PyTorch ile bir kez kurulur. Sunucuda LiteRT (165 MB, int4), tarayıcıda transformers.js bu indekste arama yapar.
+Bu, üç runtime'ın da aynı vektörleri üretmesi sayesinde mümkün. Runtime'lar arasındaki kosinüs benzerliği 0,98 ile 0,99
+arasında, isabet oranı değişmiyor.
 
 ## Hızlı başlangıç
 
@@ -81,7 +82,7 @@ CPU'lu PyTorch'tur (1,5 GB). NVIDIA, Intel Arc (XPU), AMD ya da Apple için [Kur
 | 6. Yayına al | `app/`, `Dockerfile`, `scripts/docs/build_docs.py` | API, arayüz, konteyner, ücretsiz barındırma |
 | 7. Fotoğraflar | `03_search.py --photos`, `07_photo_search.py` | metinden fotoğraf arama |
 
-## Ölçtüklerimiz
+## Ölçümler
 
 Konuşmacının dizüstünde (Core Ultra X7 358H, Arc B390). Ayrıntılar [Ölçümler](docs/tr/benchmarks.md) sayfasında.
 
@@ -109,15 +110,15 @@ bench/      ölçümler ve hata yeniden üretimleri
 
 Belgeleri `uv run --group docs scripts/docs/build_docs.py --with-demo --serve` ile derleyip <http://127.0.0.1:8001> adresinden önizle (uygulama 8000 portunu kullanmaya devam eder).
 
-## Teşekkürler
-
 Biçimlendirme: Python için, belgelerdeki kod blokları dahil, `uv run --group dev ruff check --fix . && uv run --group dev ruff format .`,
 JS, CSS ve HTML için `npx prettier@3.9.9 --write .`. CI ikisini de kontrol eder.
 
+## Teşekkürler
+
 - Kod ve belgeler: [Apache 2.0](LICENSE).
-- Mekân metinleri bu atölye için yazıldı ve Wikipedia ile karşılaştırılarak kontrol edildi; DevFest bilgileri
+- Mekân metinleri bu atölye için yazıldı ve Wikipedia ile karşılaştırılarak kontrol edildi. DevFest bilgileri
   [devfest.istanbul](https://devfest.istanbul/) sitesinden. Yanlış görünen bir şey varsa lütfen bildir.
 - Fotoğraflar: Wikimedia Commons, bkz. [data/images/ATTRIBUTION.md](data/images/ATTRIBUTION.md).
 - Yazı tipleri: Outfit ve JetBrains Mono (SIL Open Font License), sitenin içinde barındırılıyor.
-- Görünüm DevFest İstanbul 2026 afişinden esinlendi; piksel siluet `scripts/draw/make_skyline.py` ile çiziliyor.
+- Görünüm DevFest İstanbul 2026 afişinden esinlendi, piksel siluet ise `scripts/draw/make_skyline.py` ile çiziliyor.
 - EmbeddingGemma 2, Google DeepMind tarafından Apache 2.0 lisansıyla yayınlandı. GDG İstanbul bağımsız bir topluluk grubudur.

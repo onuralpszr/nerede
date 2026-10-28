@@ -17,7 +17,7 @@ GDG DevFest İstanbul 2026 için uygulamalı atölye önerisi · 19 Aralık · W
 <img class="nd-skyline" src="assets/images/skyline.svg" alt="Piksel sanatıyla İstanbul silueti">
 </div>
 
-*"nerede balık ekmek yenir?"*, *"when is DevFest?"* ya da *"model ne kadar büyük?"* diye sor; cevaplar anahtar
+*"nerede balık ekmek yenir?"*, *"when is DevFest?"* ya da *"model ne kadar büyük?"* diye sor, cevaplar anahtar
 kelimeyle değil **anlamla** üç küçük koleksiyondan gelsin: **İstanbul'daki yerler** (fotoğraflarıyla), **DevFest İstanbul 2026**
 ve **EmbeddingGemma 2**'nin kendisi. Türkçe soru İngilizce cevabı, İngilizce soru Türkçe cevabı bulur.
 
@@ -43,7 +43,7 @@ ve **EmbeddingGemma 2**'nin kendisi. Türkçe soru İngilizce cevabı, İngilizc
 
     ---
 
-    WebGPU üzerinde transformers.js. Sorgu cihazdan çıkmaz; tüm demo statik dosya olarak ücretsiz yayınlanabilir.
+    WebGPU üzerinde transformers.js. Sorgu cihazdan çıkmaz ve tüm demo statik dosya olarak ücretsiz yayınlanabilir.
 
     [:octicons-arrow-right-24: Yayına al](workshop/6-ship.md)
 
@@ -89,18 +89,23 @@ flowchart LR
     I --> C[Komut satırı ve defter]
 ```
 
-İndeks PyTorch ile bir kez kurulur; sunucuda LiteRT, tarayıcıda transformers.js ile sorgulanır.
-Bu ancak üçü de **aynı vektörleri** ürettiği için mümkün; ölçtük: runtime'lar arasında kosinüs benzerliği 0,98-0,99, isabet oranı aynı.
+İndeks PyTorch ile bir kez kurulur. Sunucuda LiteRT, tarayıcıda transformers.js bu indekste arama yapar.
+Bu, üç runtime'ın da **aynı vektörleri** üretmesi sayesinde mümkün. Runtime'lar arasındaki kosinüs benzerliği 0,98 ile 0,99
+arasında, isabet oranı değişmiyor.
 
-## Akış (~100 dakika)
+## Akış (60 dakika)
+
+Önce evde `uv run workshop/00_setup_check.py` çalıştır: modeller yaklaşık 1,7 GB, etkinlik Wi-Fi'ı için fazla.
+5. ve 7. bölümler konuşmacının yaptığı kısa demolar. Onları sonra kendi hızında çalıştırabilirsin.
 
 | Süre | Bölüm | Yapacakların |
 |---|---|---|
-| 0:00 | Giriş | Embedding nedir, EmbeddingGemma 2'de ne yeni |
-| 0:10 | [1. Embedding'ler](workshop/1-embeddings.md) | Cümleleri göm, görev öneklerini kullan, diller arası ara |
-| 0:20 | [2. İndeks ve arama](workshop/2-search.md) | Yerler, DevFest bilgileri ve model notlarından vektör indeksi kur |
-| 0:35 | [3. Ölçüm](workshop/3-measure.md) | 768, 512, 256 ve 128 boyutta isabeti ölç |
-| 0:50 | [4. Yönlendirici](workshop/4-router.md) | Eğitim verisi olmadan soruları sınıflandır |
-| 1:00 | [5. Runtime'lar](workshop/5-runtimes.md) | PyTorch, LiteRT ve OpenVINO'yu CPU ve GPU'da karşılaştır |
-| 1:10 | [6. Yayına al](workshop/6-ship.md) | API ve arayüzü çalıştır, konteyner kur, ücretsiz yayınla |
-| 1:30 | [7. Fotoğraflar](workshop/7-photos.md) | Fotoğrafları kelimelerle ara |
+| 0:00 | [Giriş](embeddinggemma.md) | Embedding nedir, EmbeddingGemma 2'de ne yeni |
+| 0:05 | [1. Embedding'ler](workshop/1-embeddings.md) | Cümleleri göm, görev öneklerini kullan, diller arası ara |
+| 0:13 | [2. İndeks ve arama](workshop/2-search.md) | Yerler, DevFest bilgileri ve model notlarından vektör indeksi kur |
+| 0:23 | [3. Ölçüm](workshop/3-measure.md) | 768, 512, 256 ve 128 boyutta isabeti ölç |
+| 0:30 | [4. Yönlendirici](workshop/4-router.md) | Eğitim verisi olmadan soruları sınıflandır, tek kelimelik aramaları düzelt |
+| 0:37 | [5. Runtime'lar](workshop/5-runtimes.md) | Demo: PyTorch, LiteRT ve OpenVINO, CPU ve GPU'da |
+| 0:42 | [6. Yayına al](workshop/6-ship.md) | API ve arayüzü çalıştır, konteyner kur, ücretsiz yayınla |
+| 0:52 | [7. Fotoğraflar](workshop/7-photos.md) | Demo: fotoğrafları kelimelerle, yerleri bir fotoğrafla ara |
+| 0:57 | [Kapanış](free.md) | Sorular ve sırada ne var |

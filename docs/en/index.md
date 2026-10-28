@@ -89,18 +89,23 @@ flowchart LR
     I --> C[CLI and notebook]
 ```
 
-The index is built once with PyTorch, then queried by LiteRT on the server and by transformers.js in the browser.
-That only works because all three produce **the same vectors**, which we measured: cosine 0.98 to 0.99 between runtimes, with the same recall.
+The index is built once with PyTorch. LiteRT searches it on the server and transformers.js searches it in the browser.
+This works because the three runtimes produce **the same vectors**. Across runtimes the cosine similarity is 0.98 to 0.99
+and recall does not change.
 
-## Agenda (~100 minutes)
+## Agenda (60 minutes)
+
+Run `uv run workshop/00_setup_check.py` at home first: the models are about 1.7 GB, too much for venue Wi-Fi.
+Parts 5 and 7 are short speaker demos, so run them later at your own pace.
 
 | Time | Part | You will |
 |---|---|---|
-| 0:00 | Intro | Learn what embeddings are and what is new in EmbeddingGemma 2 |
-| 0:10 | [1. Embeddings](workshop/1-embeddings.md) | Embed sentences, use task prompts, search across languages |
-| 0:20 | [2. Index and search](workshop/2-search.md) | Build a vector index of places, DevFest facts and model docs |
-| 0:35 | [3. Measure](workshop/3-measure.md) | Evaluate recall at 768, 512, 256 and 128 dimensions |
-| 0:50 | [4. Router](workshop/4-router.md) | Classify questions with no training data |
-| 1:00 | [5. Runtimes](workshop/5-runtimes.md) | Compare PyTorch, LiteRT and OpenVINO on CPU and GPU |
-| 1:10 | [6. Ship it](workshop/6-ship.md) | Run the API and UI, build a container, publish for free |
-| 1:30 | [7. Photos](workshop/7-photos.md) | Search photos with words |
+| 0:00 | [Intro](embeddinggemma.md) | Learn what embeddings are and what is new in EmbeddingGemma 2 |
+| 0:05 | [1. Embeddings](workshop/1-embeddings.md) | Embed sentences, use task prompts, search across languages |
+| 0:13 | [2. Index and search](workshop/2-search.md) | Build a vector index of places, DevFest facts and model docs |
+| 0:23 | [3. Measure](workshop/3-measure.md) | Evaluate recall at 768, 512, 256 and 128 dimensions |
+| 0:30 | [4. Router](workshop/4-router.md) | Classify questions with no training data, fix one-word queries |
+| 0:37 | [5. Runtimes](workshop/5-runtimes.md) | Demo: PyTorch, LiteRT and OpenVINO on CPU and GPU |
+| 0:42 | [6. Ship it](workshop/6-ship.md) | Run the API and UI, build a container, publish for free |
+| 0:52 | [7. Photos](workshop/7-photos.md) | Demo: search photos with words, and places with a photo |
+| 0:57 | [Wrap-up](free.md) | Questions and what to try next |

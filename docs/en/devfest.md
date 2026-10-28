@@ -8,7 +8,7 @@
 | **Venue** | Wyndham Grand İstanbul Levent, Esentepe, Büyükdere Cd. No:177, 34394 Şişli |
 | **Getting there** | Levent metro station (M2 and M6) has direct indoor access to the venue |
 | **Organizer** | [GDG İstanbul](https://gdg.community.dev/gdg-istanbul) |
-| **Tickets** | on Kommunity: Early Bird 850 TL (until 2 November), Standard 2.000 TL (from 3 November), Gold Pass 20.000 TL (50 seats); checked 28 October 2026 |
+| **Tickets** | on Kommunity: Early Bird 850 TL (until 2 November), Standard 2.000 TL (from 3 November), Gold Pass 20.000 TL (50 seats), checked 28 October 2026 |
 | **Website** | [devfest.istanbul](https://devfest.istanbul/) |
 
 Topics include backend scaling, modern web experiences, mobile app development, and AI and Cloud technologies,

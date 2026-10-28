@@ -44,8 +44,8 @@ query_emb = model.encode(queries, prompt_name="SearchQuery")
 scores = model.similarity(query_emb, doc_emb)
 ```
 
-Kendi kodumuzda bu metinleri kendimiz kuruyoruz (`nerede/prompts.py`); böylece gerçek başlıkları kullanabiliyor
-ve her runtime'a birebir aynı metni gönderebiliyoruz.
+Bu projenin kodu bu metinleri kendisi kuruyor (`nerede/prompts.py`). Böylece gerçek başlıkları kullanabiliyor
+ve her runtime'a birebir aynı metni gönderebiliyor.
 
 ## Dene
 

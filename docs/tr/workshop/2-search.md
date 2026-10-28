@@ -15,7 +15,7 @@ uv run workshop/03_search.py --photos
 
 !!! info "Fotoğraflar daha uzun sürer"
     `--no-images` olmadan 2. adım görsel kodlayıcıyı da yükler ve 106 fotoğrafı gömer. Bu dizüstü CPU'da yaklaşık
-    4 dakika, GPU'da bir dakikanın altında sürer. Depoda fotoğraflı hazır bir indeks zaten var; bu adımı atlasan da
+    4 dakika, GPU'da bir dakikanın altında sürer. Depoda fotoğraflı hazır bir indeks zaten var, bu adımı atlasan da
     fotoğraf aramayı kullanabilirsin.
 
 ## İndeks sadece numpy
@@ -38,7 +38,7 @@ Qdrant, sqlite-vec veya pgvector kullan.
 ## Başlıklar önemli
 
 Belgeler `title: none | text: ...` yerine `title: Balık ekmek | text: ...` olarak gömülüyor.
-Model kartı başlık varsa kullanılmasını öneriyor; kısa belgelerde çok fark yaratıyor.
+Model kartı başlık varsa kullanılmasını öneriyor. Kısa belgelerde bu çok fark yaratıyor.
 
 ## Dene
 

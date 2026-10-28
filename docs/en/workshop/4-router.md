@@ -38,7 +38,7 @@ A one-word query like "tatlı" or "müze" carries little meaning: every food ent
 simit can beat baklava. The router helps here. For queries of **one or two words**, `Index.search` adds two
 small boosts on top of the cosine score:
 
-- **intent**: +0.05 for entries in the category the router picks, but only when it is confident (score 0.79 or more);
+- **intent**: +0.05 for entries in the category the router picks, but only when it is confident (score 0.79 or more).
 - **keywords**: up to +0.03 from BM25 over title and text. Turkish-aware: "tatli" finds "tatlı" and "tatlısı".
 
 ```python
@@ -56,7 +56,7 @@ the one-word case on `data/eval_short.jsonl` (24 queries, how many of the top 5 
 | LiteRT queries, 768d | 0.68 | **0.86** |
 | LiteRT queries, 256d | 0.64 | **0.83** |
 
-The server and Browser mode both use it; add `?search=vector` to the page URL (or `mode=vector` to the API) to compare.
+The server and Browser mode both use it. Add `?search=vector` to the page URL (or `mode=vector` to the API) to compare.
 Turning the boost on for every query lowered recall@1 on the sentence questions, and the router is not sure about
 some single words ("cami" goes to `ai` with 0.77), which is why both limits exist.
 

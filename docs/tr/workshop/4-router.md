@@ -38,7 +38,7 @@ aynı fikri Android, iOS ve web için hazır paket olarak sunuyor.
 alıyor ve simit baklavayı geçebiliyor. Burada yönlendirici yardımcı oluyor. **Bir ya da iki kelimelik** sorgularda
 `Index.search` kosinüs puanının üstüne iki küçük katkı ekliyor:
 
-- **niyet**: yönlendiricinin seçtiği kategorideki kayıtlara +0,05, ama yalnızca emin olduğunda (puan 0,79 ya da üstü);
+- **niyet**: yönlendiricinin seçtiği kategorideki kayıtlara +0,05, ama yalnızca emin olduğunda (puan 0,79 ya da üstü).
 - **anahtar kelime**: başlık ve metin üzerinde BM25'ten en çok +0,03. Türkçeye uygun: "tatli", "tatlı" ve "tatlısı"nı bulur.
 
 ```python
@@ -56,8 +56,8 @@ kelimelik durumu `data/eval_short.jsonl` ile ölçüyor (24 sorgu, ilk 5 sonucun
 | LiteRT sorguları, 768 boyut | 0,68 | **0,86** |
 | LiteRT sorguları, 256 boyut | 0,64 | **0,83** |
 
-Sunucu da Tarayıcı modu da bunu kullanıyor; karşılaştırmak için sayfa adresine `?search=vector` (API'ye `mode=vector`) ekle.
-Katkıyı her sorguya uygulamak cümlelik sorularda recall@1'i düşürdü; yönlendirici de bazı tek kelimelerden emin değil
+Sunucu da Tarayıcı modu da bunu kullanıyor. Karşılaştırmak için sayfa adresine `?search=vector` (API'ye `mode=vector`) ekle.
+Katkıyı her sorguya uygulamak cümlelik sorularda recall@1'i düşürdü, yönlendirici de bazı tek kelimelerden emin değil
 ("cami" 0,77 ile `ai`'a gidiyor). İki sınırın nedeni bu.
 
 ## Dene

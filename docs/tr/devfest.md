@@ -8,10 +8,10 @@
 | **Yer** | Wyndham Grand İstanbul Levent, Esentepe, Büyükdere Cd. No:177, 34394 Şişli |
 | **Ulaşım** | Levent metro istasyonundan (M2 ve M6) mekâna kapalı ve doğrudan geçiş var |
 | **Düzenleyen** | [GDG İstanbul](https://gdg.community.dev/gdg-istanbul) |
-| **Biletler** | Kommunity'de: Early Bird 850 TL (2 Kasım'a kadar), Standard 2.000 TL (3 Kasım'dan itibaren), Gold Pass 20.000 TL (50 kişilik); 28 Ekim 2026'da kontrol edildi |
+| **Biletler** | Kommunity'de: Early Bird 850 TL (2 Kasım'a kadar), Standard 2.000 TL (3 Kasım'dan itibaren), Gold Pass 20.000 TL (50 kişilik), 28 Ekim 2026'da kontrol edildi |
 | **Web sitesi** | [devfest.istanbul](https://devfest.istanbul/) |
 
-Konular arasında backend ölçekleme, modern web deneyimleri, mobil uygulama geliştirme, yapay zeka ve bulut teknolojileri var;
+Konular arasında backend ölçekleme, modern web deneyimleri, mobil uygulama geliştirme, yapay zeka ve bulut teknolojileri var,
 keynote'lar, teknik derin dalışlar ve networking alanlarıyla birlikte.
 
 ## Geçen yıl
@@ -27,7 +27,7 @@ oturumu vardı. 2024 ve 2025'in tam programları [arşivde](https://devfest.ista
 [LinkedIn](https://linkedin.com/company/gdg-istanbul) · WhatsApp: [gdg.ist/wa](https://gdg.ist/wa)
 
 !!! info
-    GDG İstanbul bağımsız bir topluluk grubudur; etkinlikleri ve görüşleri Google'a ait değildir.
+    GDG İstanbul bağımsız bir topluluk grubudur. Etkinlikleri ve görüşleri Google'a ait değildir.
     Bu bilgilerin hepsi demoda **DevFest 2026** ve **DevFest 2025** filtreleriyle de aranabilir.
 
 ## Görünüm hakkında

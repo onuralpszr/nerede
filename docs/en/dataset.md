@@ -43,7 +43,7 @@ other way round, which is exactly what a multilingual embedding model is for.
   (for example, the Bosphorus ferry is no longer called "the cheapest way" to see the city). Both rounds, with every
   source, are in `data/drafts/factcheck_report.md` and `data/drafts/factcheck_round2.md`.
 - **DevFest**: only facts from [devfest.istanbul](https://devfest.istanbul/) and its archive, plus a Webrazzi article
-  for the 2025 date. Dates, venue and ticket prices were re-checked on 28 October 2026 against the site and Kommunity; prices may change.
+  for the 2025 date. Dates, venue and ticket prices were re-checked on 28 October 2026 against the site and Kommunity. Prices may change.
 - **EmbeddingGemma**: only facts from the model cards and Google's announcement posts.
 
 !!! warning "Please double-check before quoting"

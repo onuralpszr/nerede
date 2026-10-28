@@ -1,18 +1,18 @@
 # Workshop overview
 
-Seven short parts. Each one is a small script in `workshop/` (and a section in the [Colab notebook](../colab.md)),
-and each introduces one idea. Run them in order. If you fall behind, the finished code is already there,
-so just run the next one.
+Seven short parts in 60 minutes. Each one is a small script in `workshop/` (and a section in the
+[Colab notebook](../colab.md)), and each introduces one idea. Run them in order. If you fall behind, the finished
+code is already there, so just run the next one. Parts 5 and 7 are speaker demos in the room, but you can try them at home.
 
 | Part | Script | Idea | Time |
 |---|---|---|---|
-| [1. Embeddings](1-embeddings.md) | `00_setup_check.py`, `01_hello_embeddings.py` | vectors, task prompts, cross-lingual similarity | 10 min |
-| [2. Index and search](2-search.md) | `02_build_index.py`, `03_search.py` | a vector index of documents and photos | 15 min |
-| [3. Measure](3-measure.md) | `04_matryoshka_eval.py` | recall, MRR, Matryoshka trade-offs | 15 min |
-| [4. Router](4-router.md) | `05_router.py` | zero-shot classification | 10 min |
-| [5. Runtimes](5-runtimes.md) | `06_runtimes.py` | PyTorch vs LiteRT vs OpenVINO, CPU vs GPU | 10 min |
-| [6. Ship it](6-ship.md) | `app/`, `Dockerfile` | API, UI, container, free hosting | 20 min |
-| [7. Photo search](7-photos.md) | `07_photo_search.py` | multimodal embeddings | 10 min |
+| [1. Embeddings](1-embeddings.md) | `00_setup_check.py`, `01_hello_embeddings.py` | vectors, task prompts, cross-lingual similarity | 8 min |
+| [2. Index and search](2-search.md) | `02_build_index.py`, `03_search.py` | a vector index of documents and photos | 10 min |
+| [3. Measure](3-measure.md) | `04_matryoshka_eval.py` | recall, MRR, Matryoshka trade-offs | 7 min |
+| [4. Router](4-router.md) | `05_router.py` | zero-shot classification, hybrid search | 7 min |
+| [5. Runtimes](5-runtimes.md) | `06_runtimes.py` | PyTorch vs LiteRT vs OpenVINO, CPU vs GPU | 5 min, demo |
+| [6. Ship it](6-ship.md) | `app/`, `Dockerfile` | API, UI, container, free hosting | 10 min |
+| [7. Photo search](7-photos.md) | `07_photo_search.py`, `08_image_search.py` | text → photo and photo → place | 5 min, demo |
 
 ## The data
 

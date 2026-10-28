@@ -83,7 +83,7 @@ A variable set this way lasts until you close the terminal. Two more Windows not
 
 - **NVIDIA**: PyTorch from PyPI is CPU-only on Windows, so `--no-default-groups` does not give you CUDA. Install the CUDA
   build from [pytorch.org](https://pytorch.org/get-started/locally/) into the environment instead.
-- **Intel NPU**: LiteRT-LM's NPU backend targets Windows (see [Benchmarks](benchmarks.md#npu)). We could only test Linux,
+- **Intel NPU**: LiteRT-LM's NPU backend targets Windows (see [Benchmarks](benchmarks.md#npu)). Only Linux was tested,
   where it is not available.
 
 ## What gets downloaded

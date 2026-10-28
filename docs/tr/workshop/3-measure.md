@@ -20,7 +20,7 @@ index: torch:cpu   queries: torch:cpu   n=72
 ```
 
 - **recall@1**: doğru cevap ne sıklıkla birinci. **recall@3**: ilk üçte.
-- **MRR**: ortalama karşılıklı sıra; 1,0 her zaman birinci, 0,5 genelde ikinci demek.
+- **MRR**: ortalama karşılıklı sıra. 1,0 her zaman birinci, 0,5 genelde ikinci demek.
 
 ## Matryoshka: daha küçük vektör, neredeyse aynı cevaplar
 
@@ -34,7 +34,7 @@ def truncate(v, dim):
     return v / np.linalg.norm(v, axis=-1, keepdims=True)
 ```
 
-Sorgu ve belgeler **aynı** boyutta olmalı. 256 boyutta depolamanın üçte biriyle recall@3'ü %98'de tutuyoruz.
+Sorgu ve belgeler **aynı** boyutta olmalı. 256 boyutta recall@3 hâlâ 0,97, yani 768 boyuttakiyle aynı. Üstelik depolamanın üçte biri yetiyor.
 128 boyut altı kat tasarruf sağlıyor ama düşüş görünür durumda. Bu yüzden kendi verinde ölçmelisin.
 
 ## Kaçanları oku
@@ -46,7 +46,7 @@ miss at 768d: "Mimar Sinan'ın en ünlü camisi" -> semsi-pasa (expected suleyma
 miss at 768d: 'when is the conference this year' -> devfest-2025-stats (expected devfest-ne-zaman)
 ```
 
-Şemsi Paşa da bir Sinan camisi; iki belge de bir yıldan söz ederken "bu yıl"ı eşleştirmek zor.
+Şemsi Paşa da bir Sinan camisi. İki belge de bir yıldan söz ederken "bu yıl"ı eşleştirmek zor.
 Çoğu zaman çözüm modelde değil veride: daha net yazılmış bir belge.
 
 ## Tek kelimelik sorgular

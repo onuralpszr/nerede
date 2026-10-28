@@ -9,7 +9,7 @@ Atölyenin tamamı iki defterde, her dil için bir tane. **Ücretsiz** Colab sü
 
 ## Defter neler yapıyor
 
-1. **Kurulum**: depoyu klonlar; `sentence-transformers`, `litert-lm-api` ve uygulamayı kurar (Colab'da PyTorch zaten var).
+1. **Kurulum**: depoyu klonlar, ardından `sentence-transformers`, `litert-lm-api` ve uygulamayı kurar (Colab'da PyTorch zaten var).
 2. **Merhaba embedding**: görev önekleri ve Türkçe ↔ İngilizce benzerlik.
 3. **İndeksi kur**: yerler, DevFest bilgileri, EmbeddingGemma notları ve fotoğraflar.
 4. **Arama**: metin arama ve metinden fotoğrafa arama, görsellerle birlikte.

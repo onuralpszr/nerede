@@ -44,7 +44,7 @@ query_emb = model.encode(queries, prompt_name="SearchQuery")
 scores = model.similarity(query_emb, doc_emb)
 ```
 
-In our own code we build the strings ourselves (`nerede/prompts.py`), so that we can use real titles and
+This project's code builds the strings itself (`nerede/prompts.py`), so that it can use real titles and
 send the same text to every runtime.
 
 ## Try it

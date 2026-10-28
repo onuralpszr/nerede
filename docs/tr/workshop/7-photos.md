@@ -1,7 +1,7 @@
 # 7. Fotoğraf arama
 
 EmbeddingGemma 2 **görselleri, sesi ve videoyu metinle aynı 768 boyutlu uzaya** yerleştirir.
-Böylece görsel kodlayıcıyla bir kez indekslenen bir fotoğraf, sonradan sadece kelimelerle bulunabilir; hatta
+Böylece görsel kodlayıcıyla bir kez indekslenen bir fotoğraf, sonradan sadece kelimelerle bulunabilir, hatta
 sunucudaki küçük, yalnızca metin bilen LiteRT modeliyle bile.
 
 ```bash

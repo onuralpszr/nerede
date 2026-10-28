@@ -1,18 +1,18 @@
 # Atölyeye genel bakış
 
-Yedi kısa bölüm. Her biri `workshop/` altında küçük bir betik (ve [Colab defterinde](../colab.md) bir bölüm),
-her biri tek bir fikri anlatır. Sırayla çalıştır. Geride kalırsan dert etme: bitmiş kod zaten orada,
-bir sonrakini çalıştırman yeter.
+60 dakikada yedi kısa bölüm. Her biri `workshop/` altında küçük bir betik (ve [Colab defterinde](../colab.md)
+bir bölüm), her biri tek bir fikri anlatır. Sırayla çalıştır. Geride kalırsan dert etme: bitmiş kod zaten orada,
+bir sonrakini çalıştırman yeter. 5. ve 7. bölümleri salonda konuşmacı gösteriyor, ama evde sen de dene.
 
 | Bölüm | Betik | Fikir | Süre |
 |---|---|---|---|
-| [1. Embedding'ler](1-embeddings.md) | `00_setup_check.py`, `01_hello_embeddings.py` | vektörler, görev önekleri, diller arası benzerlik | 10 dk |
-| [2. İndeks ve arama](2-search.md) | `02_build_index.py`, `03_search.py` | belgeler ve fotoğraflar için vektör indeksi | 15 dk |
-| [3. Ölçüm](3-measure.md) | `04_matryoshka_eval.py` | isabet, MRR, Matryoshka ödünleşimi | 15 dk |
-| [4. Yönlendirici](4-router.md) | `05_router.py` | sıfır-örnekle sınıflandırma | 10 dk |
-| [5. Runtime'lar](5-runtimes.md) | `06_runtimes.py` | PyTorch, LiteRT, OpenVINO; CPU ve GPU | 10 dk |
-| [6. Yayına al](6-ship.md) | `app/`, `Dockerfile` | API, arayüz, konteyner, ücretsiz yayın | 20 dk |
-| [7. Fotoğraf arama](7-photos.md) | `07_photo_search.py` | çok modlu embedding'ler | 10 dk |
+| [1. Embedding'ler](1-embeddings.md) | `00_setup_check.py`, `01_hello_embeddings.py` | vektörler, görev önekleri, diller arası benzerlik | 8 dk |
+| [2. İndeks ve arama](2-search.md) | `02_build_index.py`, `03_search.py` | belgeler ve fotoğraflar için vektör indeksi | 10 dk |
+| [3. Ölçüm](3-measure.md) | `04_matryoshka_eval.py` | isabet, MRR, Matryoshka ödünleşimi | 7 dk |
+| [4. Yönlendirici](4-router.md) | `05_router.py` | sıfır-örnekle sınıflandırma, hibrit arama | 7 dk |
+| [5. Runtime'lar](5-runtimes.md) | `06_runtimes.py` | PyTorch, LiteRT, OpenVINO, CPU ve GPU | 5 dk, demo |
+| [6. Yayına al](6-ship.md) | `app/`, `Dockerfile` | API, arayüz, konteyner, ücretsiz yayın | 10 dk |
+| [7. Fotoğraf arama](7-photos.md) | `07_photo_search.py`, `08_image_search.py` | metinden fotoğrafa, fotoğraftan yere | 5 dk, demo |
 
 ## Veri
 
