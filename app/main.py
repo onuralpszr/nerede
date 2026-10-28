@@ -39,9 +39,10 @@ def health():
 
 @app.get("/api/search")
 def search(q: str = Text, k: int = Query(6, ge=1, le=20), dim: int = Dim,
-           collection: Literal["all", "places", "devfest", "gemma"] = "all",
+           collection: list[Literal["all", "places", "devfest", "devfest2025", "gemma"]] = Query(["all"]),
            mode: Literal["hybrid", "vector"] = "hybrid"):
-    """Hybrid adds small intent and keyword boosts for one- or two-word queries; longer ones are pure vector search."""
+    """Repeat `collection` to search several (?collection=places&collection=gemma). Hybrid adds small intent and
+    keyword boosts for one- or two-word queries; longer ones are pure vector search."""
     start = time.perf_counter()
     vector = embedder.embed([query(q)])[0]
     intent = router.route(q)

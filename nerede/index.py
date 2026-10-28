@@ -19,7 +19,7 @@ INDEX = ROOT / "index" / "istanbul.npz"
 # collection name -> file. Places are the Istanbul guide, the other two are small knowledge bases.
 COLLECTIONS = {
     "places": DATA / "istanbul.jsonl",
-    "devfest": DATA / "devfest.jsonl",
+    "devfest": DATA / "devfest.jsonl",  # DevFest 2026; entries about 2025 set their own "collection": "devfest2025"
     "gemma": DATA / "embeddinggemma.jsonl",
 }
 IMAGES = DATA / "images.jsonl"
@@ -59,8 +59,10 @@ def load_images() -> list[dict]:
 
 def in_intent(doc: dict, label: str) -> bool:
     """Router labels are place categories, plus "devfest" and "ai" for the two knowledge bases."""
-    if label in ("devfest", "ai"):
-        return doc["collection"] == ("gemma" if label == "ai" else "devfest")
+    if label == "ai":
+        return doc["collection"] == "gemma"
+    if label == "devfest":
+        return doc["collection"] in ("devfest", "devfest2025")
     return doc["collection"] == "places" and doc.get("category") == label
 
 
@@ -89,10 +91,12 @@ class Index:
         self.images = images
         self.image_vectors = image_embedder.embed_images([str(DATA / "images" / i["file"]) for i in images])
 
-    def search(self, query_vector: np.ndarray, k: int = 5, dim: int = 768, collection: str | None = None,
+    def search(self, query_vector: np.ndarray, k: int = 5, dim: int = 768, collection: str | list[str] | None = None,
                text: str | None = None, intent: tuple[str, float] | None = None) -> list[tuple[float, dict]]:
-        """Cosine search. Pass the query `text` (and the Router's `intent`) to turn on hybrid boosts for short queries."""
-        keep = np.array([collection in (None, "all", d["collection"]) for d in self.docs])
+        """Cosine search over one collection, several, or all (None or "all").
+        Pass the query `text` (and the Router's `intent`) to turn on hybrid boosts for short queries."""
+        wanted = {collection} if isinstance(collection, str) else set(collection or [])
+        keep = np.array([not wanted or "all" in wanted or d["collection"] in wanted for d in self.docs])
         scores = truncate(self.vectors, dim) @ truncate(query_vector, dim)
         if text is not None:
             scores = scores + self.boosts(text, intent)
