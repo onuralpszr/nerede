@@ -1,0 +1,108 @@
+# Zensical config (English site). Build both languages with: uv run scripts/build_docs.py
+[project]
+site_name = "Nerede? EmbeddingGemma 2 workshop"
+site_description = "Build and ship multilingual search with EmbeddingGemma 2: Python, LiteRT and the browser. GDG DevFest İstanbul 2026."
+site_url = "https://onuralpszr.github.io/nerede/en/"
+repo_url = "https://github.com/onuralpszr/nerede"
+repo_name = "onuralpszr/nerede"
+site_author = "GDG DevFest İstanbul 2026"
+copyright = "GDG DevFest İstanbul 2026 · EmbeddingGemma 2 is released under Apache 2.0"
+docs_dir = "docs/en"
+site_dir = "site/en"
+extra_css = ["assets/stylesheets/nerede.css"]
+nav = [
+  { "Home" = "index.md" },
+  { "Setup" = "setup.md" },
+  { "Free options" = "free.md" },
+  { "Colab" = "colab.md" },
+  { "Workshop" = [
+    { "Overview" = "workshop/index.md" },
+    { "1. Embeddings" = "workshop/1-embeddings.md" },
+    { "2. Index and search" = "workshop/2-search.md" },
+    { "3. Measure" = "workshop/3-measure.md" },
+    { "4. Zero-shot router" = "workshop/4-router.md" },
+    { "5. Runtimes" = "workshop/5-runtimes.md" },
+    { "6. Ship it" = "workshop/6-ship.md" },
+    { "7. Photo search" = "workshop/7-photos.md" }
+  ] },
+  { "EmbeddingGemma 2" = "embeddinggemma.md" },
+  { "Dataset" = "dataset.md" },
+  { "DevFest 2026" = "devfest.md" },
+  { "Benchmarks" = "benchmarks.md" },
+  { "Troubleshooting" = "troubleshooting.md" }
+]
+
+[project.theme]
+language = "en"
+custom_dir = "docs/overrides"
+favicon = "assets/images/icon.svg"
+logo = "assets/images/icon.svg"
+features = [
+  "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips",
+  "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.path",
+  "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "toc.follow",
+]
+
+[project.theme.font]
+text = "Outfit"
+code = "JetBrains Mono"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[project.extra]
+alternate = [
+  { name = "English", link = "/en/", lang = "en" },
+  { name = "Türkçe", link = "/tr/", lang = "tr" },
+]
+
+[[project.extra.social]]
+icon = "fontawesome/brands/x-twitter"
+link = "https://x.com/gdgistanbul"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/youtube"
+link = "https://www.youtube.com/@GDGIstanbul"
+
+[[project.extra.social]]
+icon = "lucide/globe"
+link = "https://devfest.istanbul/"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.betterem = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.mark = {}
+pymdownx.snippets = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tasklist.custom_checkbox = true

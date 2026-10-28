@@ -1,0 +1,108 @@
+# Zensical config (Turkish site). Build both languages with: uv run scripts/build_docs.py
+[project]
+site_name = "Nerede? EmbeddingGemma 2 atölyesi"
+site_description = "EmbeddingGemma 2 ile çok dilli arama kur ve yayına al: Python, LiteRT ve tarayıcı. GDG DevFest İstanbul 2026."
+site_url = "https://onuralpszr.github.io/nerede/tr/"
+repo_url = "https://github.com/onuralpszr/nerede"
+repo_name = "onuralpszr/nerede"
+site_author = "GDG DevFest İstanbul 2026"
+copyright = "GDG DevFest İstanbul 2026 · EmbeddingGemma 2, Apache 2.0 lisansıyla yayınlanmıştır"
+docs_dir = "docs/tr"
+site_dir = "site/tr"
+extra_css = ["assets/stylesheets/nerede.css"]
+nav = [
+  { "Ana sayfa" = "index.md" },
+  { "Kurulum" = "setup.md" },
+  { "Ücretsiz seçenekler" = "free.md" },
+  { "Colab" = "colab.md" },
+  { "Atölye" = [
+    { "Genel bakış" = "workshop/index.md" },
+    { "1. Embedding'ler" = "workshop/1-embeddings.md" },
+    { "2. İndeks ve arama" = "workshop/2-search.md" },
+    { "3. Ölçüm" = "workshop/3-measure.md" },
+    { "4. Sıfır-örnek yönlendirici" = "workshop/4-router.md" },
+    { "5. Runtime'lar" = "workshop/5-runtimes.md" },
+    { "6. Yayına al" = "workshop/6-ship.md" },
+    { "7. Fotoğraf arama" = "workshop/7-photos.md" }
+  ] },
+  { "EmbeddingGemma 2" = "embeddinggemma.md" },
+  { "Veri seti" = "dataset.md" },
+  { "DevFest 2026" = "devfest.md" },
+  { "Ölçümler" = "benchmarks.md" },
+  { "Sorun giderme" = "troubleshooting.md" }
+]
+
+[project.theme]
+language = "tr"
+custom_dir = "docs/overrides"
+favicon = "assets/images/icon.svg"
+logo = "assets/images/icon.svg"
+features = [
+  "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips",
+  "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.path",
+  "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "toc.follow",
+]
+
+[project.theme.font]
+text = "Outfit"
+code = "JetBrains Mono"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Açık temaya geç"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Koyu temaya geç"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Sistem tercihine geç"
+
+[project.extra]
+alternate = [
+  { name = "English", link = "/en/", lang = "en" },
+  { name = "Türkçe", link = "/tr/", lang = "tr" },
+]
+
+[[project.extra.social]]
+icon = "fontawesome/brands/x-twitter"
+link = "https://x.com/gdgistanbul"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/youtube"
+link = "https://www.youtube.com/@GDGIstanbul"
+
+[[project.extra.social]]
+icon = "lucide/globe"
+link = "https://devfest.istanbul/"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.betterem = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.mark = {}
+pymdownx.snippets = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tasklist.custom_checkbox = true
