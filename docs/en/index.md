@@ -10,7 +10,7 @@ hide:
 <div class="nd-time"><span><i></i><i></i><i></i></span><b></b><em>2026</em></div>
 
 **Build and ship a Turkish-English semantic search with EmbeddingGemma 2.**
-A hands-on workshop for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent
+A hands-on workshop proposal for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent
 
 <img class="nd-skyline" src="assets/images/skyline.svg" alt="Pixel-art Istanbul skyline">
 </div>

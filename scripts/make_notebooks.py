@@ -157,7 +157,7 @@ TEXT = {
     "en": {
         "title": """# Nerede? EmbeddingGemma 2 workshop
 
-**GDG DevFest İstanbul 2026.** Build a Turkish-English semantic search over Istanbul places (with photos), DevFest İstanbul 2026 facts and notes about EmbeddingGemma 2 itself, then run the same index with PyTorch, LiteRT and a web app.
+**Workshop proposal for GDG DevFest İstanbul 2026.** Build a Turkish-English semantic search over Istanbul places (with photos), DevFest İstanbul 2026 facts and notes about EmbeddingGemma 2 itself, then run the same index with PyTorch, LiteRT and a web app.
 
 Runs on the free Colab tier. For faster photo indexing choose **Runtime → Change runtime type → T4 GPU** (optional).""",
         "setup": "## 0. Setup\nClones the repository on Colab or Kaggle and installs the few extra packages. Locally it just checks your environment.",
@@ -173,7 +173,7 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
     "tr": {
         "title": """# Nerede? EmbeddingGemma 2 atölyesi
 
-**GDG DevFest İstanbul 2026.** İstanbul'daki yerler (fotoğraflarıyla), DevFest İstanbul 2026 bilgileri ve EmbeddingGemma 2 hakkındaki notlar üzerinde Türkçe-İngilizce anlamsal arama kur; sonra aynı indeksi PyTorch, LiteRT ve bir web uygulamasıyla çalıştır.
+**GDG DevFest İstanbul 2026 atölye önerisi.** İstanbul'daki yerler (fotoğraflarıyla), DevFest İstanbul 2026 bilgileri ve EmbeddingGemma 2 hakkındaki notlar üzerinde Türkçe-İngilizce anlamsal arama kur; sonra aynı indeksi PyTorch, LiteRT ve bir web uygulamasıyla çalıştır.
 
 Ücretsiz Colab sürümünde çalışır. Fotoğrafları daha hızlı indekslemek için **Çalışma zamanı → Çalışma zamanı türünü değiştir → T4 GPU** seçebilirsin (isteğe bağlı).""",
         "setup": "## 0. Kurulum\nColab ya da Kaggle'da depoyu klonlar ve birkaç ek paketi kurar. Kendi bilgisayarında sadece ortamı kontrol eder.",

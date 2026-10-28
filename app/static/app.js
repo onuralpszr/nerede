@@ -20,7 +20,7 @@ const T = {
     staticMode: "Sunucu bulunamadı, her şey tarayıcında çalışıyor.",
     map: "Harita", source: "Kaynak", none: "Sonuç yok", error: "Bir şeyler ters gitti",
     photoBy: "Fotoğraf",
-    footer1: "GDG DevFest İstanbul 2026 atölyesi için EmbeddingGemma 2 ile yapıldı.",
+    footer1: "GDG DevFest İstanbul 2026 atölye önerisi için EmbeddingGemma 2 ile yapıldı.",
     footer2: 'Sunucu modu: FastAPI + LiteRT-LM. Tarayıcı modu: transformers.js, sorgun cihazından çıkmaz. Fotoğraflar: <a href="images/ATTRIBUTION.md">Wikimedia Commons</a>.',
     examples: {
       all: ["balık ekmek nerede yenir", "DevFest ne zaman", "model kaç dil biliyor", "gün batımı izlemek"],
@@ -43,7 +43,7 @@ const T = {
     staticMode: "No server found, everything runs in your browser.",
     map: "Map", source: "Source", none: "No results", error: "Something went wrong",
     photoBy: "Photo",
-    footer1: "Built with EmbeddingGemma 2 for a GDG DevFest Istanbul 2026 workshop.",
+    footer1: "Built with EmbeddingGemma 2 for a GDG DevFest Istanbul 2026 workshop proposal.",
     footer2: 'Server mode: FastAPI + LiteRT-LM. Browser mode: transformers.js, your query never leaves your device. Photos: <a href="images/ATTRIBUTION.md">Wikimedia Commons</a>.',
     examples: {
       all: ["where to eat a fish sandwich", "when is DevFest", "how many languages does the model know", "watch the sunset"],

@@ -10,7 +10,7 @@ hide:
 <div class="nd-time"><span><i></i><i></i><i></i></span><b></b><em>2026</em></div>
 
 **EmbeddingGemma 2 ile Türkçe-İngilizce anlamsal arama kur ve yayına al.**
-GDG DevFest İstanbul 2026 uygulamalı atölyesi · 19 Aralık · Wyndham Grand İstanbul Levent
+GDG DevFest İstanbul 2026 için uygulamalı atölye önerisi · 19 Aralık · Wyndham Grand İstanbul Levent
 
 <img class="nd-skyline" src="assets/images/skyline.svg" alt="Piksel sanatıyla İstanbul silueti">
 </div>
