@@ -19,7 +19,6 @@ import numpy as np
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.concurrency import run_in_threadpool
 from fastapi.staticfiles import StaticFiles
-from PIL import Image
 
 from nerede import Index, get_embedder, query
 from nerede.index import DATA
@@ -120,6 +119,8 @@ async def search_image(
     the photo vector and the text vector are added into one query."""
     if not has_vision:
         raise HTTPException(501, "search by photo needs PyTorch (the LiteRT container is text only)")
+    from PIL import Image  # comes with PyTorch's image stack, the LiteRT container does not install it
+
     body = await request.body()
     if len(body) > MAX_PHOTO_BYTES:
         raise HTTPException(413, "photo is larger than 10 MB")
