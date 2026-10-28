@@ -39,12 +39,15 @@ def health():
 
 @app.get("/api/search")
 def search(q: str = Text, k: int = Query(6, ge=1, le=20), dim: int = Dim,
-           collection: Literal["all", "places", "devfest", "gemma"] = "all"):
+           collection: Literal["all", "places", "devfest", "gemma"] = "all",
+           mode: Literal["hybrid", "vector"] = "hybrid"):
+    """Hybrid adds small intent and keyword boosts for one- or two-word queries; longer ones are pure vector search."""
     start = time.perf_counter()
     vector = embedder.embed([query(q)])[0]
-    intent, _ = router.route(q)
-    hits = index.search(vector, k=k, dim=dim, collection=collection)
-    return {"query": q, "intent": intent, "backend": embedder.name, "dim": dim,
+    intent = router.route(q)
+    hybrid = {"text": q, "intent": intent} if mode == "hybrid" else {}
+    hits = index.search(vector, k=k, dim=dim, collection=collection, **hybrid)
+    return {"query": q, "intent": intent[0], "mode": mode, "backend": embedder.name, "dim": dim,
             "ms": round((time.perf_counter() - start) * 1000, 1),
             "results": [{"score": round(score, 4), **doc, "photo": photo_of.get(doc["id"])} for score, doc in hits]}
 

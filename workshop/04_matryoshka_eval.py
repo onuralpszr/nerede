@@ -1,6 +1,7 @@
 """Step 4: measure, don't guess. How much quality do smaller vectors and other runtimes cost?
 
-Uses hand-labelled TR/EN queries (data/eval_queries.jsonl), most of them cross-lingual.
+Uses hand-labelled TR/EN queries (data/eval_queries.jsonl), most of them cross-lingual, plus one-word
+queries (data/eval_short.jsonl) to compare plain vector search with hybrid search.
 
     uv run workshop/04_matryoshka_eval.py
     uv run workshop/04_matryoshka_eval.py --query-backend litert   # torch index, LiteRT queries
@@ -13,6 +14,7 @@ import numpy as np
 
 from nerede import Index, get_embedder, query
 from nerede.index import ROOT, truncate
+from nerede.router import Router
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--query-backend", default=None, help="defaults to the same runtime as the index, on this machine's best device")
@@ -39,3 +41,22 @@ top = np.argmax(Q @ index.vectors.T, axis=1)
 for e, t, g in zip(evals, top, gold):
     if t != g:
         print(f"  miss at 768d: {e['query']!r} -> {index.docs[t]['id']} (expected {e['gold']})")
+
+# One-word queries ("tatlı", "müze") have many right answers, so we count how many of the top 5 are relevant.
+# Vector search alone struggles here; the hybrid boosts in Index.search (Router intent + keywords) are made for it.
+short = [json.loads(line) for line in (ROOT / "data" / "eval_short.jsonl").read_text().splitlines() if line]
+router = Router(embedder)
+S = embedder.embed([query(e["query"]) for e in short])
+
+
+def precision_at_5(vector, e, dim, hybrid):
+    extra = {"text": e["query"], "intent": router.route(e["query"])} if hybrid else {}
+    top = {d["id"] for _, d in index.search(vector, k=5, dim=dim, **extra)}
+    return len(top & set(e["relevant"])) / min(5, len(e["relevant"]))
+
+
+print(f"\none-word queries, precision@5, n={len(short)}")
+print(f"{'dim':>5} {'vector':>7} {'hybrid':>7}")
+for dim in (768, 256):
+    vec, hyb = (np.mean([precision_at_5(v, e, dim, h) for v, e in zip(S, short)]) for h in (False, True))
+    print(f"{dim:>5} {vec:>7.2f} {hyb:>7.2f}")

@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
+from nerede.keywords import Keywords, keyword_text, tokens
 from nerede.prompts import document
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,6 +23,13 @@ COLLECTIONS = {
     "gemma": DATA / "embeddinggemma.jsonl",
 }
 IMAGES = DATA / "images.jsonl"
+
+# Hybrid search for short queries. A query of one or two words ("tatlı", "müze") carries little meaning, so every
+# food entry scores about the same. Two small boosts fix that, tuned on data/eval_short.jsonl (step 3):
+# the Router's intent, when it is confident, and keyword (BM25) matches. Longer queries keep the plain vector score.
+SHORT_QUERY_WORDS = 2
+INTENT_BOOST, INTENT_MIN_CONFIDENCE = 0.05, 0.79
+KEYWORD_BOOST = 0.03
 
 
 def read_jsonl(path: Path | str) -> list[dict]:
@@ -49,6 +57,13 @@ def load_images() -> list[dict]:
     return [i for i in read_jsonl(IMAGES) if (DATA / "images" / i["file"]).exists()]
 
 
+def in_intent(doc: dict, label: str) -> bool:
+    """Router labels are place categories, plus "devfest" and "ai" for the two knowledge bases."""
+    if label in ("devfest", "ai"):
+        return doc["collection"] == ("gemma" if label == "ai" else "devfest")
+    return doc["collection"] == "places" and doc.get("category") == label
+
+
 def truncate(vectors: np.ndarray, dim: int) -> np.ndarray:
     """Matryoshka: keep the first `dim` values, then re-normalize (skipping this silently hurts ranking)."""
     v = vectors[..., :dim]
@@ -62,6 +77,7 @@ class Index:
     built_with: str = "unknown"
     images: list[dict] = field(default_factory=list)
     image_vectors: np.ndarray = field(default_factory=lambda: np.zeros((0, 768), np.float32))
+    _keywords: Keywords | None = field(default=None, init=False, repr=False)
 
     @classmethod
     def build(cls, embedder, docs: list[dict]) -> Index:
@@ -73,13 +89,29 @@ class Index:
         self.images = images
         self.image_vectors = image_embedder.embed_images([str(DATA / "images" / i["file"]) for i in images])
 
-    def search(self, query_vector: np.ndarray, k: int = 5, dim: int = 768,
-               collection: str | None = None) -> list[tuple[float, dict]]:
+    def search(self, query_vector: np.ndarray, k: int = 5, dim: int = 768, collection: str | None = None,
+               text: str | None = None, intent: tuple[str, float] | None = None) -> list[tuple[float, dict]]:
+        """Cosine search. Pass the query `text` (and the Router's `intent`) to turn on hybrid boosts for short queries."""
         keep = np.array([collection in (None, "all", d["collection"]) for d in self.docs])
         scores = truncate(self.vectors, dim) @ truncate(query_vector, dim)
+        if text is not None:
+            scores = scores + self.boosts(text, intent)
         scores[~keep] = -np.inf
         order = np.argsort(-scores)[: min(k, int(keep.sum()))]
         return [(float(scores[i]), self.docs[i]) for i in order]
+
+    def boosts(self, text: str, intent: tuple[str, float] | None = None) -> np.ndarray:
+        out = np.zeros(len(self.docs), np.float32)
+        if len(tokens(text)) > SHORT_QUERY_WORDS:
+            return out
+        if intent and intent[1] >= INTENT_MIN_CONFIDENCE:
+            out += INTENT_BOOST * np.array([in_intent(d, intent[0]) for d in self.docs], np.float32)
+        if self._keywords is None:
+            self._keywords = Keywords([keyword_text(d) for d in self.docs])
+        hits = self._keywords.scores(text)
+        if hits.max() > 0:
+            out += KEYWORD_BOOST * hits / hits.max()
+        return out
 
     def search_images(self, query_vector: np.ndarray, k: int = 8, dim: int = 768) -> list[tuple[float, dict]]:
         if not len(self.images):
@@ -103,12 +135,17 @@ class Index:
         return cls(json.loads(str(data["docs"])), data["vectors"], str(data["built_with"]),
                    json.loads(str(data["images"])), data["image_vectors"])
 
-    def export_web(self, path: Path | str, dim: int = 256) -> None:
-        """Write a small JSON the browser can search: the page only has to embed the query."""
-        def pack(v):
-            return np.round(truncate(v, dim), 4).tolist() if len(v) else []
+    def export_web(self, path: Path | str, dim: int = 256, router=None) -> None:
+        """Write a small JSON the browser can search: the page only has to embed the query.
+        With a Router, its label vectors go along (full 768d) so Browser mode can do hybrid search too."""
+        def pack(v, d=dim):
+            return np.round(truncate(v, d), 4).tolist() if len(v) else []
 
         payload = {"model": "google/embeddinggemma-2", "dim": dim, "built_with": self.built_with,
                    "docs": self.docs, "vectors": pack(self.vectors),
                    "images": self.images, "image_vectors": pack(self.image_vectors)}
+        if router is not None:
+            payload["hybrid"] = {"labels": router.labels, "label_vectors": pack(router.vectors, 768),
+                                 "short_query_words": SHORT_QUERY_WORDS, "intent_boost": INTENT_BOOST,
+                                 "intent_min_confidence": INTENT_MIN_CONFIDENCE, "keyword_boost": KEYWORD_BOOST}
         Path(path).write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

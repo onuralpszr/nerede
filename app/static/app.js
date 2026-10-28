@@ -184,14 +184,56 @@ async function searchBrowser(q, k) {
   const qv = normalize(Array.from(sentence_embedding.data).slice(0, dim));
   const dot = (v) => v.reduce((s, x, j) => s + x * qv[j], 0);
   const photos = state.tab === "photos";
+  const hybrid = photos || VECTOR_ONLY ? { boost: null, intent: null } : await hybridBoosts(b, q);
   const records = photos ? b.index.images : b.index.docs;
   const byId = Object.fromEntries(b.index.images.map((i) => [i.id, i]));
   const results = matrix(b, photos ? "image_vectors" : "vectors", dim)
-    .map((v, i) => ({ score: dot(v), ...records[i] }))
+    .map((v, i) => ({ score: dot(v) + (hybrid.boost ? hybrid.boost[i] : 0), ...records[i] }))
     .filter((r) => photos || state.tab === "all" || r.collection === state.tab)
     .sort((a, c) => c.score - a.score).slice(0, k)
     .map((r) => (photos ? r : { ...r, photo: byId[r.id] }));
-  return { backend: `browser:${b.device}`, dim, intent: null, ms: (performance.now() - start).toFixed(1), results, photos };
+  return { backend: `browser:${b.device}`, dim, intent: hybrid.intent, ms: (performance.now() - start).toFixed(1), results, photos };
+}
+
+// ---------- hybrid boosts for short queries ----------------------------------------------------
+// Same as nerede/keywords.py and Index.boosts in Python, keep them in sync. A one- or two-word query gets a small
+// boost for the Router's intent (when it is confident) and for keyword (BM25) matches; longer queries stay pure vector.
+// ?search=vector turns it off, to compare.
+const VECTOR_ONLY = new URLSearchParams(location.search).get("search") === "vector";
+const STOPWORDS = new Set(`a an and are at be by can do for from how i in is it me my of on or the to what when where which who
+  with you your bir bu da de en gibi hangi icin ile mi mu ne nasil nerede neden olan siz sen ve veya ya`.split(/\s+/));
+const fold = (s) => s.replace(/İ/g, "i").replace(/I/g, "ı").toLowerCase().replace(/ı/g, "i")
+  .normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+const tokens = (s) => (fold(s).match(/[a-z0-9]+/g) || []).filter((w) => w.length > 1 && !STOPWORDS.has(w));
+const wordMatch = (q, w) => w === q || (q.length >= 4 && w.startsWith(q));
+
+function keywordScores(b, text) {
+  b.kw ??= b.index.docs.map((d) => tokens([d.title || "", d.district && d.district !== "Everywhere" ? d.district : "", d.text || ""].join(" ")));
+  const n = b.kw.length, avg = b.kw.reduce((s, d) => s + d.length, 0) / Math.max(1, n);
+  const out = new Array(n).fill(0);
+  for (const q of new Set(tokens(text))) {
+    const tf = b.kw.map((doc) => doc.filter((w) => wordMatch(q, w)).length);
+    const df = tf.filter((x) => x > 0).length;
+    if (!df) continue;
+    const idf = Math.log(1 + (n - df + 0.5) / (df + 0.5));  // BM25, k1 = 1.2, b = 0.75
+    tf.forEach((f, i) => { out[i] += idf * f * 2.2 / (f + 1.2 * (0.25 + 0.75 * b.kw[i].length / avg)); });
+  }
+  return out;
+}
+
+async function hybridBoosts(b, q) {
+  const h = b.index.hybrid;
+  if (!h || tokens(q).length > h.short_query_words) return { boost: null, intent: null };
+  const { sentence_embedding } = await b.model(await b.tokenizer([`task: classification | query: ${q.trim()}`]));
+  const cv = normalize(Array.from(sentence_embedding.data));
+  const sims = h.label_vectors.map((v) => v.reduce((s, x, j) => s + x * cv[j], 0));
+  const best = sims.indexOf(Math.max(...sims)), label = h.labels[best];
+  const inIntent = (d) => (label === "devfest" || label === "ai")
+    ? d.collection === (label === "ai" ? "gemma" : "devfest") : d.collection === "places" && d.category === label;
+  const kw = keywordScores(b, q), top = Math.max(...kw);
+  const boost = b.index.docs.map((d, i) => (sims[best] >= h.intent_min_confidence && inIntent(d) ? h.intent_boost : 0)
+    + (top > 0 ? h.keyword_boost * kw[i] / top : 0));
+  return { boost, intent: label };
 }
 
 // ---------- server mode -----------------------------------------------------------------------
@@ -199,6 +241,7 @@ async function searchServer(q, k) {
   const photos = state.tab === "photos";
   const params = new URLSearchParams({ q, k, dim: $("dim").value });
   if (!photos) params.set("collection", state.tab);
+  if (VECTOR_ONLY) params.set("mode", "vector");
   const r = await fetch(`api/${photos ? "photos" : "search"}?${params}`);
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return { ...(await r.json()), photos };

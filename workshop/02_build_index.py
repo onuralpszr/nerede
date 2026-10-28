@@ -11,6 +11,7 @@ import time
 from nerede import Index, get_embedder, load_corpus, load_images
 from nerede.embedders import TorchEmbedder
 from nerede.index import INDEX, ROOT
+from nerede.router import Router
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--backend", default=None, help="torch | torch:xpu | litert | litert:gpu | openvino:GPU")
@@ -42,6 +43,6 @@ elif INDEX.exists():
 
 index.save(INDEX)
 web = ROOT / "app" / "static" / "index.json"
-index.export_web(web, dim=args.web_dim)
+index.export_web(web, dim=args.web_dim, router=Router(embedder))  # router labels let Browser mode do hybrid search
 print(f"index -> {INDEX.relative_to(ROOT)}")
 print(f"browser copy at {args.web_dim}d -> {web.relative_to(ROOT)} ({web.stat().st_size / 1024:.0f} KB)")

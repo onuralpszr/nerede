@@ -1,0 +1,24 @@
+{"query": "tatlı", "relevant": ["baklava", "lokum", "tavuk-gogsu", "kunefe", "sutlac", "kazandibi", "maras-dondurmasi", "lokma", "asure"]}
+{"query": "dessert", "relevant": ["baklava", "lokum", "tavuk-gogsu", "kunefe", "sutlac", "kazandibi", "maras-dondurmasi", "lokma", "asure"]}
+{"query": "tatli", "relevant": ["baklava", "lokum", "tavuk-gogsu", "kunefe", "sutlac", "kazandibi", "maras-dondurmasi", "lokma", "asure"]}
+{"query": "müze", "relevant": ["topkapi", "dolmabahce", "arkeoloji-muzesi", "istanbul-modern", "pera-muzesi", "rahmi-koc", "miniaturk", "sakip-sabanci", "galata-mevlevihanesi", "turk-islam-eserleri", "panorama-1453", "islam-bilim-muzesi", "deniz-muzesi"]}
+{"query": "museum", "relevant": ["topkapi", "dolmabahce", "arkeoloji-muzesi", "istanbul-modern", "pera-muzesi", "rahmi-koc", "miniaturk", "sakip-sabanci", "galata-mevlevihanesi", "turk-islam-eserleri", "panorama-1453", "islam-bilim-muzesi", "deniz-muzesi"]}
+{"query": "park", "relevant": ["adalar", "belgrad-ormani", "emirgan", "yildiz-parki", "gulhane-parki", "macka-parki", "polonezkoy", "sile"]}
+{"query": "doğa", "relevant": ["adalar", "belgrad-ormani", "emirgan", "yildiz-parki", "gulhane-parki", "macka-parki", "polonezkoy", "sile"]}
+{"query": "nature", "relevant": ["adalar", "belgrad-ormani", "emirgan", "yildiz-parki", "gulhane-parki", "macka-parki", "polonezkoy", "sile"]}
+{"query": "alışveriş", "relevant": ["kapalicarsi", "misir-carsisi", "sahaflar", "cukurcuma", "galataport", "kanyon", "nisantasi", "bagdat-caddesi"]}
+{"query": "shopping", "relevant": ["kapalicarsi", "misir-carsisi", "sahaflar", "cukurcuma", "galataport", "kanyon", "nisantasi", "bagdat-caddesi"]}
+{"query": "ulaşım", "relevant": ["bogaz-turu", "istanbulkart", "marmaray", "tunel", "nostaljik-tramvay", "istanbul-havalimani", "sabiha-gokcen", "metrobus", "halic-metro-koprusu"]}
+{"query": "transport", "relevant": ["bogaz-turu", "istanbulkart", "marmaray", "tunel", "nostaljik-tramvay", "istanbul-havalimani", "sabiha-gokcen", "metrobus", "halic-metro-koprusu"]}
+{"query": "manzara", "relevant": ["galata-kulesi", "kiz-kulesi", "camlica", "pierre-loti", "moda", "galata-koprusu", "bogazici-koprusu", "camlica-kulesi"]}
+{"query": "view", "relevant": ["galata-kulesi", "kiz-kulesi", "camlica", "pierre-loti", "moda", "galata-koprusu", "bogazici-koprusu", "camlica-kulesi"]}
+{"query": "yemek", "relevant": ["balik-ekmek", "simit", "kumpir", "kadikoy-carsi", "serpme-kahvalti", "turk-kahvesi", "midye-dolma", "baklava", "lokum", "boza", "salep", "cay", "doner", "kokorec", "tavuk-gogsu", "kunefe", "sutlac", "kazandibi", "maras-dondurmasi", "lokma", "asure"]}
+{"query": "food", "relevant": ["balik-ekmek", "simit", "kumpir", "kadikoy-carsi", "serpme-kahvalti", "turk-kahvesi", "midye-dolma", "baklava", "lokum", "boza", "salep", "cay", "doner", "kokorec", "tavuk-gogsu", "kunefe", "sutlac", "kazandibi", "maras-dondurmasi", "lokma", "asure"]}
+{"query": "cami", "relevant": ["ayasofya", "sultanahmet-camii", "suleymaniye", "kucuk-ayasofya", "rustem-pasa", "yeni-cami", "eyup-sultan", "fethiye-camii", "nuruosmaniye", "semsi-pasa"]}
+{"query": "mosque", "relevant": ["ayasofya", "sultanahmet-camii", "suleymaniye", "kucuk-ayasofya", "rustem-pasa", "yeni-cami", "eyup-sultan", "fethiye-camii", "nuruosmaniye", "semsi-pasa"]}
+{"query": "bilet", "relevant": ["devfest-bilet", "devfest-gold-pass", "devfest-fatura"]}
+{"query": "tickets", "relevant": ["devfest-bilet", "devfest-gold-pass", "devfest-fatura"]}
+{"query": "runtime", "relevant": ["eg2-litert", "eg2-gecikme", "eg2-browser", "eg2-runtimeler", "eg2-mediapipe", "eg2-kuantizasyon", "eg2-olcumler"]}
+{"query": "çalıştırma", "relevant": ["eg2-litert", "eg2-gecikme", "eg2-browser", "eg2-runtimeler", "eg2-mediapipe", "eg2-kuantizasyon", "eg2-olcumler"]}
+{"query": "semt", "relevant": ["istiklal", "balat", "cihangir", "ortakoy", "bebek-arnavutkoy", "kuzguncuk", "taksim", "levent", "rumelifeneri", "karakoy"]}
+{"query": "neighbourhood", "relevant": ["istiklal", "balat", "cihangir", "ortakoy", "bebek-arnavutkoy", "kuzguncuk", "taksim", "levent", "rumelifeneri", "karakoy"]}
