@@ -46,6 +46,42 @@ GPU sürümünü CPU sürümünün yanında tutmak için ona ayrı bir ortam ver
 UV_PROJECT_ENVIRONMENT=.venv-xpu uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
 ```
 
+## Windows { #windows }
+
+Bütün `uv run ...` komutları PowerShell ve cmd'de aynı çalışıyor. Sadece ortam değişkenleri farklı yazılıyor:
+
+=== "PowerShell"
+
+    ```powershell
+    $env:NEREDE_BACKEND = "litert"
+    uv run uvicorn app.main:app
+
+    $env:UV_PROJECT_ENVIRONMENT = ".venv-xpu"
+    uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
+
+    Remove-Item Env:NEREDE_BACKEND, Env:UV_PROJECT_ENVIRONMENT   # varsayılanlara dön
+    ```
+
+=== "cmd"
+
+    ```bat
+    set NEREDE_BACKEND=litert
+    uv run uvicorn app.main:app
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    NEREDE_BACKEND=litert uv run uvicorn app.main:app
+    ```
+
+Böyle ayarlanan bir değişken terminali kapatana kadar geçerli. Windows için iki not daha:
+
+- **NVIDIA**: PyPI'daki PyTorch Windows'ta yalnızca CPU'lu, yani `--no-default-groups` sana CUDA vermiyor. CUDA'lı sürümü
+  [pytorch.org](https://pytorch.org/get-started/locally/) adresinden ortama kur.
+- **Intel NPU**: LiteRT-LM'in NPU desteği Windows'u hedefliyor (bkz. [Ölçümler](benchmarks.md#npu)). Biz yalnızca Linux'ta
+  deneyebildik, orada yok.
+
 ## Neler indiriliyor
 
 | Model | Boyut | Ne için |

@@ -68,6 +68,8 @@ uv run workshop/02_build_index.py --no-images  # 147 belgeyi gömer, hazır foto
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 
+Windows PowerShell'de önce değişkeni ayarla: `$env:NEREDE_BACKEND = "litert"`, sonra `uv run uvicorn app.main:app` ([ayrıntılar](setup.md#windows)).
+
 <http://127.0.0.1:8000> adresini aç ve **Sunucu** ile **Tarayıcı** modu arasında geçiş yap.
 
 !!! tip "Güçlü bilgisayarın ya da kredi kartın yok mu?"

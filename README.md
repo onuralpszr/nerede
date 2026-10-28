@@ -55,6 +55,8 @@ uv run workshop/02_build_index.py --no-images
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 
+On Windows PowerShell, set the variable first: `$env:NEREDE_BACKEND = "litert"`, then `uv run uvicorn app.main:app` ([details](docs/en/setup.md#windows)).
+
 Open <http://127.0.0.1:8000>, then switch between **Server** and **Browser** mode. The default install is CPU-only PyTorch
 (1.5 GB). For NVIDIA, Intel Arc (XPU), AMD or Apple see [Setup](docs/en/setup.md).
 
@@ -74,7 +76,7 @@ Open <http://127.0.0.1:8000>, then switch between **Server** and **Browser** mod
 | 1. Embeddings | `workshop/00_setup_check.py`, `01_hello_embeddings.py` | task prompts, cross-lingual similarity |
 | 2. Index and search | `02_build_index.py`, `03_search.py` | a vector index of documents and photos |
 | 3. Measure | `04_matryoshka_eval.py` | recall, MRR, Matryoshka 768 → 128 |
-| 4. Router | `05_router.py` | zero-shot classification |
+| 4. Router | `05_router.py` | zero-shot classification, hybrid search for short queries |
 | 5. Runtimes | `06_runtimes.py` | PyTorch vs LiteRT vs OpenVINO, CPU vs GPU |
 | 6. Ship it | `app/`, `Dockerfile`, `scripts/build_docs.py` | API, UI, container, free hosting |
 | 7. Photos | `03_search.py --photos`, `07_photo_search.py` | text → photo search |
@@ -86,7 +88,8 @@ On the speaker laptop (Core Ultra X7 358H, Arc B390). Details in [Benchmarks](do
 | | |
 |---|---|
 | recall@1 / recall@3 at 768d (72 mostly cross-lingual questions, 147 docs) | 0.83 / 0.97 |
-| recall@3 at 256d, a third of the storage | 0.99 |
+| recall@3 at 256d, a third of the storage | 0.97 |
+| one-word queries ("tatlı", "müze"), relevant in top 5: vector / hybrid | 0.68 / 0.86 |
 | query latency: PyTorch CPU / LiteRT CPU / LiteRT GPU / OpenVINO GPU | 23 / 40 / 17 / 6.6 ms |
 | photo indexing, 100 photos: CPU / Arc XPU | 257 s / 16 s |
 | serving image / cold start / RAM | ~575 MB / 1.1 s / 200 MB |

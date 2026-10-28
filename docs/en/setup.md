@@ -47,6 +47,42 @@ To keep a GPU build next to the CPU one, give it its own environment:
 UV_PROJECT_ENVIRONMENT=.venv-xpu uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
 ```
 
+## Windows { #windows }
+
+Every `uv run ...` command works the same in PowerShell and cmd. Only environment variables are written differently:
+
+=== "PowerShell"
+
+    ```powershell
+    $env:NEREDE_BACKEND = "litert"
+    uv run uvicorn app.main:app
+
+    $env:UV_PROJECT_ENVIRONMENT = ".venv-xpu"
+    uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
+
+    Remove-Item Env:NEREDE_BACKEND, Env:UV_PROJECT_ENVIRONMENT   # back to the defaults
+    ```
+
+=== "cmd"
+
+    ```bat
+    set NEREDE_BACKEND=litert
+    uv run uvicorn app.main:app
+    ```
+
+=== "macOS / Linux"
+
+    ```bash
+    NEREDE_BACKEND=litert uv run uvicorn app.main:app
+    ```
+
+A variable set this way lasts until you close the terminal. Two more Windows notes:
+
+- **NVIDIA**: PyTorch from PyPI is CPU-only on Windows, so `--no-default-groups` does not give you CUDA. Install the CUDA
+  build from [pytorch.org](https://pytorch.org/get-started/locally/) into the environment instead.
+- **Intel NPU**: LiteRT-LM's NPU backend targets Windows (see [Benchmarks](benchmarks.md#npu)). We could only test Linux,
+  where it is not available.
+
 ## What gets downloaded
 
 | Model | Size | Used for |

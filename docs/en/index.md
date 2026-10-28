@@ -68,6 +68,8 @@ uv run workshop/02_build_index.py --no-images  # embeds 147 docs, keeps the ship
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 
+On Windows PowerShell, set the variable first: `$env:NEREDE_BACKEND = "litert"`, then `uv run uvicorn app.main:app` ([details](setup.md#windows)).
+
 Open <http://127.0.0.1:8000> and switch between **Server** and **Browser** mode.
 
 !!! tip "No laptop power, no credit card?"

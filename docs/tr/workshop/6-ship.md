@@ -6,6 +6,8 @@
 NEREDE_BACKEND=litert uv run uvicorn app.main:app --reload
 ```
 
+Windows'ta `NEREDE_BACKEND` değişkenini [Kurulum](../setup.md#windows) sayfasındaki gibi ayarla.
+
 <http://127.0.0.1:8000> adresini aç. Sayfanın iki modu var:
 
 - **Sunucu**: tarayıcı `/api/search` ve `/api/photos` uçlarını çağırır, sorguyu sunucuda LiteRT gömer.

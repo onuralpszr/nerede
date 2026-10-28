@@ -55,6 +55,8 @@ uv run workshop/02_build_index.py --no-images
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 
+Windows PowerShell'de önce değişkeni ayarla: `$env:NEREDE_BACKEND = "litert"`, sonra `uv run uvicorn app.main:app` ([ayrıntılar](docs/tr/setup.md#windows)).
+
 <http://127.0.0.1:8000> adresini aç, sonra **Sunucu** ve **Tarayıcı** modları arasında geçiş yap. Varsayılan kurulum yalnızca
 CPU'lu PyTorch'tur (1,5 GB). NVIDIA, Intel Arc (XPU), AMD ya da Apple için [Kurulum](docs/tr/setup.md) sayfasına bak.
 
@@ -74,7 +76,7 @@ CPU'lu PyTorch'tur (1,5 GB). NVIDIA, Intel Arc (XPU), AMD ya da Apple için [Kur
 | 1. Embedding'ler | `workshop/00_setup_check.py`, `01_hello_embeddings.py` | görev önekleri, diller arası benzerlik |
 | 2. İndeks ve arama | `02_build_index.py`, `03_search.py` | belgeler ve fotoğraflar için vektör indeksi |
 | 3. Ölç | `04_matryoshka_eval.py` | recall, MRR, Matryoshka 768 → 128 |
-| 4. Yönlendirici | `05_router.py` | sıfır-örnek sınıflandırma |
+| 4. Yönlendirici | `05_router.py` | sıfır-örnek sınıflandırma, kısa sorgular için hibrit arama |
 | 5. Runtime'lar | `06_runtimes.py` | PyTorch, LiteRT ve OpenVINO; CPU ve GPU |
 | 6. Yayına al | `app/`, `Dockerfile`, `scripts/build_docs.py` | API, arayüz, konteyner, ücretsiz barındırma |
 | 7. Fotoğraflar | `03_search.py --photos`, `07_photo_search.py` | metinden fotoğraf arama |
@@ -86,7 +88,8 @@ Konuşmacının dizüstünde (Core Ultra X7 358H, Arc B390). Ayrıntılar [Ölç
 | | |
 |---|---|
 | 768 boyutta recall@1 / recall@3 (çoğu diller arası 72 soru, 147 belge) | 0,83 / 0,97 |
-| 256 boyutta recall@3, depolamanın üçte biriyle | 0,99 |
+| 256 boyutta recall@3, depolamanın üçte biriyle | 0,97 |
+| tek kelimelik sorgular ("tatlı", "müze"), ilk 5'te doğru olan: vektör / hibrit | 0,68 / 0,86 |
 | sorgu gecikmesi: PyTorch CPU / LiteRT CPU / LiteRT GPU / OpenVINO GPU | 23 / 40 / 17 / 6,6 ms |
 | 100 fotoğrafı indeksleme: CPU / Arc XPU | 257 sn / 16 sn |
 | sunucu imajı / soğuk açılış / RAM | ~575 MB / 1,1 sn / 200 MB |

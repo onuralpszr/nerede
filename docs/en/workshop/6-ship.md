@@ -6,6 +6,8 @@
 NEREDE_BACKEND=litert uv run uvicorn app.main:app --reload
 ```
 
+On Windows, set `NEREDE_BACKEND` as shown in [Setup](../setup.md#windows).
+
 Open <http://127.0.0.1:8000>. The page has two modes:
 
 - **Server**: the browser calls `/api/search` and `/api/photos`, and LiteRT embeds the query on the server.
