@@ -70,13 +70,21 @@ Repro:
 ```python
 import numpy as np, openvino as ov
 from transformers import AutoTokenizer
+
 p = "models/embeddinggemma-2-onnx"  # hf download onnx-community/embeddinggemma-2-ONNX --local-dir ...
 tok = AutoTokenizer.from_pretrained(p)
 cm = ov.Core().compile_model(f"{p}/onnx/model_fp16.onnx", "CPU")
 e = tok(["title: none | text: Balık ekmek, Eminönü'nde satılan balık sandviçidir."], return_tensors="np")
 z = np.zeros((0, 512), np.float32)
-out = cm({"input_ids": e["input_ids"], "attention_mask": e["attention_mask"],
-          "image_features": z, "video_features": z, "audio_features": z})["sentence_embedding"]
+out = cm(
+    {
+        "input_ids": e["input_ids"],
+        "attention_mask": e["attention_mask"],
+        "image_features": z,
+        "video_features": z,
+        "audio_features": z,
+    }
+)["sentence_embedding"]
 # compare with onnxruntime on the same file: cosine is far from 1.0
 ```
 
@@ -92,6 +100,7 @@ Repro: `python bench/vision_xpu_repro.py`
 
 ```python
 import torch
+
 x = torch.zeros((1, 2520), dtype=torch.int64)
 x[0, 2000] = 7
 x = x.to("xpu")

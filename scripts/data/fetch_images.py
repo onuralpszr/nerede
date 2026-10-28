@@ -38,24 +38,46 @@ def get_json(url: str) -> dict:
 
 
 def lead_image(title: str, lang: str) -> str | None:
-    q = urllib.parse.urlencode({"action": "query", "prop": "pageimages", "piprop": "name", "pilicense": "free",
-                                "titles": title, "redirects": 1, "format": "json"})
+    q = urllib.parse.urlencode(
+        {
+            "action": "query",
+            "prop": "pageimages",
+            "piprop": "name",
+            "pilicense": "free",
+            "titles": title,
+            "redirects": 1,
+            "format": "json",
+        }
+    )
     pages = get_json(f"https://{lang}.wikipedia.org/w/api.php?{q}")["query"]["pages"]
     return next(iter(pages.values())).get("pageimage")
 
 
 def commons_info(name: str) -> dict | None:
-    q = urllib.parse.urlencode({"action": "query", "titles": f"File:{name}", "prop": "imageinfo",
-                                "iiprop": "url|extmetadata|mime", "iiurlwidth": 800, "format": "json"})
+    q = urllib.parse.urlencode(
+        {
+            "action": "query",
+            "titles": f"File:{name}",
+            "prop": "imageinfo",
+            "iiprop": "url|extmetadata|mime",
+            "iiurlwidth": 800,
+            "format": "json",
+        }
+    )
     page = next(iter(get_json(f"https://commons.wikimedia.org/w/api.php?{q}")["query"]["pages"].values()))
     if "imageinfo" not in page:
         return None  # file lives on a local wiki only, usually non-free
     info = page["imageinfo"][0]
     meta = {k: v.get("value", "") for k, v in info.get("extmetadata", {}).items()}
     plain = lambda s: html.unescape(re.sub(r"<[^>]+>", "", s or "")).strip()  # noqa: E731
-    return {"url": info.get("thumburl") or info["url"], "mime": info.get("mime", ""),
-            "source": info["descriptionurl"], "license": plain(meta.get("LicenseShortName")),
-            "license_url": meta.get("LicenseUrl", ""), "author": plain(meta.get("Artist")) or "unknown"}
+    return {
+        "url": info.get("thumburl") or info["url"],
+        "mime": info.get("mime", ""),
+        "source": info["descriptionurl"],
+        "license": plain(meta.get("LicenseShortName")),
+        "license_url": meta.get("LicenseUrl", ""),
+        "author": plain(meta.get("Artist")) or "unknown",
+    }
 
 
 def main() -> None:
@@ -89,19 +111,34 @@ def main() -> None:
             img = Image.open(io.BytesIO(r.read())).convert("RGB")
         img.thumbnail((800, 800))
         img.save(target, "JPEG", quality=80, optimize=True, progressive=True)
-        records.append({"id": p["id"], "file": target.name, "title": p["title"], "author": info["author"][:200],
-                        "license": info["license"], "license_url": info["license_url"], "source": info["source"]})
+        records.append(
+            {
+                "id": p["id"],
+                "file": target.name,
+                "title": p["title"],
+                "author": info["author"][:200],
+                "license": info["license"],
+                "license_url": info["license_url"],
+                "source": info["source"],
+            }
+        )
         print(f"ok    {p['id']:<24} {info['license']:<14} {target.stat().st_size // 1024} KB")
         time.sleep(0.3)  # be polite to Wikimedia
 
     (ROOT / "data/images.jsonl").write_text(
-        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records), encoding="utf-8")
-    rows = "\n".join(f"| {r['file']} | {r['title']} | {r['author']} | [{r['license']}]({r['license_url'] or r['source']}) "
-                     f"| [Commons]({r['source']}) |" for r in records)
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records), encoding="utf-8"
+    )
+    rows = "\n".join(
+        f"| {r['file']} | {r['title']} | {r['author']} | [{r['license']}]({r['license_url'] or r['source']}) "
+        f"| [Commons]({r['source']}) |"
+        for r in records
+    )
     (OUT / "ATTRIBUTION.md").write_text(
         "# Photo credits\n\nAll photos come from Wikimedia Commons under the licenses below and were resized "
         "to 800 px. Click through to the file page for full details.\n\n"
-        "| File | Place | Author | License | Source |\n|---|---|---|---|---|\n" + rows + "\n", encoding="utf-8")
+        "| File | Place | Author | License | Source |\n|---|---|---|---|---|\n" + rows + "\n",
+        encoding="utf-8",
+    )
     for pid, name, lic in skipped:
         print(f"skip  {pid:<24} {name or 'no lead image'} {lic or ''}")
     print(f"\n{len(records)} photos, {len(skipped)} skipped")

@@ -14,5 +14,5 @@ Run them from the repository root.
 uv run scripts/draw/make_skyline.py
 uv run scripts/data/fetch_images.py
 uv run --group docs scripts/docs/build_docs.py --with-demo --serve
-uv run scripts/notebooks/make_notebooks.py
+uv run --group dev scripts/notebooks/make_notebooks.py
 ```

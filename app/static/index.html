@@ -1,79 +1,103 @@
 <!doctype html>
 <html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nerede?</title>
-<meta name="description" content="Search Istanbul, DevFest İstanbul 2026 and EmbeddingGemma 2 by meaning, in Turkish or English. Runs on a server or fully in your browser.">
-<meta name="theme-color" content="#f1f1ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#061a3d" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="img/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="topbar">
-  <span class="tag"><span>#dfist26</span><span class="sep" aria-hidden="true">·</span><span>EmbeddingGemma 2</span></span>
-  <div class="toggles">
-    <span class="mini" role="group" aria-label="Language / Dil">
-      <button type="button" data-lang="tr">TR</button>
-      <button type="button" data-lang="en">EN</button>
-    </span>
-    <span class="mini" role="group" aria-label="Theme">
-      <button type="button" data-theme="light" aria-label="Light">☀</button>
-      <button type="button" data-theme="dark" aria-label="Dark">☾</button>
-    </span>
-  </div>
-</div>
-
-<header class="hero">
-  <i class="pix" style="left:8%;top:18%"></i><i class="pix b" style="left:10%;top:23%"></i>
-  <i class="pix" style="right:12%;top:12%"></i><i class="pix b" style="right:9%;top:30%"></i>
-  <div class="brand">
-    <span class="brace" aria-hidden="true">{</span>
-    <div class="brand-mid">
-      <h1>Nerede<span>?</span></h1>
-      <div class="city">İstanbul</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Nerede?</title>
+    <meta
+      name="description"
+      content="Search Istanbul, DevFest İstanbul 2026 and EmbeddingGemma 2 by meaning, in Turkish or English. Runs on a server or fully in your browser."
+    />
+    <meta name="theme-color" content="#f1f1ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#061a3d" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <span class="tag"
+        ><span>#dfist26</span><span class="sep" aria-hidden="true">·</span><span>EmbeddingGemma 2</span></span
+      >
+      <div class="toggles">
+        <span class="mini" role="group" aria-label="Language / Dil">
+          <button type="button" data-lang="tr">TR</button>
+          <button type="button" data-lang="en">EN</button>
+        </span>
+        <span class="mini" role="group" aria-label="Theme">
+          <button type="button" data-theme="light" aria-label="Light">☀</button>
+          <button type="button" data-theme="dark" aria-label="Dark">☾</button>
+        </span>
+      </div>
     </div>
-    <span class="brace" aria-hidden="true">}</span>
-  </div>
-  <div class="timeline" aria-hidden="true">
-    <span class="dots"><i></i><i></i><i></i></span><span class="arrow"></span><span class="year">2026</span>
-  </div>
-  <p class="subtitle" data-i18n="subtitle"></p>
-  <p class="event" data-i18n="event"></p>
-  <div class="sky"><img class="skyline" src="img/skyline.svg" alt="" width="320" height="110"></div>
-</header>
 
-<main>
-  <div class="searchbox">
-    <form class="bar" id="form" role="search">
-      <input id="q" type="search" autocomplete="off" enterkeyhint="search" data-i18n-placeholder="placeholder" aria-label="Search">
-      <button id="go" data-i18n="go"></button>
-    </form>
-  </div>
+    <header class="hero">
+      <i class="pix" style="left: 8%; top: 18%"></i><i class="pix b" style="left: 10%; top: 23%"></i>
+      <i class="pix" style="right: 12%; top: 12%"></i><i class="pix b" style="right: 9%; top: 30%"></i>
+      <div class="brand">
+        <span class="brace" aria-hidden="true">{</span>
+        <div class="brand-mid">
+          <h1>Nerede<span>?</span></h1>
+          <div class="city">İstanbul</div>
+        </div>
+        <span class="brace" aria-hidden="true">}</span>
+      </div>
+      <div class="timeline" aria-hidden="true">
+        <span class="dots"><i></i><i></i><i></i></span><span class="arrow"></span><span class="year">2026</span>
+      </div>
+      <p class="subtitle" data-i18n="subtitle"></p>
+      <p class="event" data-i18n="event"></p>
+      <div class="sky"><img class="skyline" src="img/skyline.svg" alt="" width="320" height="110" /></div>
+    </header>
 
-  <nav class="tabs" role="group" id="tabs"></nav>
+    <main>
+      <div class="searchbox">
+        <form class="bar" id="form" role="search">
+          <input
+            id="q"
+            type="search"
+            autocomplete="off"
+            enterkeyhint="search"
+            data-i18n-placeholder="placeholder"
+            aria-label="Search"
+          />
+          <button id="go" data-i18n="go"></button>
+        </form>
+      </div>
 
-  <div class="controls">
-    <span class="mini" role="group" id="modes" data-i18n-aria="where">
-      <button type="button" data-mode="server" data-i18n="server"></button>
-      <button type="button" data-mode="browser" data-i18n="browser"></button>
-    </span>
-    <label><span data-i18n="dims"></span> <select id="dim"><option>768</option><option>512</option><option selected>256</option><option>128</option></select></label>
-  </div>
+      <nav class="tabs" role="group" id="tabs"></nav>
 
-  <div class="chips" id="chips"></div>
-  <div id="status" aria-live="polite"></div>
-  <div id="out"></div>
+      <div class="controls">
+        <span class="mini" role="group" id="modes" data-i18n-aria="where">
+          <button type="button" data-mode="server" data-i18n="server"></button>
+          <button type="button" data-mode="browser" data-i18n="browser"></button>
+        </span>
+        <label
+          ><span data-i18n="dims"></span>
+          <select id="dim">
+            <option>768</option>
+            <option>512</option>
+            <option selected>256</option>
+            <option>128</option>
+          </select></label
+        >
+      </div>
 
-  <footer>
-    <p><span class="g"><i style="background:var(--g-blue)"></i><i style="background:var(--g-red)"></i><i style="background:var(--g-yellow)"></i><i style="background:var(--g-green)"></i></span>
-      <span data-i18n="footer1"></span></p>
-    <p data-i18n-html="footer2"></p>
-  </footer>
-</main>
+      <div class="chips" id="chips"></div>
+      <div id="status" aria-live="polite"></div>
+      <div id="out"></div>
 
-<script type="module" src="app.js"></script>
-</body>
+      <footer>
+        <p>
+          <span class="g"
+            ><i style="background: var(--g-blue)"></i><i style="background: var(--g-red)"></i
+            ><i style="background: var(--g-yellow)"></i><i style="background: var(--g-green)"></i
+          ></span>
+          <span data-i18n="footer1"></span>
+        </p>
+        <p data-i18n-html="footer2"></p>
+      </footer>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
 </html>

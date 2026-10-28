@@ -1,0 +1,13 @@
+# Markdown is written for Zensical (admonitions, tabs, attribute lists) and ruff formats its code blocks.
+*.md
+# Generated or data files
+site/
+research/
+notebooks/
+data/
+index/
+app/static/index.json
+*.svg
+uv.lock
+.venv*/
+.cache/

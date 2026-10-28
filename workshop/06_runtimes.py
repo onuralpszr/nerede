@@ -1,7 +1,7 @@
 """Step 6: one vector space, many runtimes. Same queries, compare speed and agreement with torch.
 
-    uv run workshop/06_runtimes.py torch litert litert:gpu
-    uv run --extra intel workshop/06_runtimes.py torch:cpu torch:xpu litert litert:gpu openvino:GPU
+uv run workshop/06_runtimes.py torch litert litert:gpu
+uv run --extra intel workshop/06_runtimes.py torch:cpu torch:xpu litert litert:gpu openvino:GPU
 """
 
 import sys
@@ -9,10 +9,19 @@ import time
 
 from nerede import get_embedder, query
 
-texts = [query(t) for t in [
-    "where can I eat a fish sandwich?", "Bizans mozaikleri", "train under the Bosphorus",
-    "ormanda koşu", "rainy day ideas", "Mimar Sinan'ın camisi", "tulip festival", "eski kitaplar",
-]]
+texts = [
+    query(t)
+    for t in [
+        "where can I eat a fish sandwich?",
+        "Bizans mozaikleri",
+        "train under the Bosphorus",
+        "ormanda koşu",
+        "rainy day ideas",
+        "Mimar Sinan'ın camisi",
+        "tulip festival",
+        "eski kitaplar",
+    ]
+]
 specs = sys.argv[1:] or ["torch", "litert", "litert:gpu"]
 
 reference = None
@@ -31,5 +40,5 @@ for spec in specs:
         continue
     if reference is None:
         reference = vectors
-    agree = sum(float(a @ b) for a, b in zip(vectors, reference)) / len(texts)
+    agree = sum(float(a @ b) for a, b in zip(vectors, reference, strict=True)) / len(texts)
     print(f"{emb.name:>14} {load:>6.1f}s {ms:>9.1f} {agree:>13.4f}")

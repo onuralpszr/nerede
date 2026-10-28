@@ -22,7 +22,7 @@ CATEGORIES = {
     "experience": "local experiences, tips, hamam, cats, rainy day / deneyim, ipucu, hamam",
     "devfest": "DevFest conference, tickets, venue, speakers, sessions, GDG community / konferans, bilet, etkinlik",
     "ai": "the AI model: EmbeddingGemma, parameters, supported languages, vector dimensions, benchmarks, runtimes, "
-          "prompts / yapay zeka modeli, kaç dil, parametre, vektör boyutu",
+    "prompts / yapay zeka modeli, kaç dil, parametre, vektör boyutu",
 }
 
 

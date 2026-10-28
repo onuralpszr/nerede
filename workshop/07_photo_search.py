@@ -17,8 +17,7 @@ photos = sorted(p for p in folder.rglob("*") if p.suffix.lower() in {".jpg", ".j
 if not photos:
     sys.exit(f"no images found in {folder}")
 
-model = SentenceTransformer("google/embeddinggemma-2", device=pick_torch_device(),
-                            config_kwargs={"audio_config": None})
+model = SentenceTransformer("google/embeddinggemma-2", device=pick_torch_device(), config_kwargs={"audio_config": None})
 print(f"embedding {len(photos)} photos from {folder} ...")
 photo_emb = model.encode([{"image": str(p)} for p in photos], batch_size=8, show_progress_bar=True)
 

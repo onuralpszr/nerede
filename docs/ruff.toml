@@ -1,0 +1,7 @@
+# Code blocks in the docs: a docs code column fits about 83 characters, so keep snippets at 80.
+extend = "../pyproject.toml"
+line-length = 80
+extend-include = ["*.md"]
+
+[format]
+preview = true  # Markdown code block formatting is a preview feature in ruff 0.17

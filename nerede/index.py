@@ -91,8 +91,15 @@ class Index:
         self.images = images
         self.image_vectors = image_embedder.embed_images([str(DATA / "images" / i["file"]) for i in images])
 
-    def search(self, query_vector: np.ndarray, k: int = 5, dim: int = 768, collection: str | list[str] | None = None,
-               text: str | None = None, intent: tuple[str, float] | None = None) -> list[tuple[float, dict]]:
+    def search(
+        self,
+        query_vector: np.ndarray,
+        k: int = 5,
+        dim: int = 768,
+        collection: str | list[str] | None = None,
+        text: str | None = None,
+        intent: tuple[str, float] | None = None,
+    ) -> list[tuple[float, dict]]:
         """Cosine search over one collection, several, or all (None or "all").
         Pass the query `text` (and the Router's `intent`) to turn on hybrid boosts for short queries."""
         wanted = {collection} if isinstance(collection, str) else set(collection or [])
@@ -129,27 +136,49 @@ class Index:
 
     def save(self, path: Path | str = INDEX) -> None:
         Path(path).parent.mkdir(parents=True, exist_ok=True)
-        np.savez_compressed(path, vectors=self.vectors, docs=json.dumps(self.docs, ensure_ascii=False),
-                            built_with=self.built_with, image_vectors=self.image_vectors,
-                            images=json.dumps(self.images, ensure_ascii=False))
+        np.savez_compressed(
+            path,
+            vectors=self.vectors,
+            docs=json.dumps(self.docs, ensure_ascii=False),
+            built_with=self.built_with,
+            image_vectors=self.image_vectors,
+            images=json.dumps(self.images, ensure_ascii=False),
+        )
 
     @classmethod
     def load(cls, path: Path | str = INDEX) -> Index:
         data = np.load(path)
-        return cls(json.loads(str(data["docs"])), data["vectors"], str(data["built_with"]),
-                   json.loads(str(data["images"])), data["image_vectors"])
+        return cls(
+            json.loads(str(data["docs"])),
+            data["vectors"],
+            str(data["built_with"]),
+            json.loads(str(data["images"])),
+            data["image_vectors"],
+        )
 
     def export_web(self, path: Path | str, dim: int = 256, router=None) -> None:
         """Write a small JSON the browser can search: the page only has to embed the query.
         With a Router, its label vectors go along (full 768d) so Browser mode can do hybrid search too."""
+
         def pack(v, d=dim):
             return np.round(truncate(v, d), 4).tolist() if len(v) else []
 
-        payload = {"model": "google/embeddinggemma-2", "dim": dim, "built_with": self.built_with,
-                   "docs": self.docs, "vectors": pack(self.vectors),
-                   "images": self.images, "image_vectors": pack(self.image_vectors)}
+        payload = {
+            "model": "google/embeddinggemma-2",
+            "dim": dim,
+            "built_with": self.built_with,
+            "docs": self.docs,
+            "vectors": pack(self.vectors),
+            "images": self.images,
+            "image_vectors": pack(self.image_vectors),
+        }
         if router is not None:
-            payload["hybrid"] = {"labels": router.labels, "label_vectors": pack(router.vectors, 768),
-                                 "short_query_words": SHORT_QUERY_WORDS, "intent_boost": INTENT_BOOST,
-                                 "intent_min_confidence": INTENT_MIN_CONFIDENCE, "keyword_boost": KEYWORD_BOOST}
+            payload["hybrid"] = {
+                "labels": router.labels,
+                "label_vectors": pack(router.vectors, 768),
+                "short_query_words": SHORT_QUERY_WORDS,
+                "intent_boost": INTENT_BOOST,
+                "intent_min_confidence": INTENT_MIN_CONFIDENCE,
+                "keyword_boost": KEYWORD_BOOST,
+            }
         Path(path).write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

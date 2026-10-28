@@ -17,7 +17,9 @@ from nerede.index import ROOT, truncate
 from nerede.router import Router
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--query-backend", default=None, help="defaults to the same runtime as the index, on this machine's best device")
+parser.add_argument(
+    "--query-backend", default=None, help="defaults to the same runtime as the index, on this machine's best device"
+)
 args = parser.parse_args()
 
 index = Index.load()
@@ -34,11 +36,13 @@ for dim in (768, 512, 256, 128):
     scores = truncate(Q, dim) @ truncate(index.vectors, dim).T
     rank = (scores > scores[np.arange(len(gold)), gold][:, None]).sum(1)  # 0 = gold is first
     size = dim * 4  # float32; use 2 for float16/bfloat16
-    print(f"{dim:>5} {np.mean(rank < 1):>9.2f} {np.mean(rank < 3):>9.2f} {np.mean(1 / (rank + 1)):>6.3f}"
-          f" {size:>10} {size * 1e6 / 2**30:>7.2f}GB")
+    print(
+        f"{dim:>5} {np.mean(rank < 1):>9.2f} {np.mean(rank < 3):>9.2f} {np.mean(1 / (rank + 1)):>6.3f}"
+        f" {size:>10} {size * 1e6 / 2**30:>7.2f}GB"
+    )
 
 top = np.argmax(Q @ index.vectors.T, axis=1)
-for e, t, g in zip(evals, top, gold):
+for e, t, g in zip(evals, top, gold, strict=True):
     if t != g:
         print(f"  miss at 768d: {e['query']!r} -> {index.docs[t]['id']} (expected {e['gold']})")
 
@@ -58,5 +62,5 @@ def precision_at_5(vector, e, dim, hybrid):
 print(f"\none-word queries, precision@5, n={len(short)}")
 print(f"{'dim':>5} {'vector':>7} {'hybrid':>7}")
 for dim in (768, 256):
-    vec, hyb = (np.mean([precision_at_5(v, e, dim, h) for v, e in zip(S, short)]) for h in (False, True))
+    vec, hyb = (np.mean([precision_at_5(v, e, dim, h) for v, e in zip(S, short, strict=True)]) for h in (False, True))
     print(f"{dim:>5} {vec:>7.2f} {hyb:>7.2f}")

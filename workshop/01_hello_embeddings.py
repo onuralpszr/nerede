@@ -17,9 +17,9 @@ documents = [
     "Balık ekmek, Eminönü'nde teknelerden satılan ızgara balık sandviçidir.",
 ]
 queries = [
-    "a tower on a tiny island",           # EN query -> TR document
-    "where can I eat a fish sandwich?",   # EN query -> TR document
-    "eski kapalı çarşı",                  # TR query -> EN document
+    "a tower on a tiny island",  # EN query -> TR document
+    "where can I eat a fish sandwich?",  # EN query -> TR document
+    "eski kapalı çarşı",  # TR query -> EN document
 ]
 
 # Retrieval is asymmetric: queries and documents get different task prompts.
@@ -29,7 +29,7 @@ query_emb = model.encode(queries, prompt_name="SearchQuery")
 print("shape:", doc_emb.shape)
 
 scores = model.similarity(query_emb, doc_emb)
-for q, row in zip(queries, scores):
+for q, row in zip(queries, scores, strict=True):
     best = int(row.argmax())
     print(f"\n{q!r}\n  -> {documents[best][:70]}...  ({row[best]:.3f})")
 

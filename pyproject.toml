@@ -32,6 +32,7 @@ cpu = ["torch>=2.14", "torchvision"]
 docs = [
     "zensical>=0.0.73",
 ]
+dev = ["ruff>=0.17"]
 xpu = ["torch>=2.14", "torchvision", "triton-xpu; sys_platform == 'linux'"]
 
 [tool.uv]
@@ -65,3 +66,19 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["nerede"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["site", "research", ".cache"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+# E501: the formatter owns line length (long strings and URLs stay whole). B008: FastAPI's Query(...) defaults.
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E402"]  # notebooks import where the step needs it
+
+[tool.ruff.lint.isort]
+known-first-party = ["nerede"]

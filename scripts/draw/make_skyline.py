@@ -23,16 +23,43 @@ WATER = 92  # first row of water
 ROOT = Path(__file__).resolve().parents[2]
 
 C = {
-    "sky": None, "cloud": "#ffffff", "cloud2": "#cfe9fb",
-    "water": "#2b7bd6", "water2": "#4b9be8", "water3": "#1f62b8", "foam": "#ffffff",
-    "stone": "#e3d5b8", "stone2": "#c9b793", "stone3": "#a8956f", "roofgrey": "#3d5080", "roofgrey2": "#2c3c66",
-    "win": "#3a3a4a", "red": "#c94a35", "red2": "#a83a2a",
-    "wall1": "#f2c14e", "wall2": "#f6f1e6", "wall3": "#e9895b", "wall4": "#7fb3e6", "wall5": "#f4d9a8",
-    "tree": "#3f9b4a", "tree2": "#2f7d3b", "tree3": "#5bb85f",
-    "bridge": "#46598c", "bridge2": "#33456f", "cable": "#5c6fa3",
-    "hull": "#ffffff", "hull2": "#d6dde8", "deck": "#2b2f3a", "funnel": "#f2c14e", "flag": "#e30a17",
-    "dome": "#9aa5b8", "dome2": "#7d889c", "minaret": "#e8e1d2", "cap": "#5d6b85",
-    "gull": "#5d6b85", "gull2": "#f2c14e",
+    "sky": None,
+    "cloud": "#ffffff",
+    "cloud2": "#cfe9fb",
+    "water": "#2b7bd6",
+    "water2": "#4b9be8",
+    "water3": "#1f62b8",
+    "foam": "#ffffff",
+    "stone": "#e3d5b8",
+    "stone2": "#c9b793",
+    "stone3": "#a8956f",
+    "roofgrey": "#3d5080",
+    "roofgrey2": "#2c3c66",
+    "win": "#3a3a4a",
+    "red": "#c94a35",
+    "red2": "#a83a2a",
+    "wall1": "#f2c14e",
+    "wall2": "#f6f1e6",
+    "wall3": "#e9895b",
+    "wall4": "#7fb3e6",
+    "wall5": "#f4d9a8",
+    "tree": "#3f9b4a",
+    "tree2": "#2f7d3b",
+    "tree3": "#5bb85f",
+    "bridge": "#46598c",
+    "bridge2": "#33456f",
+    "cable": "#5c6fa3",
+    "hull": "#ffffff",
+    "hull2": "#d6dde8",
+    "deck": "#2b2f3a",
+    "funnel": "#f2c14e",
+    "flag": "#e30a17",
+    "dome": "#9aa5b8",
+    "dome2": "#7d889c",
+    "minaret": "#e8e1d2",
+    "cap": "#5d6b85",
+    "gull": "#5d6b85",
+    "gull2": "#f2c14e",
 }
 
 # Each layer is its own pixel grid; to_svg() stacks them back to front:
@@ -94,12 +121,8 @@ def cloud(x, y, w):
     rect(x, y + 3, w, 1, "cloud2")
 
 
-GULL_UP = ["XX.....XX",
-           ".XXX.XXX.",
-           "...XoX..."]
-GULL_DOWN = [".........",
-             ".XXXoXXX.",
-             "X.......X"]
+GULL_UP = ["XX.....XX", ".XXX.XXX.", "...XoX..."]
+GULL_DOWN = [".........", ".XXXoXXX.", "X.......X"]
 
 
 def gull(x, y, shape=GULL_UP):
@@ -179,8 +202,13 @@ random.seed(1453)
 for xx in range(246, W):
     top = int(80 - 22 * math.sin(min(1.0, (xx - 246) / 60) * math.pi / 2))
     for yy in range(top, WATER):
-        px(xx, yy, random.choice(["tree", "tree", "tree2", "tree3"]) if yy < top + 3 else
-           random.choice(["tree2", "tree2", "tree", "tree2"]))
+        px(
+            xx,
+            yy,
+            random.choice(["tree", "tree", "tree2", "tree3"])
+            if yy < top + 3
+            else random.choice(["tree2", "tree2", "tree", "tree2"]),
+        )
 for tx in (252, 262, 314):
     tree(tx, 78 if tx < 260 else 70, 4)
 house(266, 86, 9, 10, "wall2")
@@ -264,7 +292,7 @@ STYLE = f"""
 .gb,.sp,.lit{{opacity:0}}
 @media (prefers-color-scheme:dark){{.lit{{opacity:1}}.cl{{opacity:.6}}}}
 @media (prefers-reduced-motion:no-preference){{
-.fe{{animation:fe {FERRY_S}s steps({FERRY_TO - FERRY_FROM}) -{FERRY_DELAY + .05:.2f}s infinite}}
+.fe{{animation:fe {FERRY_S}s steps({FERRY_TO - FERRY_FROM}) -{FERRY_DELAY + 0.05:.2f}s infinite}}
 @keyframes fe{{from{{transform:translateX({FERRY_FROM}px)}}to{{transform:translateX({FERRY_TO}px)}}}}
 .bob{{animation:bob 2.4s steps(1) infinite}}
 @keyframes bob{{50%{{transform:translateY(1px)}}}}
@@ -327,22 +355,30 @@ def lit(name: str) -> str:
 def to_svg() -> str:
     body = []
     for i in range(len(CLOUDS)):
-        body.append(f'<g class="cl" style="animation-duration:{34 + 9 * i}s;animation-delay:-{7 * i}s">'
-                    f'{runs(layers[f"cloud{i}"])}</g>')
+        body.append(
+            f'<g class="cl" style="animation-duration:{34 + 9 * i}s;animation-delay:-{7 * i}s">'
+            f"{runs(layers[f'cloud{i}'])}</g>"
+        )
     body.append(runs(layers["base"]) + lit("base"))
     body.append(f'<g class="rp">{runs(layers["ripples"])}</g>')
     for k in range(3):
-        rects = "".join(f'<rect x="{sx}" y="{sy}" width="{sw}" height="1" fill="#ffffff"/>' for sx, sy, sw in SPARKLES[k::3])
+        rects = "".join(
+            f'<rect x="{sx}" y="{sy}" width="{sw}" height="1" fill="#ffffff"/>' for sx, sy, sw in SPARKLES[k::3]
+        )
         body.append(f'<g class="sp" style="animation-delay:-{2 * k}s">{rects}</g>')
     body.append(runs(layers["islet"]) + lit("islet"))
     for i in range(len(GULLS)):
-        body.append(f'<g class="gl" style="animation-duration:{24 + 6 * i}s;animation-delay:-{5 * i}s">'
-                    f'<g class="ga" style="animation-delay:-{1.7 * i:.1f}s">{runs(layers[f"gull{i}a"])}</g>'
-                    f'<g class="gb" style="animation-delay:-{1.7 * i:.1f}s">{runs(layers[f"gull{i}b"])}</g></g>')
+        body.append(
+            f'<g class="gl" style="animation-duration:{24 + 6 * i}s;animation-delay:-{5 * i}s">'
+            f'<g class="ga" style="animation-delay:-{1.7 * i:.1f}s">{runs(layers[f"gull{i}a"])}</g>'
+            f'<g class="gb" style="animation-delay:-{1.7 * i:.1f}s">{runs(layers[f"gull{i}b"])}</g></g>'
+        )
     body.append(f'<g class="fe"><g class="bob">{runs(layers["ferry"])}</g></g>')
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" shape-rendering="crispEdges" '
-            f'role="img" aria-label="Pixel-art Istanbul skyline: Galata Tower, Bosphorus Bridge, a ferry, '
-            f'Maiden\'s Tower and a mosque"><style>{" ".join(STYLE.split())}</style>' + "".join(body) + "</svg>\n")
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" shape-rendering="crispEdges" '
+        f'role="img" aria-label="Pixel-art Istanbul skyline: Galata Tower, Bosphorus Bridge, a ferry, '
+        f"Maiden's Tower and a mosque\"><style>{' '.join(STYLE.split())}</style>" + "".join(body) + "</svg>\n"
+    )
 
 
 if __name__ == "__main__":

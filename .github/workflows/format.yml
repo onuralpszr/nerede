@@ -1,0 +1,28 @@
+# Checks formatting and lint on every push and pull request. Fix locally with:
+#   uv run --group dev ruff check --fix . && uv run --group dev ruff format .
+#   npx prettier@3.9.9 --write .
+name: Format
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - run: pip install ruff==0.17.3
+      - run: ruff check .
+      - run: ruff format --check .
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - run: npx --yes prettier@3.9.9 --check .

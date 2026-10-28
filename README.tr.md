@@ -111,6 +111,9 @@ Belgeleri `uv run --group docs scripts/docs/build_docs.py --with-demo --serve` i
 
 ## Teşekkürler
 
+Biçimlendirme: Python için, belgelerdeki kod blokları dahil, `uv run --group dev ruff check --fix . && uv run --group dev ruff format .`,
+JS, CSS ve HTML için `npx prettier@3.9.9 --write .`. CI ikisini de kontrol eder.
+
 - Kod ve belgeler: [Apache 2.0](LICENSE).
 - Mekân metinleri bu atölye için yazıldı ve Wikipedia ile karşılaştırılarak kontrol edildi; DevFest bilgileri
   [devfest.istanbul](https://devfest.istanbul/) sitesinden. Yanlış görünen bir şey varsa lütfen bildir.

@@ -80,8 +80,14 @@ class TorchEmbedder:
 
     def embed_images(self, paths: list[str], batch_size: int = 8) -> np.ndarray:
         """Needs modalities=("text", "image"). Media go in as dicts and get no task prompt."""
-        return _normalize(self.model.encode([{"image": p} for p in paths], batch_size=batch_size,
-                                            convert_to_numpy=True, show_progress_bar=len(paths) > 16))
+        return _normalize(
+            self.model.encode(
+                [{"image": p} for p in paths],
+                batch_size=batch_size,
+                convert_to_numpy=True,
+                show_progress_bar=len(paths) > 16,
+            )
+        )
 
 
 class LiteRTEmbedder:
@@ -124,8 +130,12 @@ class OpenVINOEmbedder:
         import torch
         from sentence_transformers import SentenceTransformer
 
-        st = SentenceTransformer(MODEL_ID, device="cpu", model_kwargs={"dtype": torch.float32},
-                                 config_kwargs={"vision_config": None, "audio_config": None})
+        st = SentenceTransformer(
+            MODEL_ID,
+            device="cpu",
+            model_kwargs={"dtype": torch.float32},
+            config_kwargs={"vision_config": None, "audio_config": None},
+        )
 
         class TextOnly(torch.nn.Module):
             def __init__(self):
@@ -138,17 +148,20 @@ class OpenVINOEmbedder:
         shape = [1, self.max_len]
         example = self.tokenizer(["hello"], padding="max_length", max_length=self.max_len, return_tensors="pt")
         with torch.no_grad():
-            model = ov.convert_model(TextOnly().eval(),
-                                     example_input=(example["input_ids"], example["attention_mask"]),
-                                     input=[(shape, ov.Type.i64), (shape, ov.Type.i64)])
+            model = ov.convert_model(
+                TextOnly().eval(),
+                example_input=(example["input_ids"], example["attention_mask"]),
+                input=[(shape, ov.Type.i64), (shape, ov.Type.i64)],
+            )
         xml.parent.mkdir(parents=True, exist_ok=True)
         ov.save_model(model, str(xml))
 
     def embed(self, texts: list[str], batch_size: int = 32) -> np.ndarray:
         out = []
         for text in texts:
-            enc = self.tokenizer([text], padding="max_length", truncation=True,
-                                 max_length=self.max_len, return_tensors="np")
+            enc = self.tokenizer(
+                [text], padding="max_length", truncation=True, max_length=self.max_len, return_tensors="np"
+            )
             out.append(self.compiled((enc["input_ids"], enc["attention_mask"]))[0][0])
         return _normalize(out)
 

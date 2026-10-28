@@ -1,8 +1,8 @@
 """Step 2: embed every document and photo once, save the index (plus a small JSON copy for the browser).
 
-    uv run workshop/02_build_index.py                  # torch, auto device, text + photos
-    uv run workshop/02_build_index.py --no-images      # text only (270M, faster)
-    uv run workshop/02_build_index.py --backend litert:gpu --no-images
+uv run workshop/02_build_index.py                  # torch, auto device, text + photos
+uv run workshop/02_build_index.py --no-images      # text only (270M, faster)
+uv run workshop/02_build_index.py --backend litert:gpu --no-images
 """
 
 import argparse
@@ -15,7 +15,11 @@ from nerede.router import Router
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--backend", default=None, help="torch | torch:xpu | litert | litert:gpu | openvino:GPU")
-parser.add_argument("--no-images", action="store_true", help="do not embed the photos (no vision encoder needed), keep the photo vectors already in the index")
+parser.add_argument(
+    "--no-images",
+    action="store_true",
+    help="do not embed the photos (no vision encoder needed), keep the photo vectors already in the index",
+)
 parser.add_argument("--web-dim", type=int, default=256, help="Matryoshka size for the browser copy")
 args = parser.parse_args()
 

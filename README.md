@@ -111,6 +111,9 @@ Build and preview the docs with `uv run --group docs scripts/docs/build_docs.py 
 
 ## Credits
 
+Formatting: `uv run --group dev ruff check --fix . && uv run --group dev ruff format .` for Python, including the code
+blocks in the docs, and `npx prettier@3.9.9 --write .` for JS, CSS and HTML. CI checks both.
+
 - Code and docs: [Apache 2.0](LICENSE).
 - Place texts were written for this workshop and checked against Wikipedia; DevFest facts come from
   [devfest.istanbul](https://devfest.istanbul/). Please report anything that looks wrong.

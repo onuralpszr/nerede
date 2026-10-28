@@ -18,10 +18,12 @@ import unicodedata
 
 import numpy as np
 
-STOPWORDS = set("""
+STOPWORDS = set(
+    """
 a an and are at be by can do for from how i in is it me my of on or the to what when where which who with you your
 bir bu da de en gibi hangi icin ile mi mu ne nasil nerede neden olan siz sen ve veya ya
-""".split())
+""".split()
+)
 
 
 def fold(text: str) -> str:
@@ -63,5 +65,6 @@ class Keywords:
 def keyword_text(record: dict) -> str:
     """What the keyword side sees: title, district and text (photos only have a title)."""
     district = record.get("district")
-    return " ".join([record.get("title", ""), district if district and district != "Everywhere" else "",
-                     record.get("text", "")])
+    return " ".join(
+        [record.get("title", ""), district if district and district != "Everywhere" else "", record.get("text", "")]
+    )
