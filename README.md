@@ -1,29 +1,29 @@
+<div align="center">
+
 # Nerede?
 
-**Build and ship a Turkish-English semantic search with EmbeddingGemma 2.**
-A hands-on workshop proposal for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent.
+[![English](https://img.shields.io/badge/lang-English-052458?style=flat-square)](README.md)
+[![Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-8a9bb8?style=flat-square)](README.tr.md)
 
-<p align="center">
-  <a href="https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab (English)"></a>
-  <a href="https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb"><img src="https://img.shields.io/badge/Colab-T%C3%BCrk%C3%A7e-F9AB00?logo=googlecolab&logoColor=white" alt="Colab'da aç (Türkçe)"></a>
-  <a href="https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle"></a>
-  <br>
-  <a href="https://onuralpszr.github.io/nerede/en/"><img src="https://img.shields.io/badge/docs-English-052458" alt="Docs in English"></a>
-  <a href="https://onuralpszr.github.io/nerede/tr/"><img src="https://img.shields.io/badge/belgeler-T%C3%BCrk%C3%A7e-052458" alt="Türkçe belgeler"></a>
-  <a href="https://onuralpszr.github.io/nerede/demo/"><img src="https://img.shields.io/badge/demo-in%20your%20browser-63c5f2" alt="Live demo"></a>
-  <a href="https://github.com/onuralpszr/nerede/actions/workflows/docs.yml"><img src="https://github.com/onuralpszr/nerede/actions/workflows/docs.yml/badge.svg" alt="Docs and demo build"></a>
-  <br>
-  <a href="https://huggingface.co/google/embeddinggemma-2"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20model-EmbeddingGemma%202-f2c14e" alt="EmbeddingGemma 2 on Hugging Face"></a>
-  <img src="https://img.shields.io/badge/python-3.12%20%7C%203.13-5179c1?logo=python&logoColor=white" alt="Python 3.12 and 3.13">
-  <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" alt="uv"></a>
-  <a href="https://devfest.istanbul/"><img src="https://img.shields.io/badge/DevFest%20%C4%B0stanbul-2026-052458" alt="DevFest İstanbul 2026"></a>
-</p>
+**Build and ship a Turkish-English semantic search with EmbeddingGemma 2.**<br>
+A hands-on workshop proposal for GDG DevFest İstanbul 2026 · Wyndham Grand İstanbul Levent
 
-**Docs:** [English](docs/en/index.md) · [Türkçe](docs/tr/index.md) · **Notebooks:** [English](notebooks/nerede_en.ipynb) · [Türkçe](notebooks/nerede_tr.ipynb)
+[![Live demo](https://img.shields.io/badge/live%20demo-in%20your%20browser-63c5f2?style=flat-square&logo=googlechrome&logoColor=white)](https://onuralpszr.github.io/nerede/demo/)
+[![Colab (English)](https://img.shields.io/badge/Colab-English-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb)
+[![Colab (Türkçe)](https://img.shields.io/badge/Colab-T%C3%BCrk%C3%A7e-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb)
+[![Kaggle (English)](https://img.shields.io/badge/Kaggle-English-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb)
+[![Kaggle (Türkçe)](https://img.shields.io/badge/Kaggle-T%C3%BCrk%C3%A7e-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb)<br>
+[![Docs in English](https://img.shields.io/badge/docs-English-052458?style=flat-square&logo=materialformkdocs&logoColor=white)](https://onuralpszr.github.io/nerede/en/)
+[![Türkçe belgeler](https://img.shields.io/badge/belgeler-T%C3%BCrk%C3%A7e-052458?style=flat-square&logo=materialformkdocs&logoColor=white)](https://onuralpszr.github.io/nerede/tr/)
+[![Docs build](https://img.shields.io/github/actions/workflow/status/onuralpszr/nerede/docs.yml?style=flat-square&label=docs%20build&logo=githubactions&logoColor=white)](https://github.com/onuralpszr/nerede/actions/workflows/docs.yml)<br>
+[![EmbeddingGemma 2](https://img.shields.io/badge/model-EmbeddingGemma%202-f2c14e?style=flat-square&logo=huggingface&logoColor=white)](https://huggingface.co/google/embeddinggemma-2)
+[![Python 3.12 | 3.13](https://img.shields.io/badge/python-3.12%20%7C%203.13-5179c1?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
+[![DevFest İstanbul 2026](https://img.shields.io/badge/DevFest%20%C4%B0stanbul-19%20Dec%202026-052458?style=flat-square)](https://devfest.istanbul/)
 
-<p align="center">
-  <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="640">
-</p>
+<img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="720">
+
+</div>
 
 Ask *"nerede balık ekmek yenir?"*, *"how do I get to the DevFest venue?"* or *"model kaç dil biliyor?"*. Answers come
 from three small collections, matched by meaning rather than keywords: **101 Istanbul places with 100 photos**,
@@ -44,6 +44,8 @@ The index is built once with PyTorch, then queried by LiteRT (165 MB int4) on th
 the browser. All three produce the same vectors: cosine 0.98 to 0.99, with the same recall.
 
 ## Quick start
+
+You only need [uv](https://docs.astral.sh/uv/getting-started/installation/), it installs Python for you. Details in [Setup](docs/en/setup.md).
 
 ```bash
 git clone https://github.com/onuralpszr/nerede && cd nerede
