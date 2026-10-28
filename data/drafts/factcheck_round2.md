@@ -71,3 +71,10 @@ devfest-bilet is still correct. Early Bird sales end on 2 November 2026, so here
 ```json
 {"id": "devfest-bilet", "text": "Biletler Kommunity üzerinden satılıyor: Early Bird 850 TL (2 Kasım 2026'ya kadar, sınırlı sayıda), Standard 2.000 TL (3 Kasım 2026'dan itibaren) ve Gold Pass 20.000 TL (50 kişilik kota). Tüm biletler keynote'lara, oturumlara ve networking alanlarına erişim sağlar; bilet satışları iade edilmez.", "source": "https://kommunity.com/gdg-istanbul/events/devfest-istanbul-2026-55458e85/tickets"}
 ```
+
+## Follow-up: kucuk-ayasofya conversion date
+
+Sources disagree on the year the church became a mosque: Turkish Wikipedia says 1497, English Wikipedia says
+1506-1513. Archnet (https://archnet.org/sites/2002) says Hüseyin Ağa converted it during the rule of Bayezid II (1481-1512).
+The text now says "II. Bayezid döneminde (1481-1512)" and cites Archnet. The title "Babüssaade ağası" matches English
+Wikipedia and the Boğaziçi thesis "Küçük Ayasofya and the foundation of Babüssaade Ağası Hüseyin Ağa"; Turkish Wikipedia says Darüssaade ağası.

@@ -110,3 +110,9 @@ Feel free to use my photos, but please mention me as the author and send me a  m
 
 
 This image is not in the public domain. Please respect the copy | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Wooden_building_on_the_Bosphorus.jpg) |
+| kunefe.jpg | Künefe | elif ayse | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Commons](https://commons.wikimedia.org/wiki/File:K%C3%BCnefe.jpg) |
+| sutlac.jpg | Sütlaç (rice pudding) | Shivangisj | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Kheer_with_condensed_milk..JPG) |
+| kazandibi.jpg | Kazandibi | Garrett Ziegler | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Kazandibi_Dessert.jpg) |
+| maras-dondurmasi.jpg | Maraş dondurması | E4024 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Dondurma_with_kabak.jpg) |
+| lokma.jpg | Lokma | elif ayse | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Commons](https://commons.wikimedia.org/wiki/File:Sam%27dan_lokma_tatlisi.jpg) |
+| asure.jpg | Aşure | Maderibeyza | [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/) | [Commons](https://commons.wikimedia.org/wiki/File:A%C5%9Fure_(1).JPG) |

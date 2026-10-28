@@ -64,3 +64,9 @@
 {"query": "run it in the browser with WebGPU", "gold": "eg2-browser"}
 {"query": "how fast is it on a Raspberry Pi", "gold": "eg2-gecikme"}
 {"query": "4 bit quantization quality loss", "gold": "eg2-kuantizasyon"}
+{"query": "hot syrupy dessert made with shredded pastry and cheese", "gold": "kunefe"}
+{"query": "pirinç, süt ve şekerle yapılan tatlı", "gold": "sutlac"}
+{"query": "altı yanık, karamelize sütlü tatlı", "gold": "kazandibi"}
+{"query": "Turkish ice cream made from goat milk and salep", "gold": "maras-dondurmasi"}
+{"query": "şerbete batırılmış kızarmış hamur topları", "gold": "lokma"}
+{"query": "pudding shared with neighbours in the month of Muharram", "gold": "asure"}
