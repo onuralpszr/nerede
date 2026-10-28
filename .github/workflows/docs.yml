@@ -1,0 +1,38 @@
+# Publishes the docs (English + Turkish) and the browser-only demo to GitHub Pages. Free, no server.
+# Enable it once in the repository: Settings -> Pages -> Source: GitHub Actions.
+name: Docs and demo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - id: pages
+        uses: actions/configure-pages@v6
+      - run: pip install zensical
+      - run: python scripts/build_docs.py --with-demo --base "${{ steps.pages.outputs.base_path }}/" --site-url "${{ steps.pages.outputs.base_url }}"
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v5
