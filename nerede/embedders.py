@@ -12,6 +12,7 @@ Heavy libraries are imported lazily so the serving image can skip torch.
 from __future__ import annotations
 
 import os
+import threading
 from pathlib import Path
 
 import numpy as np
@@ -93,9 +94,13 @@ class LiteRTEmbedder:
         be = litert_lm.Backend.GPU() if backend.lower() == "gpu" else litert_lm.Backend.CPU()
         self.engine = litert_lm.EmbeddingEngine(path, backend=be)
         self.name = f"litert:{backend.lower()}"
+        # One engine can't run two batches at once ("Tensor buffer is already locked"), and the server
+        # answers requests in parallel threads, so calls take turns.
+        self._lock = threading.Lock()
 
     def embed(self, texts: list[str], batch_size: int = 32) -> np.ndarray:
-        out = self.engine.compute_embedding_batch(list(texts))
+        with self._lock:
+            out = self.engine.compute_embedding_batch(list(texts))
         return _normalize([r.embedding for r in out])
 
 
