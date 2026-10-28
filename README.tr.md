@@ -25,6 +25,8 @@ GDG DevFest İstanbul 2026 için uygulamalı atölye önerisi · Wyndham Grand �
 [![Lisans: Apache 2.0](https://img.shields.io/badge/lisans-Apache%202.0-5179c1?style=flat-square)](LICENSE)
 [![DevFest İstanbul 2026](https://img.shields.io/badge/DevFest%20%C4%B0stanbul-19%20Aral%C4%B1k%202026-052458?style=flat-square)](https://devfest.istanbul/)
 
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)
+
 <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? arama arayüzü" width="720">
 
 </div>
@@ -72,6 +74,7 @@ CPU'lu PyTorch'tur (1,5 GB). NVIDIA, Intel Arc (XPU), AMD ya da Apple için [Kur
 | sadece bir tarayıcı | Colab defterleri (ücretsiz katman), web uygulaması dahil |
 | paylaşacak bir şey | GitHub Pages: belgeler + tarayıcıda çalışan demo, `.github/workflows/docs.yml` ile yayınlanır |
 | sunuculu bir demo | Hugging Face Spaces, Docker, ücretsiz CPU (`app_port: 8080`) |
+| bir Google Cloud hesabı | yukarıdaki **Run on Google Cloud** düğmesi, faturalandırma ister, ücretsiz kota bir demoyu karşılar |
 
 ## Atölye
 

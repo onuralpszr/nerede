@@ -57,4 +57,5 @@ app_port: 8080
 The image is about 575 MB, starts in about a second and uses about 200 MB of RAM, well inside the free tier.
 
 !!! note "Cloud Run"
-    Google Cloud Run also has a free tier, but it needs a billing account. It will be covered separately.
+    Google Cloud Run also has a free tier, but it needs a billing account. The **Run on Google Cloud** button in
+    [Ship it](workshop/6-ship.md) deploys the container in one click.

@@ -56,4 +56,5 @@ app_port: 8080
 İmaj yaklaşık 575 MB, yaklaşık bir saniyede açılıyor ve 200 MB civarı RAM kullanıyor, bu da ücretsiz sürümün rahatça içinde.
 
 !!! note "Cloud Run"
-    Google Cloud Run'ın da ücretsiz kotası var ama faturalandırma hesabı istiyor. Bu konu ayrıca ele alınacak.
+    Google Cloud Run'ın da ücretsiz kotası var ama faturalandırma hesabı istiyor. [Yayına al](workshop/6-ship.md)
+    sayfasındaki **Run on Google Cloud** düğmesi konteyneri tek tıkla yayına alır.

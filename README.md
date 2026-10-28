@@ -25,6 +25,8 @@ A hands-on workshop proposal for GDG DevFest İstanbul 2026 · Wyndham Grand İs
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-5179c1?style=flat-square)](LICENSE)
 [![DevFest İstanbul 2026](https://img.shields.io/badge/DevFest%20%C4%B0stanbul-19%20Dec%202026-052458?style=flat-square)](https://devfest.istanbul/)
 
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)
+
 <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="720">
 
 </div>
@@ -72,6 +74,7 @@ Open <http://127.0.0.1:8000>, then switch between **Server** and **Browser** mod
 | only a browser | the Colab notebooks (free tier), including the web app |
 | something to share | GitHub Pages: docs + browser-only demo, published by `.github/workflows/docs.yml` |
 | a server demo | Hugging Face Spaces, Docker, free CPU (`app_port: 8080`) |
+| a Google Cloud account | the **Run on Google Cloud** button above, needs billing, the free tier covers a demo |
 
 ## The workshop
 

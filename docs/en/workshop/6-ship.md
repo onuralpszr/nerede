@@ -60,4 +60,8 @@ It is about 575 MB, starts in about a second and uses about 200 MB of RAM.
 
 === "Cloud Run"
 
-    Coming later in a separate session (it needs a billing account, even though the free tier covers a demo).
+    [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/onuralpszr/nerede.git&revision=main)
+
+    The button opens Cloud Shell, builds the `Dockerfile` and deploys it. `app.json` asks for 1 GiB of memory and
+    at most 2 instances, so a forgotten demo stays cheap. Cloud Run needs a billing account, and its free tier
+    covers a small demo. The container is the LiteRT one, so it searches text and hides the photo camera.

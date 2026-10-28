@@ -1,0 +1,9 @@
+{
+  "name": "nerede",
+  "options": {
+    "allow-unauthenticated": true,
+    "memory": "1Gi",
+    "cpu": "1",
+    "max-instances": 2
+  }
+}
