@@ -172,6 +172,48 @@ input {
   margin: 0.25rem 0.15rem;
 }
 
+/* home page: centered like the hero. Code stays left-aligned inside its centered box. */
+.md-typeset:has(> .nd-hero) > :is(h2, p) {
+  text-align: center;
+}
+.md-typeset:has(> .nd-hero) .grid.cards > ul > li {
+  text-align: center;
+}
+.md-typeset:has(> .nd-hero) .md-typeset__scrollwrap {
+  text-align: center;
+}
+.md-typeset:has(> .nd-hero) .md-typeset__table table {
+  text-align: left;
+}
+.md-typeset:has(> .nd-hero) > .highlight {
+  max-width: 46rem;
+  margin-inline: auto;
+}
+.md-typeset:has(> .nd-hero) > .admonition {
+  max-width: 46rem;
+  margin-inline: auto;
+}
+/* four cards: one row on wide screens, two by two on medium, instead of three plus one alone */
+@media (min-width: 60em) {
+  .md-typeset:has(> .nd-hero) .grid.cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 30em) and (max-width: 59.99em) {
+  .md-typeset:has(> .nd-hero) .grid.cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mermaid sizes its boxes with its own default font, so the labels must be drawn in that same font,
+   or the wider Outfit letters spill out of the boxes. */
+:root > * {
+  --md-mermaid-font-family: "trebuchet ms", verdana, arial, sans-serif;
+}
+.md-typeset .mermaid {
+  text-align: center;
+}
+
 /* outlined cards, like the poster pills */
 .md-typeset .grid.cards > ul > li,
 .md-typeset .grid > .card {
