@@ -21,14 +21,14 @@ Photo indexing (vision encoder, 280 tokens per image): CPU 257 s for 100 photos,
 
 Serving container (`podman build -t nerede .`): ~575 MB image, 1.1 s cold start, 204 MB RAM, about 80 ms per request on CPU (query embedding plus intent routing).
 
-Retrieval quality (66 TR/EN queries, mostly cross-lingual, over 141 documents, index built with torch):
+Retrieval quality (72 TR/EN queries, mostly cross-lingual, over 147 documents, index built with torch):
 
 | dim | recall@1 torch | recall@3 torch | MRR torch | recall@1 LiteRT queries |
 |---|---|---|---|---|
-| 768 | 0.86 | 0.98 | 0.920 | 0.85 |
-| 512 | 0.83 | 0.98 | 0.900 | 0.80 |
-| 256 | 0.79 | 0.98 | 0.877 | 0.71 |
-| 128 | 0.76 | 0.86 | 0.822 | 0.70 |
+| 768 | 0.83 | 0.97 | 0.902 | 0.83 |
+| 512 | 0.81 | 0.99 | 0.885 | 0.79 |
+| 256 | 0.78 | 0.99 | 0.873 | 0.72 |
+| 128 | 0.72 | 0.86 | 0.803 | 0.67 |
 
 ## Scripts
 

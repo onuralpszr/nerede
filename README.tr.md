@@ -19,6 +19,7 @@ GDG DevFest İstanbul 2026 için uygulamalı atölye önerisi · Wyndham Grand �
 [![EmbeddingGemma 2](https://img.shields.io/badge/model-EmbeddingGemma%202-f2c14e?style=flat-square&logo=huggingface&logoColor=white)](https://huggingface.co/google/embeddinggemma-2)
 [![Python 3.12 | 3.13](https://img.shields.io/badge/python-3.12%20%7C%203.13-5179c1?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
+[![Lisans: Apache 2.0](https://img.shields.io/badge/lisans-Apache%202.0-5179c1?style=flat-square)](LICENSE)
 [![DevFest İstanbul 2026](https://img.shields.io/badge/DevFest%20%C4%B0stanbul-19%20Aral%C4%B1k%202026-052458?style=flat-square)](https://devfest.istanbul/)
 
 <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? arama arayüzü" width="720">
@@ -26,7 +27,7 @@ GDG DevFest İstanbul 2026 için uygulamalı atölye önerisi · Wyndham Grand �
 </div>
 
 *"Nerede balık ekmek yenir?"*, *"how do I get to the DevFest venue?"* ya da *"model kaç dil biliyor?"* diye sor. Cevaplar
-anahtar kelimeyle değil anlamla eşleşen üç küçük koleksiyondan gelir: **100 fotoğraflı 101 İstanbul mekânı**,
+anahtar kelimeyle değil anlamla eşleşen üç küçük koleksiyondan gelir: **106 fotoğraflı 107 İstanbul mekânı**,
 **DevFest İstanbul 2026** ve **EmbeddingGemma 2**'nin kendisi. Türkçe sorular İngilizce cevapları, İngilizce sorular da Türkçe cevapları bulur.
 
 ## Tek model, üç runtime
@@ -84,8 +85,8 @@ Konuşmacının dizüstünde (Core Ultra X7 358H, Arc B390). Ayrıntılar [Ölç
 
 | | |
 |---|---|
-| 768 boyutta recall@1 / recall@3 (çoğu diller arası 66 soru, 141 belge) | 0,86 / 0,98 |
-| 256 boyutta recall@3, depolamanın üçte biriyle | 0,98 |
+| 768 boyutta recall@1 / recall@3 (çoğu diller arası 72 soru, 147 belge) | 0,83 / 0,97 |
+| 256 boyutta recall@3, depolamanın üçte biriyle | 0,99 |
 | sorgu gecikmesi: PyTorch CPU / LiteRT CPU / LiteRT GPU / OpenVINO GPU | 23 / 40 / 17 / 6,6 ms |
 | 100 fotoğrafı indeksleme: CPU / Arc XPU | 257 sn / 16 sn |
 | sunucu imajı / soğuk açılış / RAM | ~575 MB / 1,1 sn / 200 MB |
@@ -103,10 +104,11 @@ scripts/    belgeleri derle, defterleri üret, fotoğrafları indir, piksel silu
 bench/      ölçümler ve hata yeniden üretimleri
 ```
 
-Belgeleri `uv run --group docs scripts/build_docs.py --with-demo --serve` ile derle.
+Belgeleri `uv run --group docs scripts/build_docs.py --with-demo --serve` ile derleyip <http://127.0.0.1:8001> adresinden önizle (uygulama 8000 portunu kullanmaya devam eder).
 
 ## Teşekkürler
 
+- Kod ve belgeler: [Apache 2.0](LICENSE).
 - Mekân metinleri bu atölye için yazıldı ve Wikipedia ile karşılaştırılarak kontrol edildi; DevFest bilgileri
   [devfest.istanbul](https://devfest.istanbul/) sitesinden. Yanlış görünen bir şey varsa lütfen bildir.
 - Fotoğraflar: Wikimedia Commons, bkz. [data/images/ATTRIBUTION.md](data/images/ATTRIBUTION.md).

@@ -5,7 +5,7 @@ So a photo indexed once with the vision encoder can be found later with nothing 
 small text-only LiteRT model on the server.
 
 ```bash
-uv run workshop/03_search.py --photos          # the 100 Istanbul photos
+uv run workshop/03_search.py --photos          # the 106 Istanbul photos
 uv run workshop/07_photo_search.py ~/Pictures  # your own photos, nothing leaves your laptop
 ```
 
@@ -28,7 +28,7 @@ Two rules:
 
 ## The photos
 
-The 100 photos come from Wikimedia Commons under CC BY, CC BY-SA, Free Art License or public domain.
+The 106 photos come from Wikimedia Commons under CC BY, CC BY-SA, Free Art License or public domain.
 `scripts/fetch_images.py` takes the lead image of each place's Wikipedia article, checks the license and
 writes the credits to `data/images/ATTRIBUTION.md`. The app shows the author and license under every photo.
 

@@ -1,5 +1,12 @@
 # Troubleshooting
 
+??? question "A one-word query like `tatlı` or `dessert` returns odd results"
+    A single word carries little meaning, so every food entry scores about the same (0.70 to 0.73) and the order
+    is close to random. Two things help. Write the question as a sentence: "sütlü tatlı" or "where can I eat baklava"
+    separate much better than "tatlı". And make sure the documents say what they are: before we added six desserts
+    that use the words "tatlı" and "dessert", the top 5 for "tatlı" included simit and salep; now all 5 are desserts.
+    If you need keywords to work too, combine the vector score with a keyword score (hybrid search).
+
 ??? question "`uv run` downloads 5 GB of CUDA libraries"
     Default PyTorch on Linux is the CUDA build. This project makes the CPU build the default through the `cpu`
     dependency group. If you passed `--no-default-groups`, you get the CUDA build on purpose. See [Setup](setup.md).

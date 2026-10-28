@@ -32,14 +32,14 @@ top result for 3 of 8 queries, so we don't use it.
 
 ## Retrieval quality
 
-66 questions, mostly cross-lingual, over 141 documents. Index built with PyTorch.
+72 questions, mostly cross-lingual, over 147 documents. Index built with PyTorch.
 
 | dim | recall@1 | recall@3 | MRR | recall@1, LiteRT queries |
 |---|---|---|---|---|
-| 768 | 0.86 | 0.98 | 0.920 | 0.85 |
-| 512 | 0.83 | 0.98 | 0.900 | 0.80 |
-| 256 | 0.79 | 0.98 | 0.877 | 0.71 |
-| 128 | 0.76 | 0.86 | 0.822 | 0.70 |
+| 768 | 0.83 | 0.97 | 0.902 | 0.83 |
+| 512 | 0.81 | 0.99 | 0.885 | 0.79 |
+| 256 | 0.78 | 0.99 | 0.873 | 0.72 |
+| 128 | 0.72 | 0.86 | 0.803 | 0.67 |
 
 ## Serving
 

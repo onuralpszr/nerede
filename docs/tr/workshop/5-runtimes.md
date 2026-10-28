@@ -41,7 +41,7 @@ Aynı `.litertlm` dosyası Android, iOS, macOS, Linux, Windows ve web'de çalı�
 ## "cos vs first" neden önemli
 
 `0.988`, LiteRT vektörünün PyTorch vektörüyle neredeyse aynı yöne baktığı anlamına geliyor. Değerlendirme bunun yettiğini
-gösteriyor: PyTorch ile kurulan indeksi LiteRT sorgularıyla aradığımızda recall@1 yine 0,85. Sunucunun PyTorch'suz
+gösteriyor: PyTorch ile kurulan indeksi LiteRT sorgularıyla aradığımızda recall@1 yine 0,83, PyTorch ile aynı. Sunucunun PyTorch'suz
 çalışabilmesini sağlayan şey bu.
 
 !!! note "Intel NPU"

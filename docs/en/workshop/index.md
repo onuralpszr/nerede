@@ -18,11 +18,11 @@ so just run the next one.
 
 | Collection | Size | Languages | Source |
 |---|---|---|---|
-| `places` | 101 Istanbul places, food and tips | 52 TR, 49 EN | written for the workshop, fact-checked against Wikipedia |
+| `places` | 107 Istanbul places, food and tips | 55 TR, 52 EN | written for the workshop, fact-checked against Wikipedia |
 | `devfest` | 16 facts about DevFest İstanbul 2026 | 8 TR, 8 EN | devfest.istanbul |
 | `gemma` | 24 notes about EmbeddingGemma 2 | 12 TR, 12 EN | model card and Google blog posts |
-| photos | 100, one per place | none | Wikimedia Commons, free licenses |
-| eval | 66 labelled questions | mixed | most are cross-lingual |
+| photos | 106, one for almost every place | none | Wikimedia Commons, free licenses |
+| eval | 72 labelled questions | mixed | most are cross-lingual |
 
 More in [Dataset](../dataset.md).
 

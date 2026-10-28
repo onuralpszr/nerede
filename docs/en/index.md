@@ -64,7 +64,7 @@ You only need [uv](https://docs.astral.sh/uv/getting-started/installation/), it 
 ```bash
 git clone https://github.com/onuralpszr/nerede && cd nerede
 uv run workshop/00_setup_check.py              # downloads the models, run it at home
-uv run workshop/02_build_index.py --no-images  # embeds 141 docs, keeps the shipped photo vectors
+uv run workshop/02_build_index.py --no-images  # embeds 147 docs, keeps the shipped photo vectors
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 

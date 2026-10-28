@@ -1,6 +1,6 @@
 # 3. Measure, don't guess
 
-"It looks good" is not a metric. `data/eval_queries.jsonl` has 66 questions, each with the id of the
+"It looks good" is not a metric. `data/eval_queries.jsonl` has 72 questions, each with the id of the
 document that should come first. Most are **cross-lingual**: a Turkish question for an English document,
 or the other way round.
 
@@ -10,13 +10,13 @@ uv run workshop/04_matryoshka_eval.py --query-backend litert   # torch index, Li
 ```
 
 ```text
-index: torch:cpu   queries: torch:cpu   n=66
+index: torch:cpu   queries: torch:cpu   n=72
 
   dim  recall@1  recall@3    MRR  bytes/vec   1M docs
-  768      0.86      0.98  0.920       3072    2.86GB
-  512      0.83      0.98  0.900       2048    1.91GB
-  256      0.79      0.98  0.877       1024    0.95GB
-  128      0.76      0.86  0.822        512    0.48GB
+  768      0.83      0.97  0.902       3072    2.86GB
+  512      0.81      0.99  0.885       2048    1.91GB
+  256      0.78      0.99  0.873       1024    0.95GB
+  128      0.72      0.86  0.803        512    0.48GB
 ```
 
 - **recall@1**: how often the right answer is first. **recall@3**: in the top three.

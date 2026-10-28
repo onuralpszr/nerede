@@ -1,5 +1,12 @@
 # Sorun giderme
 
+??? question "`tatlı` ya da `dessert` gibi tek kelimelik aramalar tuhaf sonuçlar veriyor"
+    Tek kelime çok az anlam taşıyor; bu yüzden bütün yemek kayıtları neredeyse aynı puanı alıyor (0,70-0,73) ve
+    sıralama rastgeleye yakın oluyor. İki şey işe yarar. Soruyu cümle olarak yaz: "sütlü tatlı" ya da "baklava nerede
+    yenir", "tatlı"dan çok daha iyi ayrışıyor. Belgelerin de ne olduklarını söylediğinden emin ol: "tatlı" ve "dessert"
+    kelimelerini kullanan altı tatlı eklemeden önce "tatlı" aramasının ilk 5'inde simit ve salep vardı; şimdi 5'i de tatlı.
+    Anahtar kelimelerin de çalışmasını istiyorsan vektör puanını bir anahtar kelime puanıyla birleştir (hibrit arama).
+
 ??? question "`uv run` 5 GB CUDA kütüphanesi indiriyor"
     Linux'ta varsayılan PyTorch CUDA'lı sürüm. Bu proje `cpu` bağımlılık grubuyla CPU sürümünü varsayılan yapıyor.
     `--no-default-groups` verdiysen CUDA sürümünü bilerek alıyorsun. Bkz. [Kurulum](setup.md).

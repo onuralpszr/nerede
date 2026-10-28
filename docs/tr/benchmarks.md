@@ -37,14 +37,14 @@ PyTorch'a kosinüs 8 sorgu üzerinden (`bench/browser_time.mjs`, `bench/browser_
 
 ## Arama kalitesi
 
-141 belge üzerinde, çoğu diller arası 66 soru. İndeks PyTorch ile kuruldu.
+147 belge üzerinde, çoğu diller arası 72 soru. İndeks PyTorch ile kuruldu.
 
 | boyut | recall@1 | recall@3 | MRR | recall@1, LiteRT sorguları |
 |---|---|---|---|---|
-| 768 | 0,86 | 0,98 | 0,920 | 0,85 |
-| 512 | 0,83 | 0,98 | 0,900 | 0,80 |
-| 256 | 0,79 | 0,98 | 0,877 | 0,71 |
-| 128 | 0,76 | 0,86 | 0,822 | 0,70 |
+| 768 | 0,83 | 0,97 | 0,902 | 0,83 |
+| 512 | 0,81 | 0,99 | 0,885 | 0,79 |
+| 256 | 0,78 | 0,99 | 0,873 | 0,72 |
+| 128 | 0,72 | 0,86 | 0,803 | 0,67 |
 
 ## Sunucu
 

@@ -5,7 +5,7 @@ Böylece görsel kodlayıcıyla bir kez indekslenen bir fotoğraf, sonradan sade
 sunucudaki küçük, yalnızca metin bilen LiteRT modeliyle bile.
 
 ```bash
-uv run workshop/03_search.py --photos          # 100 İstanbul fotoğrafı
+uv run workshop/03_search.py --photos          # 106 İstanbul fotoğrafı
 uv run workshop/07_photo_search.py ~/Pictures  # kendi fotoğrafların, hiçbir şey bilgisayarından çıkmaz
 ```
 
@@ -28,7 +28,7 @@ model.similarity(query_vector, photo_vectors)
 
 ## Fotoğraflar
 
-100 fotoğrafın hepsi Wikimedia Commons'tan; CC BY, CC BY-SA, Free Art License ya da kamu malı lisanslı.
+106 fotoğrafın hepsi Wikimedia Commons'tan; CC BY, CC BY-SA, Free Art License ya da kamu malı lisanslı.
 `scripts/fetch_images.py` her yerin Wikipedia maddesindeki ana görseli alır, lisansını kontrol eder ve emeği geçenleri
 `data/images/ATTRIBUTION.md` dosyasına yazar. Uygulama her fotoğrafın altında yazarını ve lisansını gösterir.
 

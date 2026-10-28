@@ -19,6 +19,7 @@ A hands-on workshop proposal for GDG DevFest İstanbul 2026 · Wyndham Grand İs
 [![EmbeddingGemma 2](https://img.shields.io/badge/model-EmbeddingGemma%202-f2c14e?style=flat-square&logo=huggingface&logoColor=white)](https://huggingface.co/google/embeddinggemma-2)
 [![Python 3.12 | 3.13](https://img.shields.io/badge/python-3.12%20%7C%203.13-5179c1?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=flat-square)](https://github.com/astral-sh/uv)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-5179c1?style=flat-square)](LICENSE)
 [![DevFest İstanbul 2026](https://img.shields.io/badge/DevFest%20%C4%B0stanbul-19%20Dec%202026-052458?style=flat-square)](https://devfest.istanbul/)
 
 <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="720">
@@ -26,7 +27,7 @@ A hands-on workshop proposal for GDG DevFest İstanbul 2026 · Wyndham Grand İs
 </div>
 
 Ask *"nerede balık ekmek yenir?"*, *"how do I get to the DevFest venue?"* or *"model kaç dil biliyor?"*. Answers come
-from three small collections, matched by meaning rather than keywords: **101 Istanbul places with 100 photos**,
+from three small collections, matched by meaning rather than keywords: **107 Istanbul places with 106 photos**,
 **DevFest İstanbul 2026** and **EmbeddingGemma 2** itself. Turkish questions find English answers, and English questions find Turkish ones.
 
 ## One model, three runtimes
@@ -84,8 +85,8 @@ On the speaker laptop (Core Ultra X7 358H, Arc B390). Details in [Benchmarks](do
 
 | | |
 |---|---|
-| recall@1 / recall@3 at 768d (66 mostly cross-lingual questions, 141 docs) | 0.86 / 0.98 |
-| recall@3 at 256d, a third of the storage | 0.98 |
+| recall@1 / recall@3 at 768d (72 mostly cross-lingual questions, 147 docs) | 0.83 / 0.97 |
+| recall@3 at 256d, a third of the storage | 0.99 |
 | query latency: PyTorch CPU / LiteRT CPU / LiteRT GPU / OpenVINO GPU | 23 / 40 / 17 / 6.6 ms |
 | photo indexing, 100 photos: CPU / Arc XPU | 257 s / 16 s |
 | serving image / cold start / RAM | ~575 MB / 1.1 s / 200 MB |
@@ -103,10 +104,11 @@ scripts/    build docs, generate notebooks, fetch photos, draw the pixel skyline
 bench/      measurements and reproductions
 ```
 
-Build the docs with `uv run --group docs scripts/build_docs.py --with-demo --serve`.
+Build and preview the docs with `uv run --group docs scripts/build_docs.py --with-demo --serve`, then open <http://127.0.0.1:8001> (the app keeps port 8000).
 
 ## Credits
 
+- Code and docs: [Apache 2.0](LICENSE).
 - Place texts were written for this workshop and checked against Wikipedia; DevFest facts come from
   [devfest.istanbul](https://devfest.istanbul/). Please report anything that looks wrong.
 - Photos: Wikimedia Commons, see [data/images/ATTRIBUTION.md](data/images/ATTRIBUTION.md).

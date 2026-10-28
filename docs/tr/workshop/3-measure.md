@@ -1,6 +1,6 @@
 # 3. Tahmin etme, ölç
 
-"Güzel görünüyor" bir metrik değil. `data/eval_queries.jsonl` içinde 66 soru var, her birinin yanında ilk sırada
+"Güzel görünüyor" bir metrik değil. `data/eval_queries.jsonl` içinde 72 soru var, her birinin yanında ilk sırada
 gelmesi gereken belgenin kimliği yazıyor. Çoğu **diller arası**: İngilizce belge için Türkçe soru ya da tersi.
 
 ```bash
@@ -9,13 +9,13 @@ uv run workshop/04_matryoshka_eval.py --query-backend litert   # torch indeksi, 
 ```
 
 ```text
-index: torch:cpu   queries: torch:cpu   n=66
+index: torch:cpu   queries: torch:cpu   n=72
 
   dim  recall@1  recall@3    MRR  bytes/vec   1M docs
-  768      0.86      0.98  0.920       3072    2.86GB
-  512      0.83      0.98  0.900       2048    1.91GB
-  256      0.79      0.98  0.877       1024    0.95GB
-  128      0.76      0.86  0.822        512    0.48GB
+  768      0.83      0.97  0.902       3072    2.86GB
+  512      0.81      0.99  0.885       2048    1.91GB
+  256      0.78      0.99  0.873       1024    0.95GB
+  128      0.72      0.86  0.803        512    0.48GB
 ```
 
 - **recall@1**: doğru cevap ne sıklıkla birinci. **recall@3**: ilk üçte.

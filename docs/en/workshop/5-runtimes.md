@@ -41,7 +41,7 @@ The same `.litertlm` file runs on Android, iOS, macOS, Linux, Windows and the we
 ## Why "cos vs first" matters
 
 `0.988` means the LiteRT vector points almost the same way as the PyTorch one. The eval proves it is enough:
-with a PyTorch-built index and LiteRT queries, recall@1 stays at 0.85. That is what lets the server run
+with a PyTorch-built index and LiteRT queries, recall@1 stays at 0.83, the same as PyTorch. That is what lets the server run
 without PyTorch.
 
 !!! note "Intel NPU"
