@@ -18,11 +18,12 @@ Windows'ta `NEREDE_BACKEND` değişkenini [Kurulum](../setup.md#windows) sayfas�
 
 | Uç | Örnek |
 |---|---|
-| `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6` |
+| `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6`; birden çok koleksiyon için `collection`'ı tekrarla |
 | `GET /api/photos` | `/api/photos?q=kubbeli cami&k=12` |
 | `GET /api/health` | backend, koleksiyon boyutları, fotoğraf sayısı |
 
-Bağlantılar paylaşılabilir: `/?q=DevFest ne zaman&tab=devfest`.
+Filtre düğmeleri birleştirilebilir: **Hepsi** her şeyi açar, diğer düğmeler o koleksiyonu dahil eder ya da çıkarır,
+**Fotoğraflar** da eşleşen fotoğrafları bir şerit olarak ekler. Bağlantılar paylaşılabilir: `/?q=kaç kişi geldi&only=devfest,devfest2025`.
 
 ## Konteyner kur
 

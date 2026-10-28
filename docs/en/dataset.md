@@ -5,7 +5,7 @@ All data lives in `data/` as JSON Lines: one record per line, easy to read, diff
 | File | Records | What |
 |---|---|---|
 | `istanbul.jsonl` | 107 | places, food, transport and tips (55 Turkish, 52 English) |
-| `devfest.jsonl` | 16 | DevFest İstanbul 2026 and GDG İstanbul (8 TR, 8 EN) |
+| `devfest.jsonl` | 16 | DevFest İstanbul 2026 and GDG İstanbul (8 TR, 8 EN); the 4 entries about 2025 set `"collection": "devfest2025"` |
 | `embeddinggemma.jsonl` | 24 | notes about the model (12 TR, 12 EN) |
 | `images.jsonl` + `images/` | 106 | one photo for almost every place, with author and license |
 | `eval_queries.jsonl` | 72 | questions with the id of the right answer |

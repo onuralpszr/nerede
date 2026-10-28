@@ -6,7 +6,7 @@ That is all a semantic search index is.
 ```bash
 uv run workshop/02_build_index.py --no-images     # 147 docs, ~15 s on a laptop CPU
 uv run workshop/03_search.py                       # ask in Turkish or English
-uv run workshop/03_search.py --collection devfest
+uv run workshop/03_search.py --collection devfest devfest2025
 uv run workshop/03_search.py --photos              # text -> photo (needs the photo index)
 ```
 

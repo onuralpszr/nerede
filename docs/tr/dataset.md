@@ -5,7 +5,7 @@ Tüm veri `data/` altında JSON Lines biçiminde: her satırda bir kayıt; okuma
 | Dosya | Kayıt | İçerik |
 |---|---|---|
 | `istanbul.jsonl` | 107 | yerler, yemekler, ulaşım ve ipuçları (55 Türkçe, 52 İngilizce) |
-| `devfest.jsonl` | 16 | DevFest İstanbul 2026 ve GDG İstanbul (8 TR, 8 EN) |
+| `devfest.jsonl` | 16 | DevFest İstanbul 2026 ve GDG İstanbul (8 TR, 8 EN); 2025 ile ilgili 4 kayıt `"collection": "devfest2025"` kullanıyor |
 | `embeddinggemma.jsonl` | 24 | model hakkında notlar (12 TR, 12 EN) |
 | `images.jsonl` + `images/` | 106 | neredeyse her yer için bir fotoğraf, yazarı ve lisansıyla |
 | `eval_queries.jsonl` | 72 | doğru cevabın kimliğiyle birlikte sorular |

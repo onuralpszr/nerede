@@ -19,7 +19,8 @@ bir sonrakini çalıştırman yeter.
 | Koleksiyon | Boyut | Diller | Kaynak |
 |---|---|---|---|
 | `places` | 107 İstanbul yeri, yemek ve ipucu | 55 TR, 52 EN | atölye için yazıldı, Wikipedia'dan doğrulandı |
-| `devfest` | DevFest İstanbul 2026 hakkında 16 bilgi | 8 TR, 8 EN | devfest.istanbul |
+| `devfest` | DevFest İstanbul 2026 ve GDG İstanbul hakkında 12 bilgi | 6 TR, 6 EN | devfest.istanbul |
+| `devfest2025` | geçen yılki DevFest hakkında 4 bilgi | 2 TR, 2 EN | devfest.istanbul arşivi, Webrazzi |
 | `gemma` | EmbeddingGemma 2 hakkında 24 not | 12 TR, 12 EN | model kartı ve Google blog yazıları |
 | fotoğraflar | 106, neredeyse her yere bir tane | yok | Wikimedia Commons, özgür lisanslar |
 | değerlendirme | 72 etiketli soru | karışık | çoğu diller arası |

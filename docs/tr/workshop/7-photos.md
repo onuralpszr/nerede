@@ -34,6 +34,6 @@ model.similarity(query_vector, photo_vectors)
 
 ## Dene
 
-- [ ] Fotoğraflar sekmesinde `"sokak yemeği"` ara. Hangi yemekler geliyor?
+- [ ] Yalnızca **Fotoğraflar** filtresini açık bırakıp `"sokak yemeği"` ara. Hangi yemekler geliyor?
 - [ ] İngilizce bir ifadeyle ara: `"a stone tower by the sea"`.
 - [ ] Modaliteleri karıştır: `model.encode({"text": "Bir gün <|image|>", "image": "foto.jpg"})` bir gönderiyi fotoğrafıyla birlikte tek vektöre gömer.

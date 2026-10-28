@@ -18,11 +18,12 @@ Open <http://127.0.0.1:8000>. The page has two modes:
 
 | Endpoint | Example |
 |---|---|
-| `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6` |
+| `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6`, repeat `collection` to search several |
 | `GET /api/photos` | `/api/photos?q=domes and minarets&k=12` |
 | `GET /api/health` | backend, collection sizes, photo count |
 
-Links are shareable: `/?q=DevFest ne zaman&tab=devfest`.
+The filter buttons combine: **All** turns everything on, any other button includes or excludes that collection, and
+**Photos** adds a strip of matching photos. Links are shareable: `/?q=kaç kişi geldi&only=devfest,devfest2025`.
 
 ## Build a container
 

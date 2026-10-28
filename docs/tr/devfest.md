@@ -28,7 +28,7 @@ oturumu vardı. 2024 ve 2025'in tam programları [arşivde](https://devfest.ista
 
 !!! info
     GDG İstanbul bağımsız bir topluluk grubudur; etkinlikleri ve görüşleri Google'a ait değildir.
-    Bu bilgilerin hepsi demonun **DevFest** sekmesinde de aranabilir.
+    Bu bilgilerin hepsi demoda **DevFest 2026** ve **DevFest 2025** filtreleriyle de aranabilir.
 
 ## Görünüm hakkında
 

@@ -28,7 +28,7 @@ Galata Tower and Maiden's Tower. Sessions included Jason Mayes on web AI agents 
 
 !!! info
     GDG İstanbul is an independent community group. Its activities and opinions are not those of Google.
-    All of this information is also searchable in the demo's **DevFest** tab.
+    All of this information is also searchable in the demo with the **DevFest 2026** and **DevFest 2025** filters.
 
 ## About the look
 

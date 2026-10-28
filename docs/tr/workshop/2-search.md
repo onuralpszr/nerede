@@ -6,7 +6,7 @@ Anlamsal arama indeksi bundan ibaret.
 ```bash
 uv run workshop/02_build_index.py --no-images     # 147 belge, dizüstü CPU'da ~15 sn
 uv run workshop/03_search.py                       # Türkçe ya da İngilizce sor
-uv run workshop/03_search.py --collection devfest
+uv run workshop/03_search.py --collection devfest devfest2025
 uv run workshop/03_search.py --photos              # metinden fotoğrafa (fotoğraf indeksi gerekir)
 ```
 

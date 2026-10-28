@@ -34,6 +34,6 @@ writes the credits to `data/images/ATTRIBUTION.md`. The app shows the author and
 
 ## Try it
 
-- [ ] Search `"street food"` in the Photos tab. Which dishes come up?
+- [ ] Turn on only the **Photos** filter and search `"street food"`. Which dishes come up?
 - [ ] Search with a Turkish phrase: `"deniz kenarında taş kule"`.
 - [ ] Mix modalities: `model.encode({"text": "A day out <|image|>", "image": "photo.jpg"})` embeds a post with its photo as one vector.

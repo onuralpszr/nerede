@@ -74,4 +74,4 @@ MacBook Pro M5 GPU 9.5 ms, iPhone 18 Pro GPU 11.6 ms, Raspberry Pi 5 CPU 161 ms.
 - [Fine-tuning guide](https://ai.google.dev/gemma/docs/embeddinggemma/fine-tuning-embeddinggemma-with-sentence-transformers) · [Unsloth](https://unsloth.ai/docs/models/embeddinggemma-2)
 
 !!! tip
-    The demo app has an **EmbeddingGemma** tab: everything on this page is also searchable there, in Turkish and English.
+    The demo app has an **EmbeddingGemma** filter: everything on this page is also searchable there, in Turkish and English.
