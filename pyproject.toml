@@ -1,0 +1,65 @@
+[project]
+name = "nerede"
+version = "0.1.0"
+description = "GDG Istanbul DevFest 2026 workshop: multilingual semantic search with EmbeddingGemma 2"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "sentence-transformers[image]>=6.1",
+    "transformers>=5.18",
+    "torch>=2.14",
+    "torchvision",
+    "numpy>=2.0",
+    "pillow>=11.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "litert-lm-api>=0.18",
+]
+
+[project.optional-dependencies]
+# Bonus: Intel CPU / GPU / NPU through OpenVINO
+intel = ["openvino>=2026.0"]
+
+# Pick the torch build with a dependency group. `cpu` is the default (smallest, works everywhere).
+#   uv run ...                                  -> CPU torch
+#   uv run --no-default-groups ...              -> PyPI torch (CUDA on Linux, MPS on macOS)
+#   uv run --no-default-groups --group xpu ...  -> Intel Arc / Core Ultra GPU
+#   AMD: install the ROCm wheel from pytorch.org into the venv, it shows up as "cuda".
+[dependency-groups]
+cpu = ["torch>=2.14", "torchvision"]
+docs = [
+    "zensical>=0.0.73",
+]
+xpu = ["torch>=2.14", "torchvision", "triton-xpu; sys_platform == 'linux'"]
+
+[tool.uv]
+default-groups = ["cpu"]
+conflicts = [[{ group = "cpu" }, { group = "xpu" }]]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", group = "cpu", marker = "sys_platform != 'darwin'" },
+    { index = "pytorch-xpu", group = "xpu" },
+]
+torchvision = [
+    { index = "pytorch-cpu", group = "cpu", marker = "sys_platform != 'darwin'" },
+    { index = "pytorch-xpu", group = "xpu" },
+]
+triton-xpu = [{ index = "pytorch-xpu", group = "xpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-xpu"
+url = "https://download.pytorch.org/whl/xpu"
+explicit = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["nerede"]

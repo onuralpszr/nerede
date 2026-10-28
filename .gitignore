@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+.venv-*/
+.env
+.env.*
+
+# Downloaded or converted models (fetched by workshop/00_setup_check.py)
+models/
+*.litertlm
+*.onnx
+*.onnx_data
+
+# Build output
+site/
+.zensical.*.build.toml
+.cache/
+
+# Node and browser test profiles
+node_modules/
+bench/.chrome/
+bench/photos/
+bench/vectors_*.json
+bench/*.log
+
+# Local notes and scratch work
+research/
+*.log
+PROPOSAL.md
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
