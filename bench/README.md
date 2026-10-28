@@ -26,9 +26,9 @@ Retrieval quality (66 TR/EN queries, mostly cross-lingual, over 141 documents, i
 | dim | recall@1 torch | recall@3 torch | MRR torch | recall@1 LiteRT queries |
 |---|---|---|---|---|
 | 768 | 0.86 | 0.98 | 0.920 | 0.85 |
-| 512 | 0.83 | 1.00 | 0.902 | 0.80 |
-| 256 | 0.79 | 0.98 | 0.877 | 0.73 |
-| 128 | 0.74 | 0.86 | 0.814 | 0.70 |
+| 512 | 0.83 | 0.98 | 0.900 | 0.80 |
+| 256 | 0.79 | 0.98 | 0.877 | 0.71 |
+| 128 | 0.76 | 0.86 | 0.822 | 0.70 |
 
 ## Scripts
 

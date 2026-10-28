@@ -168,7 +168,7 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
         "router": "## 5. Zero-shot router\nClassify questions without any training data, using the symmetric `task: classification` prompt.",
         "litert": "## 6. LiteRT\nThe same model as a 165 MB int4 file. Its vectors are close enough to PyTorch's that it can query the PyTorch-built index.",
         "app": "## 7. The web app\nOn Colab this starts the FastAPI app (LiteRT backend) and prints a link. Try the **Browser** mode too: it runs the model inside your browser.",
-        "end": "## Next\n- Docs (English and Turkish): see `docs/` or the published site.\n- Host the demo for free: `uv run scripts/build_docs.py --with-demo` and publish `site/` on GitHub Pages.\n- Add your own places to `data/istanbul.jsonl` and run the notebook again.",
+        "end": "## Next\n- Docs (English and Turkish): see `docs/` or the published site.\n- Host the demo for free: `uv run --group docs scripts/build_docs.py --with-demo` and publish `site/` on GitHub Pages.\n- Add your own places to `data/istanbul.jsonl` and run the notebook again.",
     },
     "tr": {
         "title": """# Nerede? EmbeddingGemma 2 atölyesi
@@ -184,7 +184,7 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
         "router": "## 5. Sıfır-örnek yönlendirici\nSimetrik `task: classification` önekiyle, hiç eğitim verisi olmadan soruları sınıflandır.",
         "litert": "## 6. LiteRT\nAynı model, 165 MB'lık int4 dosya olarak. Vektörleri PyTorch'unkilere o kadar yakın ki PyTorch ile kurulan indeksi sorgulayabiliyor.",
         "app": "## 7. Web uygulaması\nColab'da FastAPI uygulamasını (LiteRT ile) başlatır ve bir bağlantı yazar. **Tarayıcı** modunu da dene: model doğrudan tarayıcında çalışır.",
-        "end": "## Sırada ne var\n- Dokümanlar (Türkçe ve İngilizce): `docs/` klasörü ya da yayındaki site.\n- Demoyu ücretsiz yayınla: `uv run scripts/build_docs.py --with-demo` ve `site/` klasörünü GitHub Pages'te yayınla.\n- `data/istanbul.jsonl` dosyasına kendi yerlerini ekle ve defteri yeniden çalıştır.",
+        "end": "## Sırada ne var\n- Dokümanlar (Türkçe ve İngilizce): `docs/` klasörü ya da yayındaki site.\n- Demoyu ücretsiz yayınla: `uv run --group docs scripts/build_docs.py --with-demo` ve `site/` klasörünü GitHub Pages'te yayınla.\n- `data/istanbul.jsonl` dosyasına kendi yerlerini ekle ve defteri yeniden çalıştır.",
     },
 }
 

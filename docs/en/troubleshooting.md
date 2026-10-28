@@ -25,7 +25,7 @@
 
 ??? question "`split_with_sizes` error when indexing photos on XPU"
     torch 2.15 XPU returns wrong values for `max(dim=...)` on int64 tensors, which breaks the vision pooler on
-    some photos. `nerede.TorchEmbedder` works around it on XPU. If you call sentence-transformers directly,
+    some photos. `nerede.embedders.TorchEmbedder` works around it on XPU. If you call sentence-transformers directly,
     build photos on CPU or copy `_fix_xpu_vision_pooling` from `nerede/embedders.py`.
 
 ??? question "`curl localhost:8080` resets with rootless podman"

@@ -39,7 +39,7 @@ Yaklaşık 575 MB, yaklaşık bir saniyede açılıyor ve 200 MB civarı RAM kul
     API yoksa sayfa tarayıcı moduna geçer; yani demo düz dosyalardan oluşabilir:
 
     ```bash
-    uv run scripts/build_docs.py --with-demo
+    uv run --group docs scripts/build_docs.py --with-demo
     ```
 
     `site/` klasöründe bu doküman (İngilizce ve Türkçe) ve `demo/` altında demo olur.

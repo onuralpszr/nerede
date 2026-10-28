@@ -59,10 +59,12 @@ and **EmbeddingGemma 2** itself. Turkish questions find English answers, and Eng
 
 ## Quick start
 
+You only need [uv](https://docs.astral.sh/uv/getting-started/installation/), it installs Python for you. Details in [Setup](setup.md).
+
 ```bash
 git clone https://github.com/onuralpszr/nerede && cd nerede
-uv run workshop/00_setup_check.py      # downloads the models, run it at home
-uv run workshop/02_build_index.py      # embeds ~140 docs and the photos
+uv run workshop/00_setup_check.py              # downloads the models, run it at home
+uv run workshop/02_build_index.py --no-images  # embeds 141 docs, keeps the shipped photo vectors
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 
@@ -95,6 +97,6 @@ That only works because all three produce **the same vectors**, which we measure
 | 0:20 | [2. Index and search](workshop/2-search.md) | Build a vector index of places, DevFest facts and model docs |
 | 0:35 | [3. Measure](workshop/3-measure.md) | Evaluate recall at 768, 512, 256 and 128 dimensions |
 | 0:50 | [4. Router](workshop/4-router.md) | Classify questions with no training data |
-| 0:60 | [5. Runtimes](workshop/5-runtimes.md) | Compare PyTorch, LiteRT and OpenVINO on CPU and GPU |
-| 0:70 | [6. Ship it](workshop/6-ship.md) | Run the API and UI, build a container, publish for free |
-| 0:90 | [7. Photos](workshop/7-photos.md) | Search photos with words |
+| 1:00 | [5. Runtimes](workshop/5-runtimes.md) | Compare PyTorch, LiteRT and OpenVINO on CPU and GPU |
+| 1:10 | [6. Ship it](workshop/6-ship.md) | Run the API and UI, build a container, publish for free |
+| 1:30 | [7. Photos](workshop/7-photos.md) | Search photos with words |

@@ -1,9 +1,9 @@
 """Build the docs in English and Turkish (and optionally the static demo) into site/.
 
-    uv run scripts/build_docs.py                     # site/en, site/tr, site/index.html
-    uv run scripts/build_docs.py --with-demo         # + site/demo (browser-only search, no server)
-    uv run scripts/build_docs.py --base /nerede/     # for GitHub project pages: user.github.io/nerede/
-    uv run scripts/build_docs.py --serve             # build, then serve site/ on http://127.0.0.1:8000
+    uv run --group docs scripts/build_docs.py                     # site/en, site/tr, site/index.html
+    uv run --group docs scripts/build_docs.py --with-demo         # + site/demo (browser-only search, no server)
+    uv run --group docs scripts/build_docs.py --base /nerede/     # for GitHub project pages: user.github.io/nerede/
+    uv run --group docs scripts/build_docs.py --serve             # build, then serve site/ on http://127.0.0.1:8000
 """
 
 import argparse

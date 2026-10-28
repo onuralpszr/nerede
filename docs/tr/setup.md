@@ -33,7 +33,7 @@ GPU'n varsa ve kullanmak istersen:
 | Donanım | Komut | Cihaz |
 |---|---|---|
 | Herhangi bir dizüstü (varsayılan) | `uv run ...` | `cpu` |
-| NVIDIA GPU | `uv run --no-default-groups ...` | `cuda` |
+| NVIDIA GPU (Linux) | `uv run --no-default-groups ...` | `cuda` |
 | Intel Arc / Core Ultra GPU | `uv run --no-default-groups --group xpu ...` | `xpu` |
 | AMD GPU | ROCm sürümünü [pytorch.org](https://pytorch.org/get-started/locally/) üzerinden kur | `cuda` |
 | Apple Silicon | `uv run ...` | `mps` |

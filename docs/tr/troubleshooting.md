@@ -26,7 +26,7 @@
 
 ??? question "XPU'da fotoğraf indekslerken `split_with_sizes` hatası"
     torch 2.15 XPU, int64 tensörlerde `max(dim=...)` için yanlış değer döndürüyor ve bu, bazı fotoğraflarda görsel
-    havuzlamayı bozuyor. `nerede.TorchEmbedder` XPU'da bunu düzeltiyor. sentence-transformers'ı doğrudan kullanıyorsan
+    havuzlamayı bozuyor. `nerede.embedders.TorchEmbedder` XPU'da bunu düzeltiyor. sentence-transformers'ı doğrudan kullanıyorsan
     fotoğrafları CPU'da işle ya da `nerede/embedders.py` içindeki `_fix_xpu_vision_pooling` fonksiyonunu kopyala.
 
 ??? question "Rootless podman ile `curl localhost:8080` bağlantıyı kesiyor"

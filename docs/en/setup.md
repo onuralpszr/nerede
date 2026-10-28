@@ -34,7 +34,7 @@ If you have a GPU and want to use it:
 | Hardware | Command | Device |
 |---|---|---|
 | Any laptop (default) | `uv run ...` | `cpu` |
-| NVIDIA GPU | `uv run --no-default-groups ...` | `cuda` |
+| NVIDIA GPU (Linux) | `uv run --no-default-groups ...` | `cuda` |
 | Intel Arc / Core Ultra GPU | `uv run --no-default-groups --group xpu ...` | `xpu` |
 | AMD GPU | install the ROCm wheel from [pytorch.org](https://pytorch.org/get-started/locally/) | `cuda` |
 | Apple Silicon | `uv run ...` | `mps` |

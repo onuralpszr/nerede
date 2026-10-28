@@ -14,9 +14,9 @@ index: torch:cpu   queries: torch:cpu   n=66
 
   dim  recall@1  recall@3    MRR  bytes/vec   1M docs
   768      0.86      0.98  0.920       3072    2.86GB
-  512      0.83      1.00  0.902       2048    1.91GB
+  512      0.83      0.98  0.900       2048    1.91GB
   256      0.79      0.98  0.877       1024    0.95GB
-  128      0.74      0.86  0.814        512    0.48GB
+  128      0.76      0.86  0.822        512    0.48GB
 ```
 
 - **recall@1**: how often the right answer is first. **recall@3**: in the top three.
@@ -41,8 +41,8 @@ Queries and documents must use the **same** size. At 256d we keep 98% recall@3 w
 The script prints every question it got wrong at 768d. They are the most interesting part:
 
 ```text
-miss: "Mimar Sinan'ın en ünlü camisi" -> semsi-pasa (expected suleymaniye)
-miss: "when is the conference this year" -> devfest-2025-stats (expected devfest-ne-zaman)
+miss at 768d: "Mimar Sinan'ın en ünlü camisi" -> semsi-pasa (expected suleymaniye)
+miss at 768d: 'when is the conference this year' -> devfest-2025-stats (expected devfest-ne-zaman)
 ```
 
 Şemsi Paşa is also a Sinan mosque, and "this year" is hard to match when two documents both talk about a year.

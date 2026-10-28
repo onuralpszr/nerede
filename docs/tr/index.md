@@ -59,10 +59,12 @@ ve **EmbeddingGemma 2**'nin kendisi. Türkçe soru İngilizce cevabı, İngilizc
 
 ## Hızlı başlangıç
 
+Sadece [uv](https://docs.astral.sh/uv/getting-started/installation/) gerekiyor, Python'u o kuruyor. Ayrıntılar [Kurulum](setup.md) sayfasında.
+
 ```bash
 git clone https://github.com/onuralpszr/nerede && cd nerede
-uv run workshop/00_setup_check.py      # modelleri indirir, evde çalıştır
-uv run workshop/02_build_index.py      # ~140 belgeyi ve fotoğrafları gömer
+uv run workshop/00_setup_check.py              # modelleri indirir, evde çalıştır
+uv run workshop/02_build_index.py --no-images  # 141 belgeyi gömer, hazır fotoğraf vektörlerini korur
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 
@@ -95,6 +97,6 @@ Bu ancak üçü de **aynı vektörleri** ürettiği için mümkün; ölçtük: r
 | 0:20 | [2. İndeks ve arama](workshop/2-search.md) | Yerler, DevFest bilgileri ve model notlarından vektör indeksi kur |
 | 0:35 | [3. Ölçüm](workshop/3-measure.md) | 768, 512, 256 ve 128 boyutta isabeti ölç |
 | 0:50 | [4. Yönlendirici](workshop/4-router.md) | Eğitim verisi olmadan soruları sınıflandır |
-| 0:60 | [5. Runtime'lar](workshop/5-runtimes.md) | PyTorch, LiteRT ve OpenVINO'yu CPU ve GPU'da karşılaştır |
-| 0:70 | [6. Yayına al](workshop/6-ship.md) | API ve arayüzü çalıştır, konteyner kur, ücretsiz yayınla |
-| 0:90 | [7. Fotoğraflar](workshop/7-photos.md) | Fotoğrafları kelimelerle ara |
+| 1:00 | [5. Runtime'lar](workshop/5-runtimes.md) | PyTorch, LiteRT ve OpenVINO'yu CPU ve GPU'da karşılaştır |
+| 1:10 | [6. Yayına al](workshop/6-ship.md) | API ve arayüzü çalıştır, konteyner kur, ücretsiz yayınla |
+| 1:30 | [7. Fotoğraflar](workshop/7-photos.md) | Fotoğrafları kelimelerle ara |

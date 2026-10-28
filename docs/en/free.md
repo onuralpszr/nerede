@@ -37,7 +37,7 @@ The web app has a **browser-only mode**: when it cannot reach the API, it downlo
 browser and searches `index.json` locally. So the whole demo is just static files:
 
 ```bash
-uv run scripts/build_docs.py --with-demo      # site/ = docs (EN + TR) + demo/
+uv run --group docs scripts/build_docs.py --with-demo      # site/ = docs (EN + TR) + demo/
 ```
 
 Publish `site/` on **GitHub Pages** (the workflow in `.github/workflows/docs.yml` does it on every push)
