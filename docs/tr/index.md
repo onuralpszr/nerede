@@ -63,8 +63,10 @@ Sadece [uv](https://docs.astral.sh/uv/getting-started/installation/) gerekiyor, 
 
 ```bash
 git clone https://github.com/onuralpszr/nerede && cd nerede
-uv run workshop/00_setup_check.py              # modelleri indirir, evde çalıştır
-uv run workshop/02_build_index.py --no-images  # 147 belgeyi gömer, hazır fotoğraf vektörlerini korur
+# modelleri indirir, evde çalıştır
+uv run workshop/00_setup_check.py
+# 147 belgeyi gömer, hazır fotoğraf vektörlerini korur
+uv run workshop/02_build_index.py --no-images
 NEREDE_BACKEND=litert uv run uvicorn app.main:app
 ```
 

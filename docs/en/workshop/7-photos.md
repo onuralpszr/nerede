@@ -5,17 +5,25 @@ So a photo indexed once with the vision encoder can be found later with nothing 
 small text-only LiteRT model on the server.
 
 ```bash
-uv run workshop/03_search.py --photos          # the 106 Istanbul photos
-uv run workshop/07_photo_search.py ~/Pictures  # your own photos, nothing leaves your laptop
+# the 106 Istanbul photos
+uv run workshop/03_search.py --photos
+# your own photos, nothing leaves your laptop
+uv run workshop/07_photo_search.py ~/Pictures
 ```
 
 ## How it works
 
 ```python
-model = SentenceTransformer("google/embeddinggemma-2", config_kwargs={"audio_config": None})  # text + vision, 440M
+# text + vision, 440M
+model = SentenceTransformer(
+    "google/embeddinggemma-2", config_kwargs={"audio_config": None}
+)
 
-photo_vectors = model.encode([{"image": "data/images/galata-kulesi.jpg"}, ...])   # no prompt for media
-query_vector = model.encode("a stone tower by the sea", prompt_name="SearchQuery")
+# no prompt for media
+photo_vectors = model.encode([{"image": "data/images/galata-kulesi.jpg"}, ...])
+query_vector = model.encode(
+    "a stone tower by the sea", prompt_name="SearchQuery"
+)
 model.similarity(query_vector, photo_vectors)
 ```
 

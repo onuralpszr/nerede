@@ -4,10 +4,13 @@ Embed every document **once**, keep the vectors, and at query time embed only th
 That is all a semantic search index is.
 
 ```bash
-uv run workshop/02_build_index.py --no-images     # 147 docs, ~15 s on a laptop CPU
-uv run workshop/03_search.py                       # ask in Turkish or English
+# 147 docs, ~15 s on a laptop CPU
+uv run workshop/02_build_index.py --no-images
+# ask in Turkish or English
+uv run workshop/03_search.py
 uv run workshop/03_search.py --collection devfest devfest2025
-uv run workshop/03_search.py --photos              # text -> photo (needs the photo index)
+# text -> photo (needs the photo index)
+uv run workshop/03_search.py --photos
 ```
 
 !!! info "Photos take longer"
@@ -19,10 +22,12 @@ uv run workshop/03_search.py --photos              # text -> photo (needs the ph
 
 ```python
 texts = [document(d["text"], title=d["title"]) for d in docs]
-vectors = embedder.embed(texts)                    # (147, 768), unit length
+# (147, 768), unit length
+vectors = embedder.embed(texts)
 
 q = embedder.embed([query("balık ekmek nerede yenir")])[0]
-scores = vectors @ q                               # cosine similarity, since everything is normalized
+# cosine similarity, since everything is normalized
+scores = vectors @ q
 best = scores.argsort()[::-1][:5]
 ```
 

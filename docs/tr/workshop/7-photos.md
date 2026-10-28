@@ -5,17 +5,25 @@ Böylece görsel kodlayıcıyla bir kez indekslenen bir fotoğraf, sonradan sade
 sunucudaki küçük, yalnızca metin bilen LiteRT modeliyle bile.
 
 ```bash
-uv run workshop/03_search.py --photos          # 106 İstanbul fotoğrafı
-uv run workshop/07_photo_search.py ~/Pictures  # kendi fotoğrafların, hiçbir şey bilgisayarından çıkmaz
+# 106 İstanbul fotoğrafı
+uv run workshop/03_search.py --photos
+# kendi fotoğrafların, hiçbir şey bilgisayarından çıkmaz
+uv run workshop/07_photo_search.py ~/Pictures
 ```
 
 ## Nasıl çalışıyor
 
 ```python
-model = SentenceTransformer("google/embeddinggemma-2", config_kwargs={"audio_config": None})  # metin + görsel, 440M
+# metin + görsel, 440M
+model = SentenceTransformer(
+    "google/embeddinggemma-2", config_kwargs={"audio_config": None}
+)
 
-photo_vectors = model.encode([{"image": "data/images/galata-kulesi.jpg"}, ...])   # medyaya önek yok
-query_vector = model.encode("deniz kenarında taş kule", prompt_name="SearchQuery")
+# medyaya önek yok
+photo_vectors = model.encode([{"image": "data/images/galata-kulesi.jpg"}, ...])
+query_vector = model.encode(
+    "deniz kenarında taş kule", prompt_name="SearchQuery"
+)
 model.similarity(query_vector, photo_vectors)
 ```
 

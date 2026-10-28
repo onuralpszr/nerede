@@ -6,7 +6,8 @@ or the other way round.
 
 ```bash
 uv run workshop/04_matryoshka_eval.py
-uv run workshop/04_matryoshka_eval.py --query-backend litert   # torch index, LiteRT queries
+# torch index, LiteRT queries
+uv run workshop/04_matryoshka_eval.py --query-backend litert
 ```
 
 ```text
@@ -30,7 +31,8 @@ embedding. Keep the start, then re-normalize:
 ```python
 def truncate(v, dim):
     v = v[..., :dim]
-    return v / np.linalg.norm(v, axis=-1, keepdims=True)   # skipping this quietly hurts ranking
+    # skipping this quietly hurts ranking
+    return v / np.linalg.norm(v, axis=-1, keepdims=True)
 ```
 
 Queries and documents must use the **same** size. At 256d we keep 98% recall@3 with a third of the storage.

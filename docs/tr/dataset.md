@@ -12,11 +12,22 @@ Tüm veri `data/` altında JSON Lines biçiminde: her satırda bir kayıt; okuma
 
 ## Bir yer kaydı
 
+Dosyada bu tek bir satır. Burada okunsun diye açıldı ve metin kısaltıldı.
+
 ```json
-{"id": "galata-kulesi", "title": "Galata Kulesi", "district": "Beyoğlu", "category": "view", "lang": "tr",
- "text": "1348'de Cenevizliler tarafından inşa edilen taş kule, Haliç ve tarihi yarımadanın en iyi panoramik manzaralarından birini sunar. Gün batımında seyir terasında sıra oluşabilir.",
- "source": "https://tr.wikipedia.org/wiki/Galata_Kulesi", "wiki_en": "Galata Tower", "wiki_tr": "Galata Kulesi",
- "lat": 41.02555556, "lon": 28.97416667}
+{
+  "id": "galata-kulesi",
+  "title": "Galata Kulesi",
+  "district": "Beyoğlu",
+  "category": "view",
+  "lang": "tr",
+  "text": "1348'de Cenevizliler tarafından inşa edilen taş kule, Haliç ve …",
+  "source": "https://tr.wikipedia.org/wiki/Galata_Kulesi",
+  "wiki_en": "Galata Tower",
+  "wiki_tr": "Galata Kulesi",
+  "lat": 41.02555556,
+  "lon": 28.97416667
+}
 ```
 
 Her belge bilerek **tek** dilde yazıldı. Türkçe bir soru İngilizce belgeleri, İngilizce bir soru Türkçe belgeleri bulmak

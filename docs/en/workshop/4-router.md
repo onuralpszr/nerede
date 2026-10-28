@@ -19,12 +19,14 @@ Classification is a **symmetric** task, so the same prefix goes on both sides:
 
 ```python
 CATEGORIES = {
-    "food": "food, eating, restaurants, street food, breakfast / yemek, kahvaltı, tatlı",
-    "devfest": "DevFest conference, tickets, venue, speakers / konferans, bilet, etkinlik",
+    "food": "food, restaurants, street food / yemek, kahvaltı, tatlı",
+    "devfest": "DevFest conference, tickets, venue / konferans, bilet",
     ...
 }
-labels = embedder.embed([classification(d) for d in CATEGORIES.values()])   # once
-scores = labels @ embedder.embed([classification(question)])[0]             # per question
+# once
+labels = embedder.embed([classification(d) for d in CATEGORIES.values()])
+# per question
+scores = labels @ embedder.embed([classification(question)])[0]
 ```
 
 The web app uses this to show an **intent** badge next to every answer. MediaPipe's Decision Task
@@ -40,8 +42,10 @@ small boosts on top of the cosine score:
 - **keywords**: up to +0.03 from BM25 over title and text. Turkish-aware: "tatli" finds "tatlı" and "tatlısı".
 
 ```python
-hits = index.search(vector, k=5, text=q, intent=router.route(q))   # hybrid
-hits = index.search(vector, k=5)                                   # plain vector search
+# hybrid
+hits = index.search(vector, k=5, text=q, intent=router.route(q))
+# plain vector search
+hits = index.search(vector, k=5)
 ```
 
 Longer queries keep the plain vector score, so the 72 sentence questions score exactly the same. Step 3 measures

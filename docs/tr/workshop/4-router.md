@@ -19,12 +19,14 @@ Sınıflandırma **simetrik** bir görev, bu yüzden iki tarafa da aynı önek k
 
 ```python
 CATEGORIES = {
-    "food": "food, eating, restaurants, street food, breakfast / yemek, kahvaltı, tatlı",
-    "devfest": "DevFest conference, tickets, venue, speakers / konferans, bilet, etkinlik",
+    "food": "food, restaurants, street food / yemek, kahvaltı, tatlı",
+    "devfest": "DevFest conference, tickets, venue / konferans, bilet",
     ...
 }
-labels = embedder.embed([classification(d) for d in CATEGORIES.values()])   # bir kez
-scores = labels @ embedder.embed([classification(question)])[0]             # her soru için
+# bir kez
+labels = embedder.embed([classification(d) for d in CATEGORIES.values()])
+# her soru için
+scores = labels @ embedder.embed([classification(question)])[0]
 ```
 
 Web uygulaması bunu her cevabın yanında bir **niyet** rozeti göstermek için kullanıyor. MediaPipe'ın Decision Task'ı
@@ -40,8 +42,10 @@ alıyor ve simit baklavayı geçebiliyor. Burada yönlendirici yardımcı oluyor
 - **anahtar kelime**: başlık ve metin üzerinde BM25'ten en çok +0,03. Türkçeye uygun: "tatli", "tatlı" ve "tatlısı"nı bulur.
 
 ```python
-hits = index.search(vector, k=5, text=q, intent=router.route(q))   # hibrit
-hits = index.search(vector, k=5)                                   # sadece vektör
+# hibrit
+hits = index.search(vector, k=5, text=q, intent=router.route(q))
+# sadece vektör
+hits = index.search(vector, k=5)
 ```
 
 Daha uzun sorgular düz vektör puanıyla kalıyor, bu yüzden 72 cümlelik sorunun sonucu hiç değişmiyor. 3. adım tek

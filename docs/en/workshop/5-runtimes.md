@@ -5,7 +5,8 @@ with one and query it with another.
 
 ```bash
 uv run workshop/06_runtimes.py torch litert litert:gpu
-uv run --extra intel workshop/06_runtimes.py torch litert litert:gpu openvino:GPU
+uv run --extra intel workshop/06_runtimes.py \
+  torch litert litert:gpu openvino:GPU
 ```
 
 ```text
@@ -31,9 +32,14 @@ uv run --extra intel workshop/06_runtimes.py torch litert litert:gpu openvino:GP
 import litert_lm
 from huggingface_hub import hf_hub_download
 
-path = hf_hub_download("litert-community/embeddinggemma-2-text-270m-litert-lm", "embeddinggemma-2-text-270m.litertlm")
+path = hf_hub_download(
+    "litert-community/embeddinggemma-2-text-270m-litert-lm",
+    "embeddinggemma-2-text-270m.litertlm",
+)
 with litert_lm.EmbeddingEngine(path, backend=litert_lm.Backend.GPU()) as engine:
-    vector = engine.compute_embedding("task: search result | query: balık ekmek").embedding
+    vector = engine.compute_embedding(
+        "task: search result | query: balık ekmek"
+    ).embedding
 ```
 
 The same `.litertlm` file runs on Android, iOS, macOS, Linux, Windows and the web.

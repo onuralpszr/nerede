@@ -16,7 +16,8 @@ from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer(
     "google/embeddinggemma-2",
-    config_kwargs={"vision_config": None, "audio_config": None},  # text only: 270M instead of 740M
+    # text only: 270M instead of 740M
+    config_kwargs={"vision_config": None, "audio_config": None},
 )
 ```
 
@@ -35,9 +36,12 @@ Search is **asymmetric**: queries and documents get different prefixes.
 sentence-transformers knows the common ones by name:
 
 ```python
-doc_emb = model.encode(documents, prompt_name="Document")       # "title: none | text: "
-query_emb = model.encode(queries, prompt_name="SearchQuery")    # "task: search result | query: "
-scores = model.similarity(query_emb, doc_emb)                   # cosine similarity
+# "title: none | text: "
+doc_emb = model.encode(documents, prompt_name="Document")
+# "task: search result | query: "
+query_emb = model.encode(queries, prompt_name="SearchQuery")
+# cosine similarity
+scores = model.similarity(query_emb, doc_emb)
 ```
 
 In our own code we build the strings ourselves (`nerede/prompts.py`), so that we can use real titles and

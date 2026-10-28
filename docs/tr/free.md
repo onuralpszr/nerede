@@ -36,7 +36,8 @@ Web uygulamasının **yalnızca tarayıcı modu** var: API'ye ulaşamazsa modeli
 üzerinde yerel olarak arar. Yani tüm demo sadece statik dosyalardan ibaret:
 
 ```bash
-uv run --group docs scripts/docs/build_docs.py --with-demo   # site/ = dokümanlar (EN + TR) + demo/
+# site/ = dokümanlar (EN + TR) + demo/
+uv run --group docs scripts/docs/build_docs.py --with-demo
 ```
 
 `site/` klasörünü **GitHub Pages**'te yayınla (`.github/workflows/docs.yml` her push'ta bunu yapar),

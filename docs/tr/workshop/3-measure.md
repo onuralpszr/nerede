@@ -5,7 +5,8 @@ gelmesi gereken belgenin kimliği yazıyor. Çoğu **diller arası**: İngilizce
 
 ```bash
 uv run workshop/04_matryoshka_eval.py
-uv run workshop/04_matryoshka_eval.py --query-backend litert   # torch indeksi, LiteRT sorguları
+# torch indeksi, LiteRT sorguları
+uv run workshop/04_matryoshka_eval.py --query-backend litert
 ```
 
 ```text
@@ -29,7 +30,8 @@ Baştan kes, sonra yeniden normalize et:
 ```python
 def truncate(v, dim):
     v = v[..., :dim]
-    return v / np.linalg.norm(v, axis=-1, keepdims=True)   # bunu atlamak sıralamayı sessizce bozar
+    # bunu atlamak sıralamayı sessizce bozar
+    return v / np.linalg.norm(v, axis=-1, keepdims=True)
 ```
 
 Sorgu ve belgeler **aynı** boyutta olmalı. 256 boyutta depolamanın üçte biriyle recall@3'ü %98'de tutuyoruz.

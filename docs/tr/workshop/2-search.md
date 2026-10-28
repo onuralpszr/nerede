@@ -4,10 +4,13 @@ Her belgeyi **bir kez** göm, vektörleri sakla, sorgu anında sadece soruyu gö
 Anlamsal arama indeksi bundan ibaret.
 
 ```bash
-uv run workshop/02_build_index.py --no-images     # 147 belge, dizüstü CPU'da ~15 sn
-uv run workshop/03_search.py                       # Türkçe ya da İngilizce sor
+# 147 belge, dizüstü CPU'da ~15 sn
+uv run workshop/02_build_index.py --no-images
+# Türkçe ya da İngilizce sor
+uv run workshop/03_search.py
 uv run workshop/03_search.py --collection devfest devfest2025
-uv run workshop/03_search.py --photos              # metinden fotoğrafa (fotoğraf indeksi gerekir)
+# metinden fotoğrafa (fotoğraf indeksi gerekir)
+uv run workshop/03_search.py --photos
 ```
 
 !!! info "Fotoğraflar daha uzun sürer"
@@ -19,10 +22,12 @@ uv run workshop/03_search.py --photos              # metinden fotoğrafa (fotoğ
 
 ```python
 texts = [document(d["text"], title=d["title"]) for d in docs]
-vectors = embedder.embed(texts)                    # (147, 768), birim uzunlukta
+# (147, 768), birim uzunlukta
+vectors = embedder.embed(texts)
 
 q = embedder.embed([query("balık ekmek nerede yenir")])[0]
-scores = vectors @ q                               # her şey normalize olduğu için kosinüs benzerliği
+# her şey normalize olduğu için kosinüs benzerliği
+scores = vectors @ q
 best = scores.argsort()[::-1][:5]
 ```
 

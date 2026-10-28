@@ -43,7 +43,8 @@ Cihazı `nerede/embedders.py` içindeki `pick_torch_device()` kendisi seçer.
 GPU sürümünü CPU sürümünün yanında tutmak için ona ayrı bir ortam ver:
 
 ```bash
-UV_PROJECT_ENVIRONMENT=.venv-xpu uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
+UV_PROJECT_ENVIRONMENT=.venv-xpu uv run --no-default-groups --group xpu \
+  workshop/06_runtimes.py torch:cpu torch:xpu
 ```
 
 ## Windows { #windows }
@@ -57,9 +58,11 @@ Bütün `uv run ...` komutları PowerShell ve cmd'de aynı çalışıyor. Sadece
     uv run uvicorn app.main:app
 
     $env:UV_PROJECT_ENVIRONMENT = ".venv-xpu"
-    uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
+    uv run --no-default-groups --group xpu `
+      workshop/06_runtimes.py torch:cpu torch:xpu
 
-    Remove-Item Env:NEREDE_BACKEND, Env:UV_PROJECT_ENVIRONMENT   # varsayılanlara dön
+    # varsayılanlara dön
+    Remove-Item Env:NEREDE_BACKEND, Env:UV_PROJECT_ENVIRONMENT
     ```
 
 === "cmd"
@@ -95,8 +98,8 @@ Böyle ayarlanan bir değişken terminali kapatana kadar geçerli. Windows için
 ## Proje yapısı
 
 ```text
-data/       yerler (TR + EN), DevFest bilgileri, EmbeddingGemma notları, fotoğraflar, değerlendirme soruları
-nerede/     kütüphane: önekler, embedder'lar (torch, LiteRT, OpenVINO), indeks, yönlendirici
+data/       yerler (TR + EN), DevFest, EmbeddingGemma, fotoğraflar, testler
+nerede/     kütüphane: önekler, embedder'lar, indeks, yönlendirici
 workshop/   numaralı adımlar, her biri tek fikir
 notebooks/  aynı adımlar Colab defteri olarak (İngilizce ve Türkçe)
 app/        FastAPI sunucusu ve web arayüzü (sunucuda ya da tarayıcıda çıkarım)

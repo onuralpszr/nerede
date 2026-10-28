@@ -12,11 +12,22 @@ All data lives in `data/` as JSON Lines: one record per line, easy to read, diff
 
 ## A place
 
+In the file this is one line. Here it is spread out for reading, with the text cut short.
+
 ```json
-{"id": "galata-kulesi", "title": "Galata Kulesi", "district": "Beyoğlu", "category": "view", "lang": "tr",
- "text": "1348'de Cenevizliler tarafından inşa edilen taş kule, Haliç ve tarihi yarımadanın en iyi panoramik manzaralarından birini sunar. Gün batımında seyir terasında sıra oluşabilir.",
- "source": "https://tr.wikipedia.org/wiki/Galata_Kulesi", "wiki_en": "Galata Tower", "wiki_tr": "Galata Kulesi",
- "lat": 41.02555556, "lon": 28.97416667}
+{
+  "id": "galata-kulesi",
+  "title": "Galata Kulesi",
+  "district": "Beyoğlu",
+  "category": "view",
+  "lang": "tr",
+  "text": "1348'de Cenevizliler tarafından inşa edilen taş kule, Haliç ve …",
+  "source": "https://tr.wikipedia.org/wiki/Galata_Kulesi",
+  "wiki_en": "Galata Tower",
+  "wiki_tr": "Galata Kulesi",
+  "lat": 41.02555556,
+  "lon": 28.97416667
+}
 ```
 
 Each document is written in **one** language on purpose. A Turkish question has to find English documents and the

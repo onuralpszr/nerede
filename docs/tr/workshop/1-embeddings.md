@@ -16,7 +16,8 @@ from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer(
     "google/embeddinggemma-2",
-    config_kwargs={"vision_config": None, "audio_config": None},  # sadece metin: 740M yerine 270M
+    # sadece metin: 740M yerine 270M
+    config_kwargs={"vision_config": None, "audio_config": None},
 )
 ```
 
@@ -35,9 +36,12 @@ Arama **asimetrik**: sorgu ve belge farklı önek alır.
 sentence-transformers yaygın olanları ismen tanır:
 
 ```python
-doc_emb = model.encode(documents, prompt_name="Document")       # "title: none | text: "
-query_emb = model.encode(queries, prompt_name="SearchQuery")    # "task: search result | query: "
-scores = model.similarity(query_emb, doc_emb)                   # kosinüs benzerliği
+# "title: none | text: "
+doc_emb = model.encode(documents, prompt_name="Document")
+# "task: search result | query: "
+query_emb = model.encode(queries, prompt_name="SearchQuery")
+# kosinüs benzerliği
+scores = model.similarity(query_emb, doc_emb)
 ```
 
 Kendi kodumuzda bu metinleri kendimiz kuruyoruz (`nerede/prompts.py`); böylece gerçek başlıkları kullanabiliyor

@@ -44,7 +44,8 @@ The device is picked automatically by `pick_torch_device()` in `nerede/embedders
 To keep a GPU build next to the CPU one, give it its own environment:
 
 ```bash
-UV_PROJECT_ENVIRONMENT=.venv-xpu uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
+UV_PROJECT_ENVIRONMENT=.venv-xpu uv run --no-default-groups --group xpu \
+  workshop/06_runtimes.py torch:cpu torch:xpu
 ```
 
 ## Windows { #windows }
@@ -58,9 +59,11 @@ Every `uv run ...` command works the same in PowerShell and cmd. Only environmen
     uv run uvicorn app.main:app
 
     $env:UV_PROJECT_ENVIRONMENT = ".venv-xpu"
-    uv run --no-default-groups --group xpu workshop/06_runtimes.py torch:cpu torch:xpu
+    uv run --no-default-groups --group xpu `
+      workshop/06_runtimes.py torch:cpu torch:xpu
 
-    Remove-Item Env:NEREDE_BACKEND, Env:UV_PROJECT_ENVIRONMENT   # back to the defaults
+    # back to the defaults
+    Remove-Item Env:NEREDE_BACKEND, Env:UV_PROJECT_ENVIRONMENT
     ```
 
 === "cmd"
@@ -96,8 +99,8 @@ All three are Apache 2.0 and need no Hugging Face login.
 ## Project layout
 
 ```text
-data/       places (TR + EN), DevFest facts, EmbeddingGemma notes, photos, eval queries
-nerede/     the library: prompts, embedders (torch, LiteRT, OpenVINO), index, router
+data/       places (TR + EN), DevFest, EmbeddingGemma notes, photos, eval sets
+nerede/     the library: prompts, embedders, index, router, keywords
 workshop/   numbered steps, one idea each
 notebooks/  the same steps as Colab notebooks (English and Turkish)
 app/        FastAPI server and the web UI (server or browser inference)
