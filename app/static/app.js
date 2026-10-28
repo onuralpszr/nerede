@@ -486,6 +486,13 @@ $("form").addEventListener("submit", () => {
   busy(true);
   if (matchMedia("(pointer: coarse)").matches) $("q").blur(); // drop the on-screen keyboard so results show
 });
+// a small ring on every letter: two identical animations take turns, so each key restarts it
+$("q").addEventListener("input", () => {
+  const bar = $("form");
+  const next = bar.classList.contains("key-a") ? "key-b" : "key-a";
+  bar.classList.remove("key-a", "key-b");
+  bar.classList.add(next);
+});
 $("chips").addEventListener("click", (e) => e.target.closest("button") && busy(true));
 $("tabs").addEventListener("click", (e) => e.target.closest("button") && $("q").value.trim() && busy(true));
 if (new URLSearchParams(location.search).get("q")) busy(true);

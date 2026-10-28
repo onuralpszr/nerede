@@ -290,6 +290,7 @@ main {
   z-index: 2;
 }
 .bar {
+  position: relative;
   display: flex;
   gap: 8px;
   padding: 6px;
@@ -868,6 +869,86 @@ footer p {
 }
 
 /* ---------- motion: light, on brand, and only when wanted ---------- */
+/* "I am here": while the search box is empty and not focused, a soft ring ripples out of it and the button
+   hops, every few seconds. Typing, focusing or reduced motion stops it. While typing, every letter sends a
+   small quick ring instead (app.js swaps .key-a / .key-b to restart it). */
+@media (prefers-reduced-motion: no-preference) {
+  .bar::before,
+  .bar::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .bar.key-a::before {
+    animation: key-a 0.45s ease-out;
+  }
+  .bar.key-b::before {
+    animation: key-b 0.45s ease-out;
+  }
+  .bar.key-a button {
+    animation: tap-a 0.3s var(--ease);
+  }
+  .bar.key-b button {
+    animation: tap-b 0.3s var(--ease);
+  }
+  @keyframes key-a {
+    from {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--sky) 75%, transparent);
+    }
+    to {
+      box-shadow: 0 0 0 12px color-mix(in srgb, var(--sky) 0%, transparent);
+    }
+  }
+  @keyframes key-b {
+    from {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--sky) 75%, transparent);
+    }
+    to {
+      box-shadow: 0 0 0 12px color-mix(in srgb, var(--sky) 0%, transparent);
+    }
+  }
+  @keyframes tap-a {
+    40% {
+      transform: scale(1.06);
+    }
+  }
+  @keyframes tap-b {
+    40% {
+      transform: scale(1.06);
+    }
+  }
+  .bar:not(:focus-within):has(input:placeholder-shown)::after {
+    animation: here 3.6s ease-out 1.2s infinite;
+  }
+  .bar:not(:focus-within):has(input:placeholder-shown) button {
+    animation: hop 3.6s ease-in-out 1.2s infinite;
+  }
+  @keyframes here {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--sky) 80%, transparent);
+    }
+    55%,
+    100% {
+      box-shadow: 0 0 0 18px color-mix(in srgb, var(--sky) 0%, transparent);
+    }
+  }
+  @keyframes hop {
+    0%,
+    14%,
+    100% {
+      transform: none;
+    }
+    5% {
+      transform: translateY(-4px);
+    }
+    10% {
+      transform: translateY(1px);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .mini button,
   .tabs button,
