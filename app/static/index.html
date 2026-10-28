@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nerede?</title>
 <meta name="description" content="Search Istanbul, DevFest İstanbul 2026 and EmbeddingGemma 2 by meaning, in Turkish or English. Runs on a server or fully in your browser.">
 <meta name="theme-color" content="#f1f1ee" media="(prefers-color-scheme: light)">
@@ -13,7 +13,7 @@
 <body>
 
 <div class="topbar">
-  <span class="tag">#dfist26 · EmbeddingGemma 2</span>
+  <span class="tag"><span>#dfist26</span><span class="sep" aria-hidden="true">·</span><span>EmbeddingGemma 2</span></span>
   <div class="toggles">
     <span class="mini" role="group" aria-label="Language / Dil">
       <button type="button" data-lang="tr">TR</button>
@@ -48,7 +48,7 @@
 <main>
   <div class="searchbox">
     <form class="bar" id="form" role="search">
-      <input id="q" autocomplete="off" enterkeyhint="search" data-i18n-placeholder="placeholder" aria-label="Search">
+      <input id="q" type="search" autocomplete="off" enterkeyhint="search" data-i18n-placeholder="placeholder" aria-label="Search">
       <button id="go" data-i18n="go"></button>
     </form>
   </div>

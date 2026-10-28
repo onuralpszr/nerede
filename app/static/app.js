@@ -131,7 +131,7 @@ function setMode(mode) {
   if (mode === "browser") loadBrowser().catch((e) => status(`${t().error}: ${esc(e.message)}`));
 }
 
-const status = (html) => { $("status").innerHTML = html; };
+const status = (html) => { $("status").innerHTML = html; if (html.startsWith(t().error)) busy(false); };
 
 // ---------- browser mode ----------------------------------------------------------------------
 async function loadBrowser() {
@@ -250,7 +250,7 @@ async function searchServer(q, k) {
 // ---------- rendering -------------------------------------------------------------------------
 const credit = (p) => `${t().photoBy}: ${p.author} · ${p.license}`;
 
-function card(r) {
+function card(r, i = 0) {
   const img = r.photo ? `<img src="images/${esc(r.photo.file)}" alt="${esc(r.title)}" loading="lazy" title="${esc(credit(r.photo))}">` : "";
   const where = r.district && r.district !== "Everywhere" ? `<span>${esc(r.district)}</span>` : "";
   const link = (href, label) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`;
@@ -260,7 +260,7 @@ function card(r) {
     ? link(`https://www.openstreetmap.org/?mlat=${r.lat}&mlon=${r.lon}#map=16/${r.lat}/${r.lon}`, "OpenStreetMap") + link(gmaps(`${r.lat},${r.lon}`), "Google Maps")
     : r.collection === "places" ? link(gmaps(`${r.title.replace(/\s*\(.*?\)/g, "")} İstanbul`), t().findNearby) : "";
   const src = r.source && /^https?:/.test(r.source) ? `<a href="${esc(r.source)}" target="_blank" rel="noopener">${t().source}</a>` : "";
-  return `<li class="card">${img}<div class="body">
+  return `<li class="card" style="--i:${i}">${img}<div class="body">
     <h2>${esc(r.title)}</h2>
     <div class="meta"><span class="lang">${esc(r.lang).toUpperCase()}</span>${where}<span class="c-${esc(r.collection)}">${esc(r.category)}</span></div>
     <p>${esc(r.text)}</p>
@@ -268,14 +268,15 @@ function card(r) {
   </div></li>`;
 }
 
-function photo(r) {
-  return `<figure class="photo"><a href="${esc(r.source)}" target="_blank" rel="noopener">
+function photo(r, i = 0) {
+  return `<figure class="photo" style="--i:${i}"><a href="${esc(r.source)}" target="_blank" rel="noopener">
     <img src="images/${esc(r.file)}" alt="${esc(r.title)}" loading="lazy"></a>
     <figcaption><b>${esc(r.title)}</b><span class="score">${r.score.toFixed(3)}</span></figcaption>
     <small>${esc(credit(r))}</small></figure>`;
 }
 
 function render(res) {
+  busy(false);
   const intent = res.intent ? ` · ${t().intent} <span class="badge">${esc(res.intent)}</span>` : "";
   status(t().took(res) + intent);
   if (!res.results.length) { $("out").innerHTML = `<p class="empty">${t().none}</p>`; return; }
@@ -283,6 +284,29 @@ function render(res) {
     ? `<div class="photos">${res.results.map(photo).join("")}</div>`
     : `<ol class="results">${res.results.map(card).join("")}</ol>`;
 }
+
+// ---------- UI only: loading state ----------------------------------------------------------------
+// A search starts on submit, on a chip, or on a tab click with a query, and ends in render() or an error
+// status. In between, dim the old results (or show placeholder cards) and pulse the status dots.
+const SKELETON = `<ol class="results skeleton" aria-hidden="true">${'<li class="card"><i></i><b></b><b></b><b></b></li>'.repeat(3)}</ol>`;
+
+function busy(on) {
+  const out = $("out");
+  out.classList.toggle("busy", on);
+  out.setAttribute("aria-busy", on);
+  $("status").classList.toggle("busy", on);
+  if (on && !out.querySelector(".card:not(.skeleton .card), .photo")) out.innerHTML = SKELETON;
+  if (!on) out.querySelector(".skeleton")?.remove();
+}
+
+$("form").addEventListener("submit", () => {
+  if (!$("q").value.trim()) return;
+  busy(true);
+  if (matchMedia("(pointer: coarse)").matches) $("q").blur(); // drop the on-screen keyboard so results show
+});
+$("chips").addEventListener("click", (e) => e.target.closest("button") && busy(true));
+$("tabs").addEventListener("click", (e) => e.target.closest("button") && $("q").value.trim() && busy(true));
+if (new URLSearchParams(location.search).get("q")) busy(true);
 
 async function run() {
   const q = $("q").value.trim();
