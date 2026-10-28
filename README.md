@@ -1,11 +1,13 @@
 # Nerede?
 
 **Build and ship a Turkish-English semantic search with EmbeddingGemma 2.**
-A hands-on workshop for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent.
+A hands-on workshop proposal for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent.
 
 **Docs:** [English](docs/en/index.md) · [Türkçe](docs/tr/index.md) · **Colab:** [English](notebooks/nerede_en.ipynb) · [Türkçe](notebooks/nerede_tr.ipynb)
 
-<img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="640">
+<p align="center">
+  <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="640">
+</p>
 
 Ask *"nerede balık ekmek yenir?"*, *"how do I get to the DevFest venue?"* or *"model kaç dil biliyor?"*. Answers come
 from three small collections, matched by meaning rather than keywords: **101 Istanbul places with 100 photos**,
