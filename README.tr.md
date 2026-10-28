@@ -1,6 +1,9 @@
 <div align="center">
 
-# Nerede?
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/overrides/assets/images/logo-dark.png">
+  <img src="docs/overrides/assets/images/logo-light.png" alt="Nerede? İstanbul 2026" width="440">
+</picture>
 
 [![English](https://img.shields.io/badge/lang-English-8a9bb8?style=flat-square)](README.md)
 [![Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-052458?style=flat-square)](README.tr.md)
