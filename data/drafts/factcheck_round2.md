@@ -74,7 +74,8 @@ devfest-bilet is still correct. Early Bird sales end on 2 November 2026, so here
 
 ## Follow-up: kucuk-ayasofya conversion date
 
-Sources disagree on the year the church became a mosque: Turkish Wikipedia says 1497, English Wikipedia says
-1506-1513. Archnet (https://archnet.org/sites/2002) says Hüseyin Ağa converted it during the rule of Bayezid II (1481-1512).
-The text now says "II. Bayezid döneminde (1481-1512)" and cites Archnet. The title "Babüssaade ağası" matches English
-Wikipedia and the Boğaziçi thesis "Küçük Ayasofya and the foundation of Babüssaade Ağası Hüseyin Ağa"; Turkish Wikipedia says Darüssaade ağası.
+Sources disagree on the year: Turkish Wikipedia says 1497, English Wikipedia 1506-1513, other guides 1502-1505 or 1504.
+All of them fall in the reign of Bayezid II (1481-1512). The TDV İslâm Ansiklopedisi
+(https://islamansiklopedisi.org.tr/kucuk-ayasofya-kulliyesi) says it was converted "XVI. yüzyılın başlarında II. Bayezid
+döneminin Kapıağası Hüseyin Ağa tarafından" and cites a waqf deed dated 913 (1507). The text now says "16. yüzyılın başında,
+II. Bayezid döneminde Kapıağası Hüseyin Ağa" and cites TDV.
