@@ -1,7 +1,7 @@
 """Draw the pixel-art Istanbul skyline used by the app and the docs.
 
-Galata Tower and houses on the left, the Bosphorus Bridge, a vapur, Kız Kulesi
-and a mosque on the right, seagulls and clouds. Every pixel is a 1x1 SVG rect,
+Ayasofya, houses and Galata Tower on the left, the Bosphorus Bridge, a vapur, a fishing
+boat, Kız Kulesi, a mosque and Çamlıca Tower on the right, seagulls and clouds. Every pixel is a 1x1 SVG rect,
 merged into horizontal runs so the file stays small.
 
 Moving parts live in their own <g> layers and are animated with CSS inside the SVG,
@@ -18,8 +18,9 @@ import math
 import random
 from pathlib import Path
 
-W, H = 320, 110
+W, H = 480, 110
 WATER = 92  # first row of water
+OX = 80  # the scene is drawn in its own x coordinates, from -OX to W - OX; the first 320px version spans 0..320
 ROOT = Path(__file__).resolve().parents[2]
 
 C = {
@@ -60,6 +61,14 @@ C = {
     "cap": "#5d6b85",
     "gull": "#5d6b85",
     "gull2": "#f2c14e",
+    "ochre": "#d9926a",
+    "ochre2": "#b9714c",
+    "lead": "#8f9bb0",
+    "lead2": "#717d93",
+    "glass": "#7fb3e6",
+    "boat": "#e9e4d8",
+    "boat2": "#c94a35",
+    "net": "#5d6b85",
 }
 
 # Each layer is its own pixel grid; to_svg() stacks them back to front:
@@ -77,6 +86,7 @@ def use(name):
 
 
 def px(x, y, c):
+    x += OX
     if 0 <= x < W and 0 <= y < H and c:
         grid[(x, y)] = C[c]
         if c == "win":
@@ -133,17 +143,42 @@ def gull(x, y, shape=GULL_UP):
 
 
 # --- sky -------------------------------------------------------------------------------------------
-CLOUDS = [(40, 10, 22), (150, 6, 16), (196, 22, 12), (240, 10, 24)]
+CLOUDS = [(40, 10, 22), (150, 6, 16), (196, 22, 12), (240, 10, 24), (-62, 16, 18), (334, 8, 20), (380, 24, 12)]
 for i, c in enumerate(CLOUDS):
     use(f"cloud{i}")
     cloud(*c)
-GULLS = [(70, 26), (180, 36), (110, 50)]
+GULLS = [(70, 26), (180, 36), (110, 50), (-36, 34), (352, 44)]
 for i, (gx, gy) in enumerate(GULLS):
     use(f"gull{i}a")
     gull(gx, gy)
     use(f"gull{i}b")
     gull(gx, gy, GULL_DOWN)
 use("base")
+
+# --- far left: the historic peninsula with Ayasofya --------------------------------------------------
+rect(-OX, 84, OX, WATER - 84, "stone2")
+rect(-OX, 90, OX, 2, "stone3")
+rect(-68, 64, 44, 22, "ochre")  # main block with buttresses
+for bx in (-68, -58, -36, -27):
+    rect(bx, 60, 3, 26, "ochre2")
+for wx in range(-64, -28, 4):
+    rect(wx, 70, 2, 3, "win")
+    rect(wx, 78, 2, 3, "win")
+for k in range(9):  # the great dome, flattened
+    w = int(2 * math.sqrt(max(0, 13**2 - (k * 1.5) ** 2)))
+    rect(-46 - w // 2, 63 - k, w, 1, "lead" if k % 3 else "lead2")
+rect(-47, 52, 2, 3, "cap")
+for cx in (-60, -32):  # half domes
+    for k in range(4):
+        w = int(2 * math.sqrt(max(0, 6**2 - (k * 1.6) ** 2)))
+        rect(cx - w // 2, 63 - k, w, 1, "lead2")
+for mx, top, c in ((-76, 36, "minaret"), (-71, 40, "ochre2"), (-22, 40, "minaret"), (-17, 36, "minaret")):
+    rect(mx, top, 3, 86 - top, c)
+    rect(mx - 1, top + 12, 5, 1, "cap")
+    for k in range(5):
+        rect(mx + (1 if k > 1 else 0), top - 1 - k, 3 - (2 if k > 1 else 0), 1, "cap")
+for tx in (-6, -12):
+    tree(tx, 86, 3)
 
 # --- left shore: houses, trees, Galata Tower --------------------------------------------------------
 rect(0, 84, 118, WATER - 84, "stone2")
@@ -199,7 +234,7 @@ for side, sx, ex in ((-1, 110, L), (1, R + 4, 260)):  # side spans
 
 # --- right shore: hill, mosque with minarets, houses -------------------------------------------------
 random.seed(1453)
-for xx in range(246, W):
+for xx in range(246, W - OX):
     top = int(80 - 22 * math.sin(min(1.0, (xx - 246) / 60) * math.pi / 2))
     for yy in range(top, WATER):
         px(
@@ -214,6 +249,21 @@ for tx in (252, 262, 314):
 house(266, 86, 9, 10, "wall2")
 house(290, 86, 8, 12, "wall1")
 house(301, 88, 9, 10, "wall3")
+# Çamlıca Tower on the far right of the hill
+rect(362, 22, 4, 40, "minaret")
+rect(365, 22, 1, 40, "stone2")
+rect(359, 24, 10, 10, "glass")  # observation floors
+rect(359, 24, 10, 1, "minaret")
+rect(359, 29, 10, 1, "minaret")
+rect(359, 33, 10, 1, "minaret")
+rect(360, 18, 8, 4, "minaret")
+rect(363, 6, 2, 12, "cap")
+px(363, 5, "flag")
+house(334, 88, 8, 11, "wall4")
+house(374, 88, 9, 13, "wall5")
+house(386, 90, 8, 9, "wall2")
+for tx in (346, 396):
+    tree(tx, 80, 3)
 # mosque body and dome
 rect(268, 54, 34, 12, "minaret")
 for wx in range(271, 300, 4):
@@ -234,17 +284,17 @@ for mx in (264, 305):
         rect(mx + (1 if k > 1 else 0), 25 - k, 3 - (2 if k > 1 else 0), 1, "cap")
 
 # --- water ------------------------------------------------------------------------------------------
-rect(0, WATER, W, H - WATER, "water")
+rect(-OX, WATER, W, H - WATER, "water")
 use("ripples")
 random.seed(7)
-for _ in range(90):
-    xx, yy = random.randrange(W), random.randrange(WATER + 1, H)
+for _ in range(135):
+    xx, yy = random.randrange(W) - OX, random.randrange(WATER + 1, H)
     rect(xx, yy, random.choice([3, 4, 6]), 1, random.choice(["water2", "water2", "water3"]))
 # sparkles: hidden in the still picture; they blink in three groups (fewer repaints than one by one)
 SPARKLES = []
-while len(SPARKLES) < 15:
+while len(SPARKLES) < 22:  # absolute x, drawn straight into the SVG
     xx, yy = random.randrange(4, W - 4), random.randrange(WATER + 2, H - 1)
-    if not 208 <= xx <= 240:  # keep clear of the islet
+    if not 208 + OX <= xx <= 240 + OX:  # keep clear of the islet
         SPARKLES.append((xx, yy, random.choice([2, 3])))
 
 # Kız Kulesi on its islet
@@ -263,6 +313,20 @@ roof(229, 89, 7, "red")
 px(224, 64, "flag")
 px(225, 64, "flag")
 px(224, 65, "flag")
+
+# Fishing boat (balıkçı teknesi), bobbing off the old city
+use("boat")
+BX, BY = -58, 100
+rect(BX, BY, 16, 2, "boat")
+rect(BX + 1, BY + 2, 14, 1, "boat2")
+rect(BX + 2, BY + 3, 12, 1, "boat2")
+rect(BX + 9, BY - 4, 5, 4, "boat")
+rect(BX + 10, BY - 3, 2, 2, "win")
+rect(BX + 4, BY - 3, 1, 3, "deck")  # the fisherman
+px(BX + 4, BY - 4, "funnel")
+for k in range(6):  # the rod and its line
+    px(BX + 5 + k, BY - 4 - k // 2, "net")
+rect(BX + 11, BY - 1, 1, 6, "net")
 
 # Vapur (city ferry)
 use("ferry")
@@ -285,7 +349,7 @@ rect(FX + 44, FY + 5, 5, 1, "foam")
 
 # Ferry: enters at the left edge, leaves at the right, wraps around. The negative delay makes the
 # first frame the drawn position, so a still image (or reduced motion) shows the original picture.
-FERRY_FROM, FERRY_TO, FERRY_S = -(FX + 52), W - FX + 6, 100
+FERRY_FROM, FERRY_TO, FERRY_S = -(FX + OX + 52), W - (FX + OX) + 6, 130
 FERRY_DELAY = FERRY_S * (0 - FERRY_FROM) / (FERRY_TO - FERRY_FROM)
 
 STYLE = f"""
@@ -373,11 +437,14 @@ def to_svg() -> str:
             f'<g class="ga" style="animation-delay:-{1.7 * i:.1f}s">{runs(layers[f"gull{i}a"])}</g>'
             f'<g class="gb" style="animation-delay:-{1.7 * i:.1f}s">{runs(layers[f"gull{i}b"])}</g></g>'
         )
+    body.append(f'<g class="bob" style="animation-duration:3.1s;animation-delay:-1.2s">{runs(layers["boat"])}</g>')
     body.append(f'<g class="fe"><g class="bob">{runs(layers["ferry"])}</g></g>')
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" shape-rendering="crispEdges" '
-        f'role="img" aria-label="Pixel-art Istanbul skyline: Galata Tower, Bosphorus Bridge, a ferry, '
-        f"Maiden's Tower and a mosque\"><style>{' '.join(STYLE.split())}</style>" + "".join(body) + "</svg>\n"
+        f'role="img" aria-label="Pixel-art Istanbul skyline: Hagia Sophia, Galata Tower, Bosphorus Bridge, '
+        f"a ferry, a fishing boat, Maiden's Tower, a mosque and Çamlıca Tower\"><style>{' '.join(STYLE.split())}</style>"
+        + "".join(body)
+        + "</svg>\n"
     )
 
 

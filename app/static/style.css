@@ -255,10 +255,13 @@ button {
   margin: 4px 0 0;
   font-size: 0.95rem;
 }
+/* The scene is 480x110 and its middle 320 columns are the core picture. The height never goes below that core
+   at full width, so narrow screens crop the sides (object-fit) and wide screens show more of them, up to 1470px. */
 .skyline {
   display: block;
-  width: min(100%, 980px);
-  height: auto;
+  width: min(100%, 1470px);
+  height: min(100vw * 110 / 320, 337px);
+  object-fit: cover;
   margin: 0 auto;
   image-rendering: pixelated;
 }
