@@ -78,14 +78,15 @@ class TorchEmbedder:
     def embed(self, texts: list[str], batch_size: int = 32) -> np.ndarray:
         return _normalize(self.model.encode(texts, batch_size=batch_size, convert_to_numpy=True))
 
-    def embed_images(self, paths: list[str], batch_size: int = 8) -> np.ndarray:
-        """Needs modalities=("text", "image"). Media go in as dicts and get no task prompt."""
+    def embed_images(self, images: list, batch_size: int = 8) -> np.ndarray:
+        """Needs modalities=("text", "image"). Takes file paths or PIL images. Media go in as dicts and get no
+        task prompt."""
         return _normalize(
             self.model.encode(
-                [{"image": p} for p in paths],
+                [{"image": i} for i in images],
                 batch_size=batch_size,
                 convert_to_numpy=True,
-                show_progress_bar=len(paths) > 16,
+                show_progress_bar=len(images) > 16,
             )
         )
 

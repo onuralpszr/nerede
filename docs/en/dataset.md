@@ -5,9 +5,10 @@ All data lives in `data/` as JSON Lines: one record per line, easy to read, diff
 | File | Records | What |
 |---|---|---|
 | `istanbul.jsonl` | 107 | places, food, transport and tips (55 Turkish, 52 English) |
-| `devfest.jsonl` | 16 | DevFest İstanbul 2026 and GDG İstanbul (8 TR, 8 EN); the 4 entries about 2025 set `"collection": "devfest2025"` |
+| `devfest.jsonl` | 16 | DevFest İstanbul 2026 and GDG İstanbul (8 TR, 8 EN), and the 4 entries about 2025 set `"collection": "devfest2025"` |
 | `embeddinggemma.jsonl` | 24 | notes about the model (12 TR, 12 EN) |
 | `images.jsonl` + `images/` | 106 | one photo for almost every place, with author and license |
+| `query_images.jsonl` + `query_images/` | 27 | a second photo of some places, used as image-search queries ([details](workshop/7-photos.md#by-photo)) |
 | `eval_queries.jsonl` | 72 | questions with the id of the right answer |
 
 ## A place

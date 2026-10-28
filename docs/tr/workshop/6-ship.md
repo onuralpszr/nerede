@@ -18,8 +18,9 @@ Windows'ta `NEREDE_BACKEND` değişkenini [Kurulum](../setup.md#windows) sayfas�
 
 | Uç | Örnek |
 |---|---|
-| `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6`; birden çok koleksiyon için `collection`'ı tekrarla |
+| `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6`, birden çok koleksiyon için `collection`'ı tekrarla |
 | `GET /api/photos` | `/api/photos?q=kubbeli cami&k=12` |
+| `POST /api/search/image` | fotoğrafı gövde olarak gönder: `curl --data-binary @foto.jpg -H 'Content-Type: image/jpeg' …/api/search/image?q=kule`, `q` isteğe bağlı, sunucuda PyTorch gerekir |
 | `GET /api/health` | backend, koleksiyon boyutları, fotoğraf sayısı |
 
 Filtre düğmeleri birleştirilebilir: **Hepsi** her şeyi açar, diğer düğmeler o koleksiyonu dahil eder ya da çıkarır,

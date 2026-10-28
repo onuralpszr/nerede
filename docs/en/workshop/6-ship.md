@@ -20,6 +20,7 @@ Open <http://127.0.0.1:8000>. The page has two modes:
 |---|---|
 | `GET /api/search` | `/api/search?q=balık ekmek&collection=places&dim=256&k=6`, repeat `collection` to search several |
 | `GET /api/photos` | `/api/photos?q=domes and minarets&k=12` |
+| `POST /api/search/image` | send a photo as the body: `curl --data-binary @photo.jpg -H 'Content-Type: image/jpeg' …/api/search/image?q=kule`, `q` is optional, needs PyTorch on the server |
 | `GET /api/health` | backend, collection sizes, photo count |
 
 The filter buttons combine: **All** turns everything on, any other button includes or excludes that collection, and

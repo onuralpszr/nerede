@@ -105,6 +105,31 @@ search("how do I get to the DevFest venue?", collection="devfest")
 search("model kaç dil biliyor?", collection="gemma")
 search_photos("domes and minarets")"""
 
+PHOTO = """import numpy as np
+from nerede.embedders import TorchEmbedder
+from nerede.index import read_jsonl
+
+vision = embedder if BUILD_PHOTOS else TorchEmbedder(modalities=("text", "image"))   # text + vision, 440M
+
+def search_by_photo(path, k=3):
+    v = vision.embed_images([path])[0]          # a photo gets no prompt
+    data = base64.b64encode(open(path, "rb").read()).decode()
+    places = "".join(f"<li>{html.escape(d['title'])} <small>{s:.3f}</small></li>" for s, d in index.search_by_photo(v, k=k))
+    photos = "".join(f"<figure style='display:inline-block;margin:4px'>{thumb(img, 120)}<figcaption>{s:.3f}</figcaption></figure>"
+                     for s, img in index.search_images(v, k=k))
+    display(HTML(f"<img src='data:image/jpeg;base64,{data}' width='160'><ol>{places}</ol>{photos}"))
+
+search_by_photo("data/query_images/yerebatan.jpg")
+search_by_photo("data/query_images/kunefe.jpg")
+# Your own photo: upload it with the folder icon on the left, then search_by_photo("my_photo.jpg")
+
+# 27 photos of indexed places that the model never saw: is the right place first?
+queries = read_jsonl(DATA / "query_images.jsonl")
+V = vision.embed_images([str(DATA / "query_images" / q["file"]) for q in queries])
+for dim in (768, 256):
+    top1 = np.mean([index.search_by_photo(v, k=1, dim=dim)[0][1]["id"] == q["id"] for q, v in zip(queries, V, strict=True)])
+    print(f"{dim}d: right place first for {top1:.0%} of the photos")"""
+
 EVAL = """import json
 import numpy as np
 from nerede.index import ROOT, truncate
@@ -175,7 +200,8 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
         "hello": "## 1. Hello embeddings\nQueries and documents get different **task prompts**. Notice that English questions find Turkish sentences and the other way round.",
         "build": "## 2. Build the index\n147 documents in three collections, plus 106 Wikimedia Commons photos. Photos are embedded only on a GPU; otherwise their vectors come from the prebuilt index in the repo.",
         "search": "## 3. Search\nText search over all collections, and text → photo search. Hover a photo for its author and license.",
-        "eval": "## 4. Measure\n66 labelled questions, most of them cross-lingual. Matryoshka lets us keep only the first 512, 256 or 128 numbers of each vector. How much do we lose?",
+        "photo": "## 3b. Search by photo\nA photo can be the query too. It goes through the vision encoder with no prompt, then both the place photos (image → image) and the place texts (image → text) vote. The query photos are other photos of indexed places, so the model never saw them.",
+        "eval": "## 4. Measure\n72 labelled questions, most of them cross-lingual. Matryoshka keeps only the first 512, 256 or 128 numbers of each vector. How much quality does that cost?",
         "router": '## 5. Zero-shot router\nClassify questions without any training data, using the symmetric `task: classification` prompt. The same router makes one-word searches like "tatlı" work better (hybrid search).',
         "litert": "## 6. LiteRT\nThe same model as a 165 MB int4 file. Its vectors are close enough to PyTorch's that it can query the PyTorch-built index.",
         "app": "## 7. The web app\nOn Colab this starts the FastAPI app (LiteRT backend) and prints a link. Try the **Browser** mode too: it runs the model inside your browser.",
@@ -191,7 +217,8 @@ Runs on the free Colab tier. For faster photo indexing choose **Runtime → Chan
         "hello": "## 1. Merhaba embedding\nSorgular ve belgeler farklı **görev önekleri** alır. İngilizce soruların Türkçe cümleleri bulduğuna, tersinin de çalıştığına dikkat et.",
         "build": "## 2. İndeksi kur\nÜç koleksiyonda 147 belge ve Wikimedia Commons'tan 106 fotoğraf. Fotoğraflar yalnızca GPU varsa gömülür; yoksa vektörleri depodaki hazır indeksten gelir.",
         "search": "## 3. Arama\nTüm koleksiyonlarda metin arama ve metinden fotoğrafa arama. Yazarını ve lisansını görmek için fareyi fotoğrafın üzerine getir.",
-        "eval": "## 4. Ölçüm\nÇoğu diller arası 72 etiketli soru. Matryoshka sayesinde her vektörün sadece ilk 512, 256 ya da 128 sayısını tutabiliyoruz. Ne kadar kaybediyoruz?",
+        "photo": "## 3b. Fotoğrafla ara\nSorgu bir fotoğraf da olabilir. Fotoğraf öneksiz olarak görsel kodlayıcıdan geçer, sonra hem yerlerin fotoğrafları (görselden görsele) hem de yerlerin metinleri (görselden metne) oy verir. Sorgu fotoğrafları indeksteki yerlerin başka fotoğrafları, yani model bunları hiç görmedi.",
+        "eval": "## 4. Ölçüm\nÇoğu diller arası 72 etiketli soru. Matryoshka sayesinde her vektörün sadece ilk 512, 256 ya da 128 sayısı tutulabilir. Bu ne kadar kalite kaybettirir?",
         "router": '## 5. Sıfır-örnek yönlendirici\nSimetrik `task: classification` önekiyle, hiç eğitim verisi olmadan soruları sınıflandır. Aynı yönlendirici "tatlı" gibi tek kelimelik aramaları da iyileştiriyor (hibrit arama).',
         "litert": "## 6. LiteRT\nAynı model, 165 MB'lık int4 dosya olarak. Vektörleri PyTorch'unkilere o kadar yakın ki PyTorch ile kurulan indeksi sorgulayabiliyor.",
         "app": "## 7. Web uygulaması\nColab'da FastAPI uygulamasını (LiteRT ile) başlatır ve bir bağlantı yazar. **Tarayıcı** modunu da dene: model doğrudan tarayıcında çalışır.",
@@ -205,6 +232,7 @@ ORDER = [
     ("hello", HELLO),
     ("build", BUILD),
     ("search", SEARCH),
+    ("photo", PHOTO),
     ("eval", EVAL),
     ("router", ROUTER),
     ("litert", LITERT),

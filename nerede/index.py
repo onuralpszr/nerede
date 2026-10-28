@@ -130,6 +130,21 @@ class Index:
         scores = truncate(self.image_vectors, dim) @ truncate(query_vector, dim)
         return [(float(scores[i]), self.images[i]) for i in np.argsort(-scores)[:k]]
 
+    def search_by_photo(self, image_vector: np.ndarray, k: int = 5, dim: int = 768) -> list[tuple[float, dict]]:
+        """Places for a query photo. A place has a text and a photo, so both vote: the query photo is compared with
+        the place photo (image -> image) and with the place text (image -> text). Text scores run lower than photo
+        scores, so they are shifted onto the photo scale first, then the two are averaged."""
+        rows = [i for i, d in enumerate(self.docs) if d["collection"] == "places"]
+        q = truncate(image_vector, dim)
+        text = truncate(self.vectors[rows], dim) @ q
+        photo_score = dict(zip((img["id"] for img in self.images), truncate(self.image_vectors, dim) @ q, strict=True))
+        photo = np.array([photo_score.get(self.docs[i]["id"], np.nan) for i in rows], np.float32)
+        if np.isnan(photo).all():
+            photo = text  # no photos indexed: text only
+        photo = np.where(np.isnan(photo), np.nanmean(photo), photo)  # a place without a photo gets an average vote
+        scores = (photo + text + photo.mean() - text.mean()) / 2
+        return [(float(scores[j]), self.docs[rows[j]]) for j in np.argsort(-scores)[:k]]
+
     @property
     def places(self) -> list[dict]:
         return [d for d in self.docs if d["collection"] == "places"]

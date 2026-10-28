@@ -37,6 +37,12 @@ const T = {
     none: "Sonuç yok",
     error: "Bir şeyler ters gitti",
     photoBy: "Fotoğraf",
+    byPhoto: "Fotoğrafla ara",
+    photoQuery: "senin fotoğrafın",
+    dropHere: "Fotoğrafı bırak, benzerlerini bulalım",
+    withPhoto: "fotoğrafa kelime ekle (isteğe bağlı) · kule, tatlı, gece",
+    removePhoto: "Fotoğrafı kaldır",
+    vision: "Görsel kodlayıcı tarayıcına iniyor…",
     footer1: "GDG DevFest İstanbul 2026 atölye önerisi için EmbeddingGemma 2 ile yapıldı.",
     footer2:
       'Sunucu modu: FastAPI + LiteRT-LM. Tarayıcı modu: transformers.js, sorgun cihazından çıkmaz. Fotoğraflar: <a href="images/ATTRIBUTION.md">Wikimedia Commons</a>.',
@@ -85,6 +91,12 @@ const T = {
     none: "No results",
     error: "Something went wrong",
     photoBy: "Photo",
+    byPhoto: "Search by photo",
+    photoQuery: "your photo",
+    dropHere: "Drop a photo to find similar places",
+    withPhoto: "add words to the photo (optional) · tower, dessert, at night",
+    removePhoto: "Remove the photo",
+    vision: "Downloading the vision encoder to your browser…",
     footer1: "Built with EmbeddingGemma 2 for a GDG DevFest Istanbul 2026 workshop proposal.",
     footer2:
       'Server mode: FastAPI + LiteRT-LM. Browser mode: transformers.js, your query never leaves your device. Photos: <a href="images/ATTRIBUTION.md">Wikimedia Commons</a>.',
@@ -142,6 +154,7 @@ const state = {
   browser: null, // lazy {model, tokenizer, index, device}
   last: null,
   ticket: 0, // only the newest search may render
+  photo: null, // {file, url, vector} while a photo is in the search bar
 };
 const t = () => T[state.lang];
 window.nerede = state; // poke around in DevTools: nerede.last, nerede.browser.index
@@ -149,6 +162,7 @@ window.nerede = state; // poke around in DevTools: nerede.last, nerede.browser.i
 // ---------- chrome: language, theme, tabs, chips --------------------------------------------------
 function applyLang() {
   document.documentElement.lang = state.lang;
+  document.body.dataset.drop = t().dropHere;
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     el.textContent = t()[el.dataset.i18n];
   });
@@ -158,9 +172,11 @@ function applyLang() {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = t()[el.dataset.i18nPlaceholder];
   });
+  if (state.photo) $("q").placeholder = t().withPhoto;
   document
     .querySelectorAll("[data-i18n-aria]")
     .forEach((el) => el.setAttribute("aria-label", t()[el.dataset.i18nAria]));
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => el.setAttribute("title", t()[el.dataset.i18nTitle]));
   document
     .querySelectorAll("[data-lang]")
     .forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === state.lang));
@@ -234,6 +250,9 @@ function renderChips() {
 function setMode(mode) {
   state.mode = mode;
   document.querySelectorAll("[data-mode]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mode === mode));
+  // photos work in Browser mode (the vision encoder downloads on the first photo) and on a server with PyTorch
+  $("pic").hidden = mode === "server" && !state.server?.vision;
+  if ($("pic").hidden) setPhoto(null);
   if (mode === "browser") loadBrowser().catch((e) => status(`${t().error}: ${esc(e.message)}`));
 }
 
@@ -243,6 +262,18 @@ const status = (html) => {
 };
 
 // ---------- browser mode ----------------------------------------------------------------------
+function downloadProgress(label = "") {
+  const files = {};
+  return (p) => {
+    if (p.status !== "progress" || !p.total) return;
+    files[p.file] = [p.loaded, p.total];
+    const [a, tot] = Object.values(files).reduce(([a, b], [x, y]) => [a + x, b + y], [0, 0]);
+    status(
+      `${label}${t().downloading((a / 1e6).toFixed(0), (tot / 1e6).toFixed(0))}<div class="progress"><i style="--p:${((100 * a) / tot).toFixed(0)}%"></i></div>`,
+    );
+  };
+}
+
 async function loadBrowser() {
   if (state.browser) return state.browser;
   if (state.loading) return state.loading;
@@ -257,21 +288,12 @@ async function loadBrowser() {
     // q4 (~175 MB) needs WebGPU: the WASM backend has no GatherBlockQuantized kernel (q4 and q8 both use it),
     // so WASM falls back to fp16 (~543 MB). ?device=wasm&dtype=fp32 overrides both for testing.
     const dtype = new URLSearchParams(location.search).get("dtype") || (device === "webgpu" ? "q4" : "fp16");
-    const files = {};
-    const progress = (p) => {
-      if (p.status !== "progress" || !p.total) return;
-      files[p.file] = [p.loaded, p.total];
-      const [a, tot] = Object.values(files).reduce(([a, b], [x, y]) => [a + x, b + y], [0, 0]);
-      status(
-        `${t().downloading((a / 1e6).toFixed(0), (tot / 1e6).toFixed(0))}<div class="progress"><i style="--p:${((100 * a) / tot).toFixed(0)}%"></i></div>`,
-      );
-    };
     const [model, tokenizer, index] = await Promise.all([
-      AutoModel.from_pretrained(MODEL, { config, device, dtype, progress_callback: progress }),
+      AutoModel.from_pretrained(MODEL, { config, device, dtype, progress_callback: downloadProgress() }),
       AutoTokenizer.from_pretrained(MODEL),
       fetch("index.json").then((r) => r.json()),
     ]);
-    state.browser = { model, tokenizer, index, device: `${device}/${dtype}`, cache: {} };
+    state.browser = { model, tokenizer, index, device, dtype, cache: {} };
     $("go").disabled = false;
     renderTabs();
     status(t().ready(device, index.docs.length, index.images.length, index.dim));
@@ -321,11 +343,90 @@ async function searchBrowser(q, k) {
       )
     : null;
   return {
-    backend: `browser:${b.device}`,
+    backend: `browser:${b.device}/${b.dtype}`,
     dim,
     intent: hybrid.intent,
     ms: (performance.now() - start).toFixed(1),
     results,
+    photos,
+  };
+}
+
+// The text-only model is swapped for one with the vision encoder on the first photo (about 109 MB more with q4).
+// The text half comes from the browser cache, and text queries keep working with the new model.
+async function loadVision() {
+  const b = await loadBrowser();
+  if (b.processor) return b;
+  state.visionLoading ??= (async () => {
+    const { AutoConfig, AutoModel, AutoProcessor, RawImage } = await import(TRANSFORMERS);
+    const config = await AutoConfig.from_pretrained(MODEL);
+    config.audio_config = null; // text + vision
+    const [model, processor] = await Promise.all([
+      AutoModel.from_pretrained(MODEL, {
+        config,
+        device: b.device,
+        dtype: b.dtype,
+        progress_callback: downloadProgress(`${t().vision} `),
+      }),
+      AutoProcessor.from_pretrained(MODEL),
+    ]);
+    const old = b.model;
+    Object.assign(b, { model, processor, RawImage });
+    await old.dispose?.();
+    return b;
+  })();
+  try {
+    return await state.visionLoading;
+  } finally {
+    state.visionLoading = null;
+  }
+}
+
+const add = (a, c) => a.map((x, j) => x + c[j]);
+const mean = (v) => v.reduce((s, x) => s + x, 0) / v.length;
+
+// Same as Index.search_by_photo in Python: each place gets two votes, its photo (image -> image) and its text
+// (image -> text). Text scores run lower, so they are shifted onto the photo scale, then the two are averaged.
+function placesByPhoto(b, qv, dim, k) {
+  const dot = (v) => v.reduce((s, x, j) => s + x * qv[j], 0);
+  const docs = matrix(b, "vectors", dim);
+  const photoScore = new Map(matrix(b, "image_vectors", dim).map((v, i) => [b.index.images[i].id, dot(v)]));
+  const rows = b.index.docs.map((d, i) => [d, i]).filter(([d]) => d.collection === "places");
+  const text = rows.map(([, i]) => dot(docs[i]));
+  const known = rows.map(([d]) => photoScore.get(d.id)).filter((x) => x !== undefined);
+  const photo = known.length ? rows.map(([d]) => photoScore.get(d.id) ?? mean(known)) : text;
+  const shift = mean(photo) - mean(text);
+  const byId = Object.fromEntries(b.index.images.map((i) => [i.id, i]));
+  return rows
+    .map(([d], j) => ({ score: (photo[j] + text[j] + shift) / 2, ...d, photo: byId[d.id] }))
+    .sort((a, c) => c.score - a.score)
+    .slice(0, k);
+}
+
+async function searchPhotoBrowser(q, k) {
+  const b = await loadVision();
+  const start = performance.now();
+  // the photo is embedded once; editing the words only re-embeds the text
+  state.photo.vector ??= Array.from(
+    (await b.model(await b.processor(null, await b.RawImage.fromBlob(state.photo.file)))).sentence_embedding.data,
+  );
+  let v = normalize(state.photo.vector);
+  if (q) {
+    const { sentence_embedding } = await b.model(await b.tokenizer([`task: search result | query: ${q}`]));
+    v = normalize(add(v, normalize(Array.from(sentence_embedding.data))));
+  }
+  const dim = Math.min(b.index.dim, Number($("dim").value));
+  const qv = normalize(v.slice(0, dim));
+  const dot = (x) => x.reduce((s, y, j) => s + y * qv[j], 0);
+  const photos = matrix(b, "image_vectors", dim)
+    .map((x, i) => ({ score: dot(x), ...b.index.images[i] }))
+    .sort((a, c) => c.score - a.score)
+    .slice(0, 12);
+  return {
+    backend: `browser:${b.device}/${b.dtype}`,
+    dim,
+    ms: (performance.now() - start).toFixed(1),
+    results: placesByPhoto(b, qv, dim, k),
     photos,
   };
 }
@@ -458,7 +559,11 @@ function photo(r, i = 0) {
 function render(res) {
   busy(false);
   const intent = res.intent ? ` · ${t().intent} <span class="badge">${esc(res.intent)}</span>` : "";
-  status(t().took(res) + intent);
+  const words = res.queryText ? `+ <b>${esc(res.queryText)}</b> · ` : "";
+  const query = res.queryImage
+    ? `<img class="qthumb" src="${res.queryImage}" alt="${esc(t().photoQuery)}"> ${words}`
+    : "";
+  status(query + t().took(res) + intent);
   const docs = res.results.length ? `<ol class="results">${res.results.map(card).join("")}</ol>` : "";
   const pics = res.photos?.length
     ? `${docs ? `<h3 class="strip">${esc(t().tabs.photos)}</h3>` : ""}
@@ -499,16 +604,22 @@ if (new URLSearchParams(location.search).get("q")) busy(true);
 
 async function run() {
   const q = $("q").value.trim();
-  if (!q) return;
+  if (!q && !state.photo) return;
   const ticket = ++state.ticket; // searches may overlap (tab clicks, typing); only the newest renders
   const k = 6;
+  busy(true);
   try {
-    const res = state.mode === "server" ? await searchServer(q, k) : await searchBrowser(q, k);
+    const res = state.photo
+      ? await searchPhoto(q, k)
+      : state.mode === "server"
+        ? await searchServer(q, k)
+        : await searchBrowser(q, k);
     if (ticket !== state.ticket) return; // a newer search started while this one ran
     state.last = res;
     render(res);
     const url = new URL(location.href);
-    url.searchParams.set("q", q);
+    if (q) url.searchParams.set("q", q);
+    else url.searchParams.delete("q");
     url.searchParams.delete("tab");
     if (allOn()) url.searchParams.delete("only");
     else url.searchParams.set("only", [...state.on].join(","));
@@ -517,6 +628,72 @@ async function run() {
     if (ticket === state.ticket) status(`${t().error}: ${esc(e.message)}`);
   }
 }
+
+// ---------- search by photo, alone or with words --------------------------------------------------
+// The photo sits as a chip in the search bar until removed. With words in the box, photo and text are added into
+// one query vector (normalize(photo + text)): "kule" next to a Galata photo with a ferry in front finds the tower.
+function setPhoto(file) {
+  if (state.photo) URL.revokeObjectURL(state.photo.url);
+  state.photo = file ? { file, url: URL.createObjectURL(file), vector: null } : null;
+  $("chip").hidden = !state.photo;
+  if (state.photo) $("chip").querySelector("img").src = state.photo.url;
+  $("q").placeholder = state.photo ? t().withPhoto : t().placeholder;
+}
+
+async function searchPhoto(q, k) {
+  const shown = { queryImage: state.photo.url, queryText: q };
+  if (state.mode === "browser") return { ...(await searchPhotoBrowser(q, k)), ...shown };
+  const params = new URLSearchParams({ k, dim: $("dim").value });
+  if (q) params.set("q", q);
+  const r = await fetch(`api/search/image?${params}`, {
+    method: "POST",
+    body: state.photo.file,
+    headers: { "Content-Type": state.photo.file.type },
+  });
+  if (!r.ok) throw new Error((await r.json().catch(() => null))?.detail || `HTTP ${r.status}`);
+  return { ...(await r.json()), ...shown };
+}
+
+function usePhoto(file) {
+  if (!file?.type.startsWith("image/") || $("pic").hidden) return false;
+  setPhoto(file);
+  run();
+  return true;
+}
+
+$("chip").querySelector("button").onclick = () => {
+  setPhoto(null);
+  if ($("q").value.trim()) run();
+  else {
+    state.last = null;
+    $("out").innerHTML = "";
+    status("");
+  }
+  $("q").focus();
+};
+$("pic").onclick = () => $("file").click();
+$("file").onchange = () => {
+  usePhoto($("file").files[0]);
+  $("file").value = "";
+};
+// drop a photo anywhere on the page, or paste one (Ctrl+V)
+addEventListener("dragover", (e) => {
+  if ($("pic").hidden || ![...e.dataTransfer.items].some((i) => i.type.startsWith("image/"))) return;
+  e.preventDefault();
+  document.body.classList.add("dropping");
+});
+addEventListener("dragleave", (e) => {
+  if (!e.relatedTarget) document.body.classList.remove("dropping");
+});
+addEventListener("drop", (e) => {
+  document.body.classList.remove("dropping");
+  const file = [...(e.dataTransfer?.files || [])].find((f) => f.type.startsWith("image/"));
+  if (usePhoto(file)) e.preventDefault();
+});
+addEventListener("paste", (e) => {
+  const file = [...(e.clipboardData?.files || [])].find((f) => f.type.startsWith("image/"));
+  if (usePhoto(file)) e.preventDefault();
+});
 
 // ---------- boot ------------------------------------------------------------------------------
 document.querySelectorAll("[data-lang]").forEach(

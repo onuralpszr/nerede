@@ -52,6 +52,10 @@
     <main>
       <div class="searchbox">
         <form class="bar" id="form" role="search">
+          <span class="chip" id="chip" hidden>
+            <img alt="" />
+            <button type="button" data-i18n-aria="removePhoto" data-i18n-title="removePhoto">×</button>
+          </span>
           <input
             id="q"
             type="search"
@@ -60,6 +64,15 @@
             data-i18n-placeholder="placeholder"
             aria-label="Search"
           />
+          <button type="button" id="pic" class="pic" data-i18n-aria="byPhoto" data-i18n-title="byPhoto" hidden>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M9 3 7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9Zm3 4.5a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+              />
+            </svg>
+          </button>
+          <input type="file" id="file" accept="image/*" hidden />
           <button id="go" data-i18n="go"></button>
         </form>
       </div>

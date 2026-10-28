@@ -78,9 +78,9 @@ CPU'lu PyTorch'tur (1,5 GB). NVIDIA, Intel Arc (XPU), AMD ya da Apple için [Kur
 | 2. İndeks ve arama | `02_build_index.py`, `03_search.py` | belgeler ve fotoğraflar için vektör indeksi |
 | 3. Ölç | `04_matryoshka_eval.py` | recall, MRR, Matryoshka 768 → 128 |
 | 4. Yönlendirici | `05_router.py` | sıfır-örnek sınıflandırma, kısa sorgular için hibrit arama |
-| 5. Runtime'lar | `06_runtimes.py` | PyTorch, LiteRT ve OpenVINO; CPU ve GPU |
+| 5. Runtime'lar | `06_runtimes.py` | PyTorch, LiteRT ve OpenVINO, CPU ve GPU |
 | 6. Yayına al | `app/`, `Dockerfile`, `scripts/docs/build_docs.py` | API, arayüz, konteyner, ücretsiz barındırma |
-| 7. Fotoğraflar | `03_search.py --photos`, `07_photo_search.py` | metinden fotoğraf arama |
+| 7. Fotoğraflar | `03_search.py --photos`, `07_photo_search.py`, `08_image_search.py` | metinden fotoğrafa, fotoğraftan yere |
 
 ## Ölçümler
 
@@ -91,6 +91,7 @@ Konuşmacının dizüstünde (Core Ultra X7 358H, Arc B390). Ayrıntılar [Ölç
 | 768 boyutta recall@1 / recall@3 (çoğu diller arası 72 soru, 147 belge) | 0,83 / 0,97 |
 | 256 boyutta recall@3, depolamanın üçte biriyle | 0,97 |
 | tek kelimelik sorgular ("tatlı", "müze"), ilk 5'te doğru olan: vektör / hibrit | 0,68 / 0,86 |
+| fotoğrafla arama, 27 yeni fotoğraf, doğru yer ilk sırada / ilk 3'te | 0,74 / 0,85 |
 | sorgu gecikmesi: PyTorch CPU / LiteRT CPU / LiteRT GPU / OpenVINO GPU | 23 / 40 / 17 / 6,6 ms |
 | 100 fotoğrafı indeksleme: CPU / Arc XPU | 257 sn / 16 sn |
 | sunucu imajı / soğuk açılış / RAM | ~575 MB / 1,1 sn / 200 MB |
