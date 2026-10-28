@@ -1,0 +1,66 @@
+{"query": "where did Atatürk pass away", "gold": "dolmabahce"}
+{"query": "underground water reservoir with Medusa heads", "gold": "yerebatan"}
+{"query": "Medusa başlı sütunlar nerede", "gold": "yerebatan"}
+{"query": "Mimar Sinan'ın en ünlü camisi", "gold": "suleymaniye"}
+{"query": "mosque with six minarets and blue tiles", "gold": "sultanahmet-camii"}
+{"query": "Bizans mozaiklerini görmek istiyorum", "gold": "kariye"}
+{"query": "baharat ve lokum almak için nereye gitmeli", "gold": "misir-carsisi"}
+{"query": "cheap fish sandwich by the water", "gold": "balik-ekmek"}
+{"query": "baked potato with lots of toppings", "gold": "kumpir"}
+{"query": "susamlı halka ekmek", "gold": "simit"}
+{"query": "drink on the UNESCO intangible heritage list", "gold": "turk-kahvesi"}
+{"query": "arabaların olmadığı ada", "gold": "adalar"}
+{"query": "tulip festival in spring", "gold": "emirgan"}
+{"query": "Haliç manzaralı teleferik ve çay", "gold": "pierre-loti"}
+{"query": "public ferry tour up the Bosphorus to the Black Sea end", "gold": "bogaz-turu"}
+{"query": "toplu taşıma kartı nereden alınır", "gold": "istanbulkart"}
+{"query": "train under the sea between Europe and Asia", "gold": "marmaray"}
+{"query": "colorful old houses Greek and Jewish heritage", "gold": "balat"}
+{"query": "cami kilise ve sinagog yan yana", "gold": "kuzguncuk"}
+{"query": "Turkish bath designed by Sinan", "gold": "cemberlitas-hamami"}
+{"query": "sokak kedileri hakkında belgesel", "gold": "kediler"}
+{"query": "museum designed by Renzo Piano", "gold": "istanbul-modern"}
+{"query": "Kaplumbağa Terbiyecisi tablosu", "gold": "pera-muzesi"}
+{"query": "İskender lahdi hangi müzede", "gold": "arkeoloji-muzesi"}
+{"query": "fetihten önce Boğaz'a yapılan kale", "gold": "rumeli-hisari"}
+{"query": "Genoese tower from 1348", "gold": "galata-kulesi"}
+{"query": "çocuklarla eski trenler ve otomobiller görmek", "gold": "rahmi-koc"}
+{"query": "second-hand books next to the bazaar", "gold": "sahaflar"}
+{"query": "Orhan Pamuk müzesi ve antikacılar", "gold": "cukurcuma"}
+{"query": "hill in Üsküdar with a huge mosque opened in 2019", "gold": "camlica"}
+{"query": "rakı ve meze ile uzun bir akşam", "gold": "meyhane"}
+{"query": "ormanda koşu parkuru", "gold": "belgrad-ormani"}
+{"query": "what to do in Istanbul when it rains", "gold": "yagmurlu-gun"}
+{"query": "Ottoman sultans' palace with the Spoonmaker's Diamond", "gold": "topkapi"}
+{"query": "late night street food mussels with lemon", "gold": "midye-dolma"}
+{"query": "church made of prefabricated cast iron shipped from Vienna", "gold": "demir-kilise"}
+{"query": "Avrupa ile Asya'yı birbirine bağlayan en eski asma köprü", "gold": "bogazici-koprusu"}
+{"query": "where can I watch whirling dervishes perform", "gold": "galata-mevlevihanesi"}
+{"query": "Osmanlı sarayında sultanlara sunulan etli muhallebi", "gold": "tavuk-gogsu"}
+{"query": "dükkânların üstüne kurulmuş, içi çinilerle kaplı küçük cami", "gold": "rustem-pasa"}
+{"query": "thick fermented grain drink Evliya Çelebi wrote about", "gold": "boza"}
+{"query": "19. yüzyılda Leh göçmenlerin kurduğu orman köyü", "gold": "polonezkoy"}
+{"query": "highest structure in the city with observation decks on the Asian side", "gold": "camlica-kulesi"}
+{"query": "kruvaziyer gemilerinin yanaştığı sahil alışveriş alanı", "gold": "galataport"}
+{"query": "Roman aqueduct arches spanning a busy boulevard", "gold": "bozdogan-kemeri"}
+{"query": "spring festival where people jump over fire and leave wishes under rose bushes", "gold": "hidirellez"}
+{"query": "Haliç'in ortasında istasyonu olan raylı geçiş", "gold": "halic-metro-koprusu"}
+{"query": "fortress where a young sultan was killed by the janissaries", "gold": "yedikule"}
+{"query": "Boğaz kıyısındaki tarihi ahşap sahil konakları", "gold": "yali"}
+{"query": "Byzantine church with great acoustics used for classical concerts", "gold": "aya-irini"}
+{"query": "when is the conference this year", "gold": "devfest-ne-zaman"}
+{"query": "konferans otelinden metroya nasıl gidilir", "gold": "devfest-venue"}
+{"query": "how much is the early bird ticket", "gold": "devfest-bilet"}
+{"query": "VIP koltuk ve öğle yemeği dahil bilet", "gold": "devfest-gold-pass"}
+{"query": "my company needs an invoice for tickets", "gold": "devfest-fatura"}
+{"query": "geçen yıl kaç kişi katıldı", "gold": "devfest-2025-stats"}
+{"query": "how do I submit a talk proposal", "gold": "devfest-cfp"}
+{"query": "WhatsApp group of the community", "gold": "gdg-istanbul-sosyal"}
+{"query": "model kaç parametreli, sadece metin için ne kadar", "gold": "eg2-sizes"}
+{"query": "how many languages does the model support", "gold": "eg2-diller"}
+{"query": "vektörleri küçültünce kalite ne kadar düşer", "gold": "eg2-matryoshka"}
+{"query": "what prefix should I put before a search query", "gold": "eg2-prompts"}
+{"query": "telefonda çalışan dosya boyutu kaç MB", "gold": "eg2-litert"}
+{"query": "run it in the browser with WebGPU", "gold": "eg2-browser"}
+{"query": "how fast is it on a Raspberry Pi", "gold": "eg2-gecikme"}
+{"query": "4 bit quantization quality loss", "gold": "eg2-kuantizasyon"}
