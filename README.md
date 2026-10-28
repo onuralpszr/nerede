@@ -3,7 +3,23 @@
 **Build and ship a Turkish-English semantic search with EmbeddingGemma 2.**
 A hands-on workshop proposal for GDG DevFest İstanbul 2026 · 19 December · Wyndham Grand İstanbul Levent.
 
-**Docs:** [English](docs/en/index.md) · [Türkçe](docs/tr/index.md) · **Colab:** [English](notebooks/nerede_en.ipynb) · [Türkçe](notebooks/nerede_tr.ipynb)
+<p align="center">
+  <a href="https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab (English)"></a>
+  <a href="https://colab.research.google.com/github/onuralpszr/nerede/blob/main/notebooks/nerede_tr.ipynb"><img src="https://img.shields.io/badge/Colab-T%C3%BCrk%C3%A7e-F9AB00?logo=googlecolab&logoColor=white" alt="Colab'da aç (Türkçe)"></a>
+  <a href="https://kaggle.com/kernels/welcome?src=https://github.com/onuralpszr/nerede/blob/main/notebooks/nerede_en.ipynb"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle"></a>
+  <br>
+  <a href="https://onuralpszr.github.io/nerede/en/"><img src="https://img.shields.io/badge/docs-English-052458" alt="Docs in English"></a>
+  <a href="https://onuralpszr.github.io/nerede/tr/"><img src="https://img.shields.io/badge/belgeler-T%C3%BCrk%C3%A7e-052458" alt="Türkçe belgeler"></a>
+  <a href="https://onuralpszr.github.io/nerede/demo/"><img src="https://img.shields.io/badge/demo-in%20your%20browser-63c5f2" alt="Live demo"></a>
+  <a href="https://github.com/onuralpszr/nerede/actions/workflows/docs.yml"><img src="https://github.com/onuralpszr/nerede/actions/workflows/docs.yml/badge.svg" alt="Docs and demo build"></a>
+  <br>
+  <a href="https://huggingface.co/google/embeddinggemma-2"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20model-EmbeddingGemma%202-f2c14e" alt="EmbeddingGemma 2 on Hugging Face"></a>
+  <img src="https://img.shields.io/badge/python-3.12%20%7C%203.13-5179c1?logo=python&logoColor=white" alt="Python 3.12 and 3.13">
+  <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" alt="uv"></a>
+  <a href="https://devfest.istanbul/"><img src="https://img.shields.io/badge/DevFest%20%C4%B0stanbul-2026-052458" alt="DevFest İstanbul 2026"></a>
+</p>
+
+**Docs:** [English](docs/en/index.md) · [Türkçe](docs/tr/index.md) · **Notebooks:** [English](notebooks/nerede_en.ipynb) · [Türkçe](notebooks/nerede_tr.ipynb)
 
 <p align="center">
   <img src="docs/overrides/assets/images/app.jpg" alt="Nerede? search UI" width="640">
