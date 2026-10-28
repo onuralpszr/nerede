@@ -8,6 +8,7 @@ uv run --group docs scripts/docs/build_docs.py --serve             # build, then
 
 import argparse
 import functools
+import hashlib
 import http.server
 import re
 import shutil
@@ -43,12 +44,24 @@ def build(lang: str, config: str, base: str, site_url: str | None) -> None:
         tmp.unlink()
 
 
+def stamp(demo: Path) -> None:
+    """Add a content hash to the CSS and JS links (style.css?v=1a2b3c4d). GitHub Pages lets browsers cache every
+    file for 10 minutes, so without it a fresh page can run with last deploy's CSS and look broken."""
+    page = demo / "index.html"
+    html = page.read_text(encoding="utf-8")
+    for name in ("style.css", "app.js"):
+        digest = hashlib.sha256((demo / name).read_bytes()).hexdigest()[:8]
+        html = html.replace(f'"{name}"', f'"{name}?v={digest}"')
+    page.write_text(html, encoding="utf-8")
+
+
 def copy_demo() -> None:
     demo = SITE / "demo"
     shutil.copytree(ROOT / "app" / "static", demo, dirs_exist_ok=True)
     if not (demo / "index.json").exists():
         sys.exit("app/static/index.json is missing: run workshop/02_build_index.py first")
     shutil.copytree(ROOT / "data" / "images", demo / "images", dirs_exist_ok=True)
+    stamp(demo)
     print(f"demo -> {demo.relative_to(ROOT)} (browser-only: it has no /api, so the page runs the model itself)")
 
 
