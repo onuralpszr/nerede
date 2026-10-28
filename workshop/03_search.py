@@ -1,0 +1,35 @@
+"""Step 3: search the index from your terminal. Ask in Turkish or English.
+
+    uv run workshop/03_search.py
+    uv run workshop/03_search.py --collection devfest
+    uv run workshop/03_search.py --photos            # text -> photo search
+    uv run workshop/03_search.py --dim 128 --backend litert
+"""
+
+import argparse
+
+from nerede import Index, get_embedder, query
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--backend", default=None)
+parser.add_argument("--dim", type=int, default=768, choices=[768, 512, 256, 128])
+parser.add_argument("--collection", default="all", choices=["all", "places", "devfest", "gemma"])
+parser.add_argument("--photos", action="store_true", help="search the photos instead of the text")
+parser.add_argument("-k", type=int, default=3)
+args = parser.parse_args()
+
+index = Index.load()
+embedder = get_embedder(args.backend)
+print(f"{len(index.docs)} docs, {len(index.images)} photos, built with {index.built_with}. "
+      f"Querying with {embedder.name} at {args.dim}d. Empty line quits.\n")
+
+while text := input("nerede? > ").strip():
+    q = embedder.embed([query(text)])[0]
+    if args.photos:
+        for score, img in index.search_images(q, k=args.k, dim=args.dim):
+            print(f"  {score:.3f}  {img['title']}  data/images/{img['file']}")
+    else:
+        for score, doc in index.search(q, k=args.k, dim=args.dim, collection=args.collection):
+            where = doc.get("district") or doc["collection"]
+            print(f"  {score:.3f}  {doc['title']}  ({where}, {doc['category']})")
+    print()
